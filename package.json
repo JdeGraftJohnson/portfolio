@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx --yes @opennextjs/cloudflare@1.19.6 build",
+    "build": "npm install --no-save --legacy-peer-deps @opennextjs/cloudflare@1.19.6 wrangler@4.88.0 && npx @opennextjs/cloudflare build",
     "start": "next start",
     "lint": "next lint"
   },
