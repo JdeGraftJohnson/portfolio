@@ -52,8 +52,10 @@ const PROJECTS: Project[] = [
     title: "AI Health Equity Audit Tool",
     subtitle: "Bias Detection · NICE ESF Tier B",
     body: `Automated fairness audit pipeline for clinical AI models. Takes model predictions and patient demographics and produces a structured equity report: equalized-odds difference by IMD quintile, ethnicity, age band, and rurality. References NICE ESF Tier B monitoring requirements, NHS Core20PLUS5 health inequalities framework, and UK GDPR Article 22. Output is a human-readable PDF audit report plus a machine-readable JSON record for governance tracking.`,
-    stack: ["Python", "NICE ESF", "NHS Core20PLUS5", "Fairlearn", "UK GDPR Art.22"],
-    links: [],
+    stack: ["Python", "NICE ESF", "NHS Core20PLUS5", "Fairlearn", "LangSmith", "inspect_petri", "FastAPI"],
+    links: [
+      { label: "Open Audit →", href: "/audit" },
+    ],
     status: "pilot",
   },
 ];
