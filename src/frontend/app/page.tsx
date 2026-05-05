@@ -48,9 +48,9 @@ const projects: Project[] = [
   {
     name: "AI Proposal Intelligence",
     description: "Auto-generates AI architecture diagrams and embeds them inline into .docx proposals. Includes a 32-tool MCP server for LLM-driven deck generation.",
-    href: "https://github.com/JdeGraftJohnson/ai-proposal-intelligence",
+    href: "https://ai-proposal-intelligence.vercel.app/aiwriter",
     tag: "Document AI · MCP · Agentic",
-    status: "open-source",
+    status: "live",
   },
   {
     name: "Responsible AI Health Equity Audit",
@@ -108,7 +108,7 @@ export default function Portfolio() {
             John DeGraft-Johnson
           </h1>
           <p style={{ color: tokens.muted, fontSize: 15 }}>
-            Software engineer · AI · data infrastructure
+            Machine Learning / Systems Engineer SME · AI · data infrastructure
           </p>
         </div>
       </div>
