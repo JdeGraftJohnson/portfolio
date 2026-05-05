@@ -1,7 +1,7 @@
-.next/
 node_modules/
-.env*
-!.env.example
-out/
-*.log
+src/frontend/node_modules/
+src/frontend/.next/
+src/frontend/out/
+src/frontend/.env*.local
+*.env
 .DS_Store
