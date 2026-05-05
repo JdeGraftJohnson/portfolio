@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm install --no-save --legacy-peer-deps @opennextjs/cloudflare@1.19.6 wrangler@4.88.0 && npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion",
+    "build": "if [ -z \"$OPENNEXT_BUILD\" ]; then npm install --no-save --legacy-peer-deps @opennextjs/cloudflare@1.19.6 wrangler@4.88.0 && OPENNEXT_BUILD=1 npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion; else next build; fi",
     "start": "next start",
     "lint": "next lint"
   },
