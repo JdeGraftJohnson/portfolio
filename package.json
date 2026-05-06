@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "if [ -z \"$OPENNEXT_BUILD\" ]; then npm install --no-save --legacy-peer-deps @opennextjs/cloudflare@1.19.6 wrangler@4.88.0 && OPENNEXT_BUILD=1 npx @opennextjs/cloudflare build --dangerouslyUseUnsupportedNextVersion && node scripts/build-router.js; else next build; fi",
+    "build": "next build",
+    "deploy": "next build && wrangler pages deploy out",
     "start": "next start",
     "lint": "next lint"
   },
