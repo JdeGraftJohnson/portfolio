@@ -1,0 +1,128 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+# A new push supersedes any in-flight deploy on the same branch.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+# Reusable across other static-export Next.js sites: change CF_PROJECT to the
+# Cloudflare Pages project name and PROD_HOST to the production hostname.
+env:
+  CF_PROJECT: johndegraft-app
+  PROD_HOST: johndegraft.app
+  SMOKE_PATHS: "/ /rag /audit"
+
+jobs:
+  # Gate 1 — never deploy code that doesn't typecheck.
+  # TODO: add `npm run lint -- --max-warnings=0` once ESLint is initialized
+  # (run `npx next lint` once locally to scaffold .eslintrc.json).
+  validate:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx tsc --noEmit
+
+  build:
+    name: Build (next export)
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - name: Build
+        run: npm run build
+      - name: Verify out/ exists and is non-empty
+        run: |
+          test -d out || { echo "::error::next build did not produce out/ — check next.config.mjs has output: 'export'"; exit 1; }
+          test -s out/index.html || { echo "::error::out/index.html is empty or missing"; exit 1; }
+          echo "out/ size: $(du -sh out | cut -f1)"
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-out
+          path: out/
+          retention-days: 3
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Don't deploy from forked-PR runs — they don't have access to secrets and
+    # would expose us to credential-leak vectors if we tried.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+    outputs:
+      url: ${{ steps.cf.outputs.deployment-url }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pages-out
+          path: out
+      - name: Deploy
+        id: cf
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # On main → production. Other branches → preview deploy at <branch>.<project>.pages.dev
+          command: pages deploy out --project-name=${{ env.CF_PROJECT }} --branch=${{ github.head_ref || github.ref_name }}
+
+  smoke:
+    name: Post-deploy smoke test
+    needs: deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Curl production paths and fail on non-200
+        run: |
+          set -euo pipefail
+          fail=0
+          for p in $SMOKE_PATHS; do
+            for attempt in 1 2 3 4 5; do
+              code=$(curl -sS -o /dev/null -w '%{http_code}' "https://$PROD_HOST$p" || echo 000)
+              if [ "$code" = "200" ]; then
+                echo "✓ $p → $code"
+                break
+              fi
+              echo "  attempt $attempt: $p → $code (retrying in 6s)"
+              sleep 6
+              if [ "$attempt" = "5" ]; then
+                echo "::error::$p returned $code after 5 attempts"
+                fail=1
+              fi
+            done
+          done
+          exit $fail
