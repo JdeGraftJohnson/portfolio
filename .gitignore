@@ -5,3 +5,6 @@ src/frontend/out/
 src/frontend/.env*.local
 *.env
 .DS_Store
+
+# Local-only design exploration (MCP-generated /rag variants, page backups, etc.)
+scratch/
