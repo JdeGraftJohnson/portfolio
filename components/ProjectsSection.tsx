@@ -1,7 +1,5 @@
 "use client";
 
-import { LiquidGlassCard } from "./LiquidGlassCard";
-
 interface Project {
   badge: string;
   badgeColor: string;
@@ -94,38 +92,45 @@ const STATUS_STYLES: Record<Project["status"], { label: string; color: string }>
   "open-source": { label: "Open Source", color: "#f59e0b" },
 };
 
+function isExternal(href: string): boolean {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
+
 export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-24 px-6"
-      style={{ background: "linear-gradient(180deg, #05050f 0%, #0a0a1f 50%, #050510 100%)" }}
+      className="py-20 md:py-24 px-4 md:px-8 lg:px-16 text-white"
+      style={{ background: "linear-gradient(to bottom right, #312e81, #6b46c1)" }}
     >
-      <div className="max-w-5xl mx-auto">
-        <p className="text-xs font-medium tracking-widest uppercase text-blue-400 text-center mb-3">
-          Portfolio
-        </p>
-        <h2 className="text-white text-center font-semibold text-2xl mb-4">
-          Production AI systems
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-center font-bold text-3xl md:text-4xl mb-3 leading-tight">
+          Selected Projects <span className="text-yellow-300">★</span>
         </h2>
-        <p className="text-white/55 text-center text-base leading-relaxed max-w-2xl mx-auto mb-16">
-          Each project is built end-to-end — from data pipeline to deployed interface — using
-          real-world standards and governance frameworks, not toy demos.
+        <p className="text-white/70 text-center text-base md:text-lg max-w-2xl mx-auto mb-12">
+          Each project is shipped end-to-end — data pipeline, model, governance, deployed UI.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((p) => {
             const statusStyle = STATUS_STYLES[p.status];
             return (
-              <LiquidGlassCard key={p.title} interactive={false} radius={16} padding={28}>
-                {/* Header row */}
+              <div
+                key={p.title}
+                className="relative flex flex-col p-6 rounded-2xl backdrop-blur-md transition transform hover:-translate-y-1"
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.08)",
+                }}
+              >
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <span
                     className="text-xs font-semibold tracking-wider uppercase px-2 py-1 rounded-full shrink-0"
                     style={{
                       color: p.badgeColor,
-                      background: `${p.badgeColor}18`,
-                      border: `1px solid ${p.badgeColor}30`,
+                      background: `${p.badgeColor}25`,
+                      border: `1px solid ${p.badgeColor}55`,
                     }}
                   >
                     {p.badge}
@@ -134,31 +139,28 @@ export function ProjectsSection() {
                     className="text-xs font-medium px-2 py-1 rounded-full shrink-0"
                     style={{
                       color: statusStyle.color,
-                      background: `${statusStyle.color}15`,
-                      border: `1px solid ${statusStyle.color}25`,
+                      background: `${statusStyle.color}20`,
+                      border: `1px solid ${statusStyle.color}40`,
                     }}
                   >
                     {statusStyle.label}
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-white font-semibold text-base mb-1">{p.title}</h3>
-                <p className="text-white/40 text-xs mb-3">{p.subtitle}</p>
+                <h3 className="font-bold text-lg mb-1">{p.title}</h3>
+                <p className="text-white/55 text-xs mb-3">{p.subtitle}</p>
 
-                {/* Body */}
-                <p className="text-white/60 text-sm leading-relaxed mb-5">{p.body}</p>
+                <p className="text-white/75 text-sm leading-relaxed mb-4 flex-grow">{p.body}</p>
 
-                {/* Stack tags */}
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {p.stack.map((tag) => (
                     <span
                       key={tag}
                       className="text-xs px-2 py-0.5 rounded"
                       style={{
-                        background: "rgba(255,255,255,0.07)",
-                        border: "1px solid rgba(255,255,255,0.10)",
-                        color: "rgba(255,255,255,0.55)",
+                        background: "rgba(255,255,255,0.10)",
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        color: "rgba(255,255,255,0.75)",
                       }}
                     >
                       {tag}
@@ -166,24 +168,25 @@ export function ProjectsSection() {
                   ))}
                 </div>
 
-                {/* Links */}
                 {p.links.length > 0 && (
-                  <div className="flex gap-3">
-                    {p.links.map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs font-medium transition-colors"
-                        style={{ color: p.badgeColor }}
-                      >
-                        {link.label}
-                      </a>
-                    ))}
+                  <div className="flex gap-3 mt-auto">
+                    {p.links.map((link) => {
+                      const external = isExternal(link.href);
+                      return (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          className="text-sm font-semibold inline-flex items-center hover:underline"
+                          style={{ color: p.badgeColor }}
+                        >
+                          {link.label}
+                        </a>
+                      );
+                    })}
                   </div>
                 )}
-              </LiquidGlassCard>
+              </div>
             );
           })}
         </div>

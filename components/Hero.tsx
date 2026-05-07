@@ -1,129 +1,134 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { LiquidGlassCard } from "./LiquidGlassCard";
-
-const Canvas = dynamic(() => import("@react-three/fiber").then((m) => m.Canvas), { ssr: false });
-const ParticleNetwork = dynamic(
-  () => import("./ParticleNetwork").then((m) => m.ParticleNetwork),
-  { ssr: false },
-);
-
 const ROLES = [
-  "AI/ML Engineer",
-  "Agentic Pipeline Architect",
-  "Clinical AI · Gov AI",
+  { glyph: "▲", label: "Healthcare AI" },
+  { glyph: "◆", label: "Governance" },
+  { glyph: "✦", label: "Agentic Pipelines" },
 ];
 
 export function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden" style={{ background: "#05050f" }}>
-      {/* 3D canvas */}
-      <div className="absolute inset-0">
-        <Canvas camera={{ position: [0, 0, 7], fov: 60 }}>
-          <ParticleNetwork />
-        </Canvas>
-      </div>
-
-      {/* Vignette */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(5,5,15,0) 35%, rgba(5,5,15,0.80) 100%)",
-        }}
-      />
-
+    <header
+      className="relative overflow-hidden flex items-center justify-center text-white px-4 md:px-8 lg:px-16 py-16 md:py-20"
+      style={{ background: "linear-gradient(to bottom right, #6b46c1, #312e81)", minHeight: "70vh" }}
+    >
       {/* Nav */}
-      <nav className="relative z-20 flex items-center justify-between px-8 py-6">
-        <span className="text-white font-semibold tracking-tight text-sm">
-          johndegraft.app
-        </span>
+      <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-10 py-5">
+        <span className="font-semibold tracking-tight text-sm">johndegraft.app</span>
         <div className="flex items-center gap-2">
           <a
             href="/rag"
-            className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
+            className="text-xs px-3 py-1 rounded-full border border-white/30 text-white/80 hover:bg-white/10 hover:border-white/60 transition-colors"
           >
             RAG Assistant
           </a>
           <a
             href="/audit"
-            className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
+            className="text-xs px-3 py-1 rounded-full border border-white/30 text-white/80 hover:bg-white/10 hover:border-white/60 transition-colors"
           >
             Equity Audit
           </a>
           <a
             href="#projects"
-            className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
+            className="text-xs px-3 py-1 rounded-full border border-white/30 text-white/80 hover:bg-white/10 hover:border-white/60 transition-colors"
           >
             Projects ↓
           </a>
         </div>
       </nav>
 
-      {/* Hero content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 -mt-16">
-        <LiquidGlassCard
-          interactive={false}
-          radius={24}
-          padding={48}
-          className="max-w-2xl w-full text-center"
-        >
-          <p className="text-xs font-medium tracking-widest uppercase text-blue-400 mb-4">
-            {ROLES.join(" · ")}
-          </p>
-          <h1
-            className="text-white font-semibold"
-            style={{ fontSize: "clamp(1.75rem,4vw,3rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
-          >
-            John de Graft-Johnson
-            <br />
-            <span style={{ color: "#60a5fa" }}>Building AI that works</span>
-          </h1>
-          <p className="mt-5 text-white/70 text-base leading-relaxed max-w-xl mx-auto">
-            Production AI systems for healthcare, government, and enterprise. From clinical
-            risk models on NHS data standards to agentic document pipelines — built with
-            governance, fairness, and deployment in mind.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="#projects"
-              className="px-6 py-3 rounded-lg bg-blue-500 text-white font-medium text-sm hover:bg-blue-400 transition-colors"
-            >
-              View projects ↓
-            </a>
-            <a
-              href="https://github.com/JdeGraftJohnson"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-lg border border-white/20 text-white/80 font-medium text-sm hover:bg-white/10 transition-colors"
-            >
-              GitHub →
-            </a>
+      {/* Decorative pulse rings (right side) */}
+      <div className="hidden lg:block absolute right-[8%] top-1/2 -translate-y-1/2 pointer-events-none">
+        <div className="relative w-96 h-96">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="w-72 h-72 bg-white/10 rounded-full"
+              style={{ animation: "pulseSlow 6s infinite ease-in-out" }}
+            />
+            <div
+              className="absolute w-52 h-52 bg-white/10 rounded-full"
+              style={{ animation: "pulseSlow 6s infinite ease-in-out", animationDelay: "0.2s" }}
+            />
+            <div
+              className="absolute w-32 h-32 bg-white/10 rounded-full"
+              style={{ animation: "pulseSlow 6s infinite ease-in-out", animationDelay: "0.4s" }}
+            />
           </div>
-        </LiquidGlassCard>
-
-        {/* Accent legend */}
-        <div className="mt-6 flex flex-wrap gap-4 justify-center text-xs text-white/40">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
-            Healthcare AI
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-violet-400 inline-block" />
-            Gov / Proposal AI
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-teal-400 inline-block" />
-            Responsible AI
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
-            Agentic Pipelines
-          </span>
+          <div
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 mx-auto max-w-xs p-6 bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl rotate-3"
+            style={{ transition: "transform .5s ease" }}
+          >
+            <p className="font-semibold text-2xl text-center leading-snug">
+              NHS Clinical AI <span className="opacity-80">▲</span>{" "}
+              Governance <span className="opacity-80">◆</span>{" "}
+              Agentic Pipelines
+            </p>
+          </div>
         </div>
       </div>
-    </section>
+
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full max-w-7xl mx-auto">
+        <div className="space-y-4 text-center lg:text-left">
+          <h1
+            className="font-extrabold tracking-tight leading-[1.05]"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+          >
+            John de Graft-Johnson
+          </h1>
+          <p
+            className="font-light tracking-wide opacity-90"
+            style={{ fontSize: "clamp(1.125rem, 2vw, 1.5rem)" }}
+          >
+            AI/ML Engineer SME
+          </p>
+          <p className="text-base md:text-lg opacity-80 max-w-xl mx-auto lg:mx-0">
+            Production AI for NHS clinical decision support, AI governance, and agentic
+            document pipelines — six shipped projects.
+          </p>
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+            {ROLES.map((r) => (
+              <span
+                key={r.label}
+                className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-white/10 border border-white/20"
+              >
+                <span aria-hidden>{r.glyph}</span>
+                {r.label}
+              </span>
+            ))}
+          </div>
+          <div className="flex gap-3 justify-center lg:justify-start pt-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center px-5 py-2.5 bg-white text-indigo-800 font-bold text-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition"
+            >
+              Explore Projects ❯
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-5 py-2.5 border-2 border-white text-white font-bold text-sm rounded-full hover:bg-white hover:text-indigo-800 transition"
+            >
+              Get In Touch ▲
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes pulseSlow {
+          0% {
+            transform: scale(0.9);
+            opacity: 0.1;
+          }
+          50% {
+            transform: scale(1.1);
+            opacity: 0.2;
+          }
+          100% {
+            transform: scale(0.9);
+            opacity: 0.1;
+          }
+        }
+      `}</style>
+    </header>
   );
 }
