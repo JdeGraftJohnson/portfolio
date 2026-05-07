@@ -45,8 +45,10 @@ const PROJECTS: Project[] = [
     subtitle: "NHS Primary Care · AI Decision Support",
     body: `Early-warning system for GP practices that identifies patients most at risk of stopping care — before their health deteriorates. XGBoost model (AUC 0.94) trained on 10,000 synthetic CPRD Gold patients, with SHAP explainability, IMD fairness audit (equalized-odds difference), and a Neo4j graph query layer for cohort traversal. Built on OMOP CDM, SNOMED CT, and QOF condition codes. UK GDPR Article 22 compliant. Pilot deployment with a Next.js + FastAPI chat interface backed by Gemma 4.`,
     stack: ["XGBoost", "SHAP", "Neo4j", "FastAPI", "Next.js", "OMOP CDM", "SNOMED CT", "Azure"],
-    links: [],
-    status: "pilot",
+    links: [
+      { label: "Open Chat →", href: "https://chat.johndegraft.app" },
+    ],
+    status: "live",
   },
   {
     badge: "Geospatial AI",
@@ -56,7 +58,7 @@ const PROJECTS: Project[] = [
     body: `Interactive choropleth map of NHS Integrated Care Board regions, layered with disengagement risk scores, IMD quintile distributions, and CQC practice ratings. Drill-down from national → regional → ICB → practice level. Built with Next.js, Leaflet, and Delta Lake silver-layer data. Designed as a commissioning intelligence tool for ICB analysts and NHS England planners.`,
     stack: ["Next.js", "Leaflet", "Delta Lake", "Azure Static Web Apps", "Python"],
     links: [
-      { label: "Open Map →", href: "https://blue-smoke-00f20d403.7.azurestaticapps.net" },
+      { label: "Open Map →", href: "https://blue-smoke-00f20d403.7.azurestaticapps.net/map" },
     ],
     status: "live",
   },
