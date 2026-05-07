@@ -27,11 +27,23 @@ const PROJECTS: Project[] = [
     status: "open-source",
   },
   {
+    badge: "Clinical RAG",
+    badgeColor: "#22d3ee",
+    title: "Clinical Decision Support RAG Assistant",
+    subtitle: "Evidence-grounded answers · DOI-cited",
+    body: `Retrieval-augmented assistant that grounds clinical answers in peer-reviewed evidence. Each response cites DOI-anchored sources, traverses a biomedical knowledge graph for entity resolution, and falls back gracefully when evidence is thin. Designed for the workflows of teams like Causaly, Maven Clinic, Onsera Health, Heim Health, Gilead Sciences, and Genomics England — biomedical evidence assembly, member triage, drug-target dossiers, and rare-disease cohort traversal.`,
+    stack: ["RAG", "Knowledge Graph", "DOI citations", "Next.js", "FastAPI", "Gemini", "Vector DB"],
+    links: [
+      { label: "Open Assistant →", href: "/rag" },
+    ],
+    status: "live",
+  },
+  {
     badge: "Clinical AI",
     badgeColor: "#60a5fa",
     title: "Patient Disengagement Prediction",
     subtitle: "NHS Primary Care · AI Decision Support",
-    body: `Early-warning system for GP practices that identifies patients most at risk of stopping care — before their health deteriorates. XGBoost model (AUC 0.94) trained on 10,000 synthetic CPRD Gold patients, with SHAP explainability, IMD fairness audit (equalized-odds difference), and a Neo4j graph query layer for cohort traversal. Built on OMOP CDM, SNOMED CT, and QOF condition codes. UK GDPR Article 22 compliant. Live with a Next.js + FastAPI chat interface backed by Gemma 4.`,
+    body: `Early-warning system for GP practices that identifies patients most at risk of stopping care — before their health deteriorates. XGBoost model (AUC 0.94) trained on 10,000 synthetic CPRD Gold patients, with SHAP explainability, IMD fairness audit (equalized-odds difference), and a Neo4j graph query layer for cohort traversal. Built on OMOP CDM, SNOMED CT, and QOF condition codes. UK GDPR Article 22 compliant. Pilot deployment with a Next.js + FastAPI chat interface backed by Gemma 4.`,
     stack: ["XGBoost", "SHAP", "Neo4j", "FastAPI", "Next.js", "OMOP CDM", "SNOMED CT", "Azure"],
     links: [],
     status: "pilot",
@@ -43,8 +55,10 @@ const PROJECTS: Project[] = [
     subtitle: "NHS ICB Risk Visualisation",
     body: `Interactive choropleth map of NHS Integrated Care Board regions, layered with disengagement risk scores, IMD quintile distributions, and CQC practice ratings. Drill-down from national → regional → ICB → practice level. Built with Next.js, Leaflet, and Delta Lake silver-layer data. Designed as a commissioning intelligence tool for ICB analysts and NHS England planners.`,
     stack: ["Next.js", "Leaflet", "Delta Lake", "Azure Static Web Apps", "Python"],
-    links: [],
-    status: "pilot",
+    links: [
+      { label: "Open Map →", href: "https://blue-smoke-00f20d403.7.azurestaticapps.net" },
+    ],
+    status: "live",
   },
   {
     badge: "Responsible AI",
@@ -57,6 +71,18 @@ const PROJECTS: Project[] = [
       { label: "Open Audit →", href: "/audit" },
     ],
     status: "pilot",
+  },
+  {
+    badge: "Capital Markets",
+    badgeColor: "#f472b6",
+    title: "StockHub",
+    subtitle: "Equity Research · Macro Signals",
+    body: `Live equity-research workspace with macro signal overlays, fundamentals screening, and portfolio risk analytics. Built on a real-time market-data pipeline with cached fundamentals, technical-indicator computation, and a clean charting surface. Designed for retail investors who want institutional-grade tooling without the Bloomberg price tag.`,
+    stack: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Cloudflare", "Plotly"],
+    links: [
+      { label: "Open StockHub →", href: "https://stockhub.work" },
+    ],
+    status: "live",
   },
 ];
 

@@ -40,12 +40,26 @@ export function Hero() {
         <span className="text-white font-semibold tracking-tight text-sm">
           johndegraft.app
         </span>
-        <a
-          href="#projects"
-          className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
-        >
-          Projects ↓
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="/rag"
+            className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
+          >
+            RAG Assistant
+          </a>
+          <a
+            href="/audit"
+            className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
+          >
+            Equity Audit
+          </a>
+          <a
+            href="#projects"
+            className="text-xs px-3 py-1 rounded-full border border-white/20 text-white/60 hover:text-white/90 hover:border-white/40 transition-colors"
+          >
+            Projects ↓
+          </a>
+        </div>
       </nav>
 
       {/* Hero content */}
