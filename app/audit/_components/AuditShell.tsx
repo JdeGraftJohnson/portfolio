@@ -22,14 +22,14 @@ interface TabDef {
 }
 
 const TABS: TabDef[] = [
-  { label: "① Upload",        index: 0 },
-  { label: "② Disparity",     index: 1 },
-  { label: "③ GMLP",          index: 2 },
-  { label: "④ NICE ESF",      index: 3 },
-  { label: "⑤ Core20PLUS5",   index: 4 },
-  { label: "⑥ LLM Alignment", index: 5 },
-  { label: "⑦ Export",        index: 6 },
-  { label: "⑧ Observability", index: 7 },
+  { label: "▲ Upload",        index: 0 },
+  { label: "● Disparity",     index: 1 },
+  { label: "◆ GMLP",          index: 2 },
+  { label: "✦ NICE ESF",      index: 3 },
+  { label: "❯ Core20PLUS5",   index: 4 },
+  { label: "⟡ LLM Alignment", index: 5 },
+  { label: "⬢ Export",        index: 6 },
+  { label: "★ Observability", index: 7 },
 ];
 
 // ─── Inner shell (needs AuditContext) ────────────────────────────────────────
@@ -54,17 +54,22 @@ function AuditShellInner() {
   const tabBarStyle: CSSProperties = {
     display: "flex",
     flexDirection: "row",
-    gap: 6,
+    flexWrap: "wrap",
+    gap: 4,
     overflowX: "auto",
-    padding: "0 24px",
-    marginBottom: 24,
+    padding: 8,
+    marginBottom: 28,
     scrollbarWidth: "none",
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: 14,
+    backdropFilter: "blur(8px)",
   };
 
   const activeTabStyle: CSSProperties = {
-    background: `${tokens.accent}26`, // accent at ~15% opacity
-    color: tokens.accent,
-    border: `1px solid ${tokens.accent}66`, // accent at ~40% opacity
+    background: "rgba(139,92,246,0.20)",
+    color: "#c4b5fd",
+    border: "1px solid rgba(139,92,246,0.55)",
   };
 
   const inactiveTabStyle: CSSProperties = {
@@ -92,7 +97,7 @@ function AuditShellInner() {
   }
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", paddingBottom: 64 }}>
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 64px" }}>
       {/* Tab bar */}
       <div role="tablist" style={tabBarStyle} aria-label="Audit sections">
         {TABS.map((tab) => (
