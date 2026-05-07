@@ -142,18 +142,22 @@ export default function RagPage() {
               and a mandatory human-review flag on every response. Built for NHS clinical settings.
             </p>
             <div className="flex flex-wrap gap-3">
-              <button
-                type="button"
+              <a
+                href="https://chat.johndegraft.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-lg bg-gradient-to-br from-pink-400 to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_rgba(244,114,182,0.4)] transition hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(244,114,182,0.55)]"
               >
-                View Architecture
-              </button>
-              <button
-                type="button"
+                Try the Assistant →
+              </a>
+              <a
+                href="https://blue-smoke-00f20d403.7.azurestaticapps.net/rag/chat"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-lg border border-pink-300/40 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-pink-200 backdrop-blur-lg transition hover:-translate-y-0.5 hover:bg-white/[0.06]"
               >
-                Read Case Study
-              </button>
+                NHS Variant ↗
+              </a>
             </div>
           </div>
 

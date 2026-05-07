@@ -18,6 +18,10 @@ concurrency:
 env:
   CF_PROJECT: johndegraft-app
   PROD_HOST: johndegraft.app
+  # Smoke test runs against the unprotected pages.dev origin to bypass the
+  # Cloudflare Bot Fight Mode challenge that the custom domain enforces. The
+  # apex still serves the same artefact, so this is sufficient for go/no-go.
+  SMOKE_HOST: johndegraft-app.pages.dev
   SMOKE_PATHS: "/ /rag /audit"
 
 jobs:
@@ -112,7 +116,7 @@ jobs:
           fail=0
           for p in $SMOKE_PATHS; do
             for attempt in 1 2 3 4 5; do
-              code=$(curl -sS -o /dev/null -w '%{http_code}' "https://$PROD_HOST$p" || echo 000)
+              code=$(curl -sS -o /dev/null -w '%{http_code}' "https://$SMOKE_HOST$p" || echo 000)
               if [ "$code" = "200" ]; then
                 echo "✓ $p → $code"
                 break
