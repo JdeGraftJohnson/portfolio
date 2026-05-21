@@ -73,6 +73,18 @@ const PROJECTS: Project[] = [
     status: "pilot",
   },
   {
+    badge: "Algo Trading",
+    badgeColor: "#10b981",
+    title: "propfirmbot",
+    subtitle: "Futures Strategy Framework · IBKR Adapter",
+    body: `Open-source futures-trading framework built around a DXY-confluence opening-range-breakout strategy on micro gold futures. Strategy, risk engine, indicators, and a streaming-rate confluence gate sit above an abstract BrokerClient boundary so adapters can target any license-clean venue. Ships with a reference Interactive Brokers adapter via ib_insync (paper-account capable), a multi-strategy registry covering ORB / liquidity-sweep / VCP / regime-aligned variants, and a backtest harness with HTML report output. MIT licensed.`,
+    stack: ["Python", "ib_insync", "Interactive Brokers", "pandas", "pytest", "Pine Script"],
+    links: [
+      { label: "GitHub →", href: "https://github.com/JdeGraftJohnson/propfirmbot" },
+    ],
+    status: "open-source",
+  },
+  {
     badge: "Capital Markets",
     badgeColor: "#f472b6",
     title: "StockHub",
