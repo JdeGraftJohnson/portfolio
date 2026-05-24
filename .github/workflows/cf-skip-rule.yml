@@ -1,0 +1,145 @@
+name: cf-skip-rule
+
+# One-shot workflow to add a Cloudflare WAF Custom Rule that skips bot
+# management (Bot Fight Mode + Super BFM + Browser Integrity Check) for
+# /api/* paths so Pages Functions are callable from browser fetch().
+#
+# Trigger manually via:  gh workflow run cf-skip-rule.yml
+on:
+  workflow_dispatch:
+
+jobs:
+  create-skip-rule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      ZONE_NAME: johndegraft.app
+      RULE_DESCRIPTION: "Skip bot management for Pages Functions (/api/*)"
+      EXPR: '(starts_with(http.request.uri.path, "/api/"))'
+    steps:
+      - name: Resolve zone ID
+        id: zone
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          set -e
+          ZONE_ID=$(curl -fsS \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.cloudflare.com/client/v4/zones?name=${ZONE_NAME}" \
+            | jq -r '.result[0].id // empty')
+          if [ -z "$ZONE_ID" ]; then
+            echo "::error::Zone ${ZONE_NAME} not found or token lacks Zone:Read"
+            exit 1
+          fi
+          echo "zone_id=$ZONE_ID" >> "$GITHUB_OUTPUT"
+          echo "Resolved zone (last 4 of id): …${ZONE_ID: -4}"
+
+      - name: Resolve custom firewall ruleset entrypoint
+        id: ruleset
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+        run: |
+          set -e
+          RS=$(curl -sS \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets/phases/http_request_firewall_custom/entrypoint")
+          RS_ID=$(echo "$RS" | jq -r '.result.id // empty')
+          if [ -z "$RS_ID" ]; then
+            echo "Entrypoint ruleset not found — creating one"
+            CREATE=$(curl -fsS -X POST \
+              -H "Authorization: Bearer $CF_TOKEN" \
+              -H "Content-Type: application/json" \
+              "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets" \
+              -d '{
+                "name": "default",
+                "description": "Default custom ruleset",
+                "kind": "zone",
+                "phase": "http_request_firewall_custom",
+                "rules": []
+              }')
+            RS_ID=$(echo "$CREATE" | jq -r '.result.id // empty')
+          fi
+          echo "ruleset_id=$RS_ID" >> "$GITHUB_OUTPUT"
+          echo "Ruleset (last 4): …${RS_ID: -4}"
+
+      - name: Check for existing rule by description
+        id: existing
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+          RS_ID: ${{ steps.ruleset.outputs.ruleset_id }}
+        run: |
+          set -e
+          BODY=$(curl -fsS \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets/${RS_ID}")
+          EXISTING_ID=$(echo "$BODY" | jq -r --arg d "$RULE_DESCRIPTION" \
+            '.result.rules[]? | select(.description == $d) | .id' | head -n1)
+          if [ -n "$EXISTING_ID" ]; then
+            echo "existing_id=$EXISTING_ID" >> "$GITHUB_OUTPUT"
+            echo "Found existing rule: …${EXISTING_ID: -4}"
+          else
+            echo "No existing rule found — will create"
+          fi
+
+      - name: Create or update skip rule
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+          RS_ID: ${{ steps.ruleset.outputs.ruleset_id }}
+          EXISTING_ID: ${{ steps.existing.outputs.existing_id }}
+        run: |
+          set -e
+          PAYLOAD=$(jq -n \
+            --arg expr  "$EXPR" \
+            --arg desc  "$RULE_DESCRIPTION" \
+            '{
+              action: "skip",
+              expression: $expr,
+              description: $desc,
+              enabled: true,
+              action_parameters: {
+                ruleset: "current",
+                phases: ["http_request_sbfm"],
+                products: ["bic", "securityLevel", "uaBlock", "zoneLockdown"]
+              }
+            }')
+          if [ -n "$EXISTING_ID" ]; then
+            echo "Updating rule $EXISTING_ID …"
+            curl -fsS -X PATCH \
+              -H "Authorization: Bearer $CF_TOKEN" \
+              -H "Content-Type: application/json" \
+              "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets/${RS_ID}/rules/${EXISTING_ID}" \
+              -d "$PAYLOAD" | jq -r '"updated rule \(.result.rules[]? | select(.id == env.EXISTING_ID) | .id // "?")"' || true
+          else
+            echo "Creating new rule …"
+            curl -fsS -X POST \
+              -H "Authorization: Bearer $CF_TOKEN" \
+              -H "Content-Type: application/json" \
+              "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets/${RS_ID}/rules" \
+              -d "$PAYLOAD" | jq -r '"created rule with action=\(.result.rules[-1].action) expr=\(.result.rules[-1].expression)"'
+          fi
+          echo "OK"
+
+      - name: Verify /api/* now passes through bot management
+        run: |
+          set -e
+          sleep 8  # let propagation settle
+          for path in /api/clinical-chat /api/ukhealth-chat; do
+            HTTP=$(curl -sS -o /tmp/body.txt -w "%{http_code}" \
+              "https://johndegraft.app${path}")
+            CT=$(curl -sI "https://johndegraft.app${path}" | awk -F': ' '/^content-type/ {print $2}' | tr -d '\r')
+            BODY=$(head -c 120 /tmp/body.txt)
+            echo "${path}  status=${HTTP}  content-type=${CT}"
+            echo "  body: ${BODY}"
+            if echo "$BODY" | grep -q '"status":"ok"'; then
+              echo "  ✅ passes through"
+            elif [ "$HTTP" = "200" ] && echo "$CT" | grep -q "application/json"; then
+              echo "  ✅ returns JSON"
+            else
+              echo "::warning::${path} did not return JSON — bot challenge may still be active"
+            fi
+          done
