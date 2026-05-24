@@ -98,6 +98,27 @@ jobs:
           echo "zone_id=$ZONE_ID" >> "$GITHUB_OUTPUT"
           echo "Resolved zone (last 4 of id): …${ZONE_ID: -4}"
 
+      - name: Diagnose token capabilities on this zone
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+        run: |
+          set -e
+          echo "=== GET /zones/{zone_id} (basic Zone:Read) ==="
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}" \
+            | jq '{success, errors, name:.result.name, status:.result.status}'
+          echo ""
+          echo "=== GET /zones/{zone_id}/rulesets (list — needs Zone WAF:Read) ==="
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets" \
+            | jq '{success, errors, rulesets:[.result[]? | {phase, name, kind, id_last4:(.id[-4:])}]}'
+          echo ""
+          echo "=== GET phases/http_request_firewall_custom/entrypoint ==="
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets/phases/http_request_firewall_custom/entrypoint" \
+            | jq '{success, errors, id_last4:((.result.id // "") | .[-4:]), rule_count:((.result.rules // []) | length)}'
+
       - name: Resolve custom firewall ruleset entrypoint
         id: ruleset
         env:
@@ -108,12 +129,16 @@ jobs:
           RS=$(curl -sS \
             -H "Authorization: Bearer $CF_TOKEN" \
             "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets/phases/http_request_firewall_custom/entrypoint")
+          # Cloudflare often returns a non-success body when no entrypoint exists yet.
           RS_ID=$(echo "$RS" | jq -r '.result.id // empty')
           if [ -z "$RS_ID" ]; then
-            echo "Entrypoint ruleset not found — creating one"
-            CREATE=$(curl -fsS -X POST \
+            echo "GET entrypoint returned no id. Body:"
+            echo "$RS" | jq '. | {success, errors}'
+            echo "Attempting to create new ruleset…"
+            CREATE_RAW=$(curl -sS -X POST \
               -H "Authorization: Bearer $CF_TOKEN" \
               -H "Content-Type: application/json" \
+              -w "\n__HTTP__%{http_code}" \
               "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/rulesets" \
               -d '{
                 "name": "default",
@@ -122,7 +147,15 @@ jobs:
                 "phase": "http_request_firewall_custom",
                 "rules": []
               }')
-            RS_ID=$(echo "$CREATE" | jq -r '.result.id // empty')
+            CREATE_BODY=$(echo "$CREATE_RAW" | sed '/__HTTP__/d')
+            CREATE_CODE=$(echo "$CREATE_RAW" | awk -F__HTTP__ 'NF>1 {print $2}')
+            echo "POST status=${CREATE_CODE}"
+            echo "$CREATE_BODY" | jq '. | {success, errors}'
+            RS_ID=$(echo "$CREATE_BODY" | jq -r '.result.id // empty')
+            if [ -z "$RS_ID" ]; then
+              echo "::error::Could not create or read entrypoint ruleset. Likely missing Zone WAF:Edit on this zone."
+              exit 1
+            fi
           fi
           echo "ruleset_id=$RS_ID" >> "$GITHUB_OUTPUT"
           echo "Ruleset (last 4): …${RS_ID: -4}"
