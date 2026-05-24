@@ -22,15 +22,44 @@ jobs:
         id: zone
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -e
-          ZONE_ID=$(curl -fsS \
+          # Strategy 1: filtered list by name
+          R1=$(curl -sS \
             -H "Authorization: Bearer $CF_TOKEN" \
-            -H "Content-Type: application/json" \
-            "https://api.cloudflare.com/client/v4/zones?name=${ZONE_NAME}" \
-            | jq -r '.result[0].id // empty')
+            "https://api.cloudflare.com/client/v4/zones?name=${ZONE_NAME}")
+          ZONE_ID=$(echo "$R1" | jq -r '.result[0].id // empty')
           if [ -z "$ZONE_ID" ]; then
-            echo "::error::Zone ${ZONE_NAME} not found or token lacks Zone:Read"
+            echo "Strategy 1 (filter by name) returned empty. Raw response:"
+            echo "$R1" | jq '. | {success, errors, messages, result_info, result_len:(.result|length)}'
+            # Strategy 2: list ALL zones the token can see + match locally
+            R2=$(curl -sS \
+              -H "Authorization: Bearer $CF_TOKEN" \
+              "https://api.cloudflare.com/client/v4/zones?per_page=50")
+            ZONE_ID=$(echo "$R2" | jq -r --arg n "$ZONE_NAME" '.result[]? | select(.name == $n) | .id' | head -n1)
+            if [ -z "$ZONE_ID" ]; then
+              echo "Strategy 2 (unfiltered list) also empty. Zone names visible to token:"
+              echo "$R2" | jq -r '.result[]?.name'
+              echo "Raw error:"
+              echo "$R2" | jq '. | {success, errors, messages}'
+            fi
+          fi
+          if [ -z "$ZONE_ID" ]; then
+            # Strategy 3: account-scoped zone list
+            if [ -n "$CF_ACCOUNT_ID" ]; then
+              R3=$(curl -sS \
+                -H "Authorization: Bearer $CF_TOKEN" \
+                "https://api.cloudflare.com/client/v4/zones?account.id=${CF_ACCOUNT_ID}&per_page=50")
+              ZONE_ID=$(echo "$R3" | jq -r --arg n "$ZONE_NAME" '.result[]? | select(.name == $n) | .id' | head -n1)
+              if [ -z "$ZONE_ID" ]; then
+                echo "Strategy 3 (account-scoped) also empty:"
+                echo "$R3" | jq '. | {success, errors, messages, result_len:(.result|length)}'
+              fi
+            fi
+          fi
+          if [ -z "$ZONE_ID" ]; then
+            echo "::error::Zone ${ZONE_NAME} not resolvable. Token needs at least Zone:Read on this zone."
             exit 1
           fi
           echo "zone_id=$ZONE_ID" >> "$GITHUB_OUTPUT"
