@@ -210,8 +210,8 @@ jobs:
               enabled: true,
               action_parameters: {
                 ruleset: "current",
-                phases: ["http_request_sbfm"],
-                products: ["bic", "securityLevel", "uaBlock", "zoneLockdown"]
+                phases: ["http_request_sbfm", "http_request_firewall_managed", "http_ratelimit"],
+                products: ["bic", "securityLevel", "uaBlock", "zoneLockdown", "rateLimit", "waf", "hot"]
               }
             }')
           if [ -n "$EXISTING_ID" ]; then
