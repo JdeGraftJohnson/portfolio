@@ -7,6 +7,11 @@ name: cf-skip-rule
 # Trigger manually via:  gh workflow run cf-skip-rule.yml
 on:
   workflow_dispatch:
+    inputs:
+      zone_id:
+        description: "Cloudflare Zone ID (skips zone discovery if provided)"
+        required: false
+        default: ""
 
 jobs:
   create-skip-rule:
@@ -44,8 +49,15 @@ jobs:
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ZONE_ID_INPUT: ${{ inputs.zone_id }}
         run: |
           set -e
+          if [ -n "$ZONE_ID_INPUT" ]; then
+            echo "Using zone ID from workflow input"
+            echo "zone_id=$ZONE_ID_INPUT" >> "$GITHUB_OUTPUT"
+            echo "Zone (last 4): …${ZONE_ID_INPUT: -4}"
+            exit 0
+          fi
           # Strategy 1: filtered list by name
           R1=$(curl -sS \
             -H "Authorization: Bearer $CF_TOKEN" \
