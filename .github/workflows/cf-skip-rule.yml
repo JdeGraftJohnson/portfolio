@@ -18,6 +18,27 @@ jobs:
       RULE_DESCRIPTION: "Skip bot management for Pages Functions (/api/*)"
       EXPR: '(starts_with(http.request.uri.path, "/api/"))'
     steps:
+      - name: Inspect token capabilities (no secret echoed)
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -e
+          echo "=== /user/tokens/verify ==="
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+            | jq '{success, errors, status:.result.status, id_last4:(.result.id // "" | .[-4:]), expires:.result.expires_on}'
+          echo "=== /accounts (visible to token) ==="
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts?per_page=10" \
+            | jq '{success, errors, accounts:[.result[]? | {id_last4:(.id[-4:]), name:.name}]}'
+          echo "=== /accounts/{stored_id}/tokens/permission_groups (introspect on stored account) ==="
+          if [ -n "$CF_ACCOUNT_ID" ]; then
+            curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+              "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}" \
+              | jq '{success, errors, account_visible:(.result != null)}'
+          fi
+
       - name: Resolve zone ID
         id: zone
         env:
