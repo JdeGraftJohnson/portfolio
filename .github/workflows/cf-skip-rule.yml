@@ -23,9 +23,21 @@ jobs:
       RULE_DESCRIPTION: "Skip bot management for Pages Functions (/api/*)"
       EXPR: '(starts_with(http.request.uri.path, "/api/"))'
     steps:
+      - name: Verify secrets are wired (lengths only)
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "CLOUDFLARE_ZONE_API_TOKEN length: ${#CF_TOKEN}"
+          echo "CLOUDFLARE_ACCOUNT_ID length:    ${#CF_ACCOUNT_ID}"
+          if [ "${#CF_TOKEN}" -lt 20 ]; then
+            echo "::error::CLOUDFLARE_ZONE_API_TOKEN is empty or too short — secret not bound to this repo/workflow"
+            exit 1
+          fi
+
       - name: Inspect token capabilities (no secret echoed)
         env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -e
@@ -47,7 +59,7 @@ jobs:
       - name: Resolve zone ID
         id: zone
         env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           ZONE_ID_INPUT: ${{ inputs.zone_id }}
         run: |
@@ -100,7 +112,7 @@ jobs:
 
       - name: Diagnose token capabilities on this zone
         env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
           ZONE_ID: ${{ steps.zone.outputs.zone_id }}
         run: |
           set -e
@@ -122,7 +134,7 @@ jobs:
       - name: Resolve custom firewall ruleset entrypoint
         id: ruleset
         env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
           ZONE_ID: ${{ steps.zone.outputs.zone_id }}
         run: |
           set -e
@@ -163,7 +175,7 @@ jobs:
       - name: Check for existing rule by description
         id: existing
         env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
           ZONE_ID: ${{ steps.zone.outputs.zone_id }}
           RS_ID: ${{ steps.ruleset.outputs.ruleset_id }}
         run: |
@@ -182,7 +194,7 @@ jobs:
 
       - name: Create or update skip rule
         env:
-          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_ZONE_API_TOKEN }}
           ZONE_ID: ${{ steps.zone.outputs.zone_id }}
           RS_ID: ${{ steps.ruleset.outputs.ruleset_id }}
           EXISTING_ID: ${{ steps.existing.outputs.existing_id }}
