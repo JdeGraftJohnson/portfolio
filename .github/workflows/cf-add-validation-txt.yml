@@ -1,0 +1,47 @@
+name: cf-add-validation-txt
+
+# Adds the _dnsauth TXT records needed by Azure SWA apex-domain validation.
+
+on:
+  workflow_dispatch:
+    inputs:
+      jdg_token:
+        description: "TXT value for _dnsauth.johndegraft.app"
+        required: true
+      stockhub_token:
+        description: "TXT value for _dnsauth.stockhub.work"
+        required: true
+
+jobs:
+  add-txt:
+    runs-on: ubuntu-latest
+    env:
+      CF_TOKEN: ${{ secrets.CF_DNS_EDIT_TOKEN }}
+    steps:
+      - name: Add TXT records
+        run: |
+          add_txt() {
+            local zone=$1; local record=$2; local value=$3
+            echo ""
+            echo "===== $record TXT $value (zone: $zone) ====="
+            zone_id=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+              "https://api.cloudflare.com/client/v4/zones?name=$zone" | jq -r '.result[0].id // empty')
+            if [ -z "$zone_id" ]; then echo "zone $zone not visible"; return; fi
+            existing=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+              "https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records?name=$record&type=TXT")
+            record_id=$(echo "$existing" | jq -r '.result[0].id // empty')
+            body=$(jq -n --arg n "$record" --arg v "$value" '{type:"TXT",name:$n,content:$v,ttl:300}')
+            if [ -z "$record_id" ]; then
+              echo "Creating TXT $record"
+              curl -sS -X POST -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+                "https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records" \
+                -d "$body" | jq '{success, errors, name:.result.name, content:.result.content}'
+            else
+              echo "Updating TXT $record (was $(echo "$existing" | jq -r '.result[0].content'))"
+              curl -sS -X PATCH -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+                "https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records/$record_id" \
+                -d "$body" | jq '{success, errors, name:.result.name, content:.result.content}'
+            fi
+          }
+          add_txt johndegraft.app _dnsauth.johndegraft.app "${{ inputs.jdg_token }}"
+          add_txt stockhub.work _dnsauth.stockhub.work "${{ inputs.stockhub_token }}"
