@@ -212,21 +212,109 @@ which is enough for the token to mint and the iframe to embed — but the
 matches zero rows. All visuals return empty result sets; the client
 shows the spinner indefinitely.
 
-**Status:** **Upstream fix required in Power BI Desktop on the dataset.**
-The portfolio-app side is doing everything it can. The dataset owner must
-either:
+**Status:** **Upstream fix required in the PBI semantic model.** The
+portfolio-app side is doing everything it can — the token mints, the
+identity is delivered, the iframe embeds. The dataset just needs its
+RLS DAX widened to admit the `portfolio-viewer` username.
 
-1. Add a `portfolio-viewer`-aware branch to the `state_code` RLS DAX
-   (e.g. `IF(USERNAME() = "portfolio-viewer", TRUE, [state_code] = USERNAME())`),
-   *or*
-2. Define a new role `public-embed` whose DAX returns the public row-set
-   regardless of USERNAME(), and update `EMBED_ROLES` in
-   `functions/api/pbi-token.ts:14` to `["public-embed"]`, *or*
-3. Remove RLS from this dataset if it's not actually needed.
+#### Diagnostic chain (replicate before changing anything)
 
-Until upstream is fixed, the dashboard stays `WIRED-BROKEN`. The `/map`
-choropleth on the same project renders correctly and is the recommended
-"Try It Out" entry point in the meantime.
+1. **Token mints?** `curl -s -A "<UA>" https://johndegraft.app/api/pbi-token`
+   → expect JSON with `reportId`/`embedUrl`/`token`/`expiration`.
+   If you see `"requires effective identity to be provided"`, the
+   dataset has RLS enforced and the `identities` block in
+   `functions/api/pbi-token.ts` is **mandatory** — do not remove it.
+2. **Iframe embeds?** Run `node scripts/debug/playwright-project-pages.mjs`,
+   look at the `healthcare-dashboard` verdict — `has_pbi_iframe: true`
+   confirms PBI client loaded with the token.
+3. **Visuals render?** Open the screenshot at
+   `scripts/debug/out/healthcare-dashboard.png`. If you see "Loading
+   data…" with tabs visible at the bottom (Main / US RX Details / Data
+   Tables) and no chart content, the model accepted the embed but every
+   visual's query returned zero rows for this `USERNAME()`.
+
+#### Fix recipe — patch the semantic model via Fabric REST
+
+The dataset's authoritative definition lives in the **healthcare-cost-ops**
+repo at `examples/medicaid_sdud_2026/out/model.bim`. As of the
+audit, the `state_code` role is defined as:
+
+```jsonc
+"roles": [
+  {
+    "name": "state_code",
+    "modelPermission": "read",
+    "tablePermissions": [
+      {
+        "name": "fact_sdud",
+        "filterExpression": "fact_sdud[state_code] = USERNAME()"
+      }
+    ]
+  }
+]
+```
+
+Patch the `filterExpression` to add a public bypass branch keyed on the
+embed identity that `functions/api/pbi-token.ts` already sends:
+
+```dax
+fact_sdud[state_code] = USERNAME() || USERNAME() = "portfolio-viewer"
+```
+
+Any other `USERNAME()` value still filters by state code; only the
+portfolio embed sees the full row-set.
+
+Publish via the existing toolchain in **healthcare-cost-ops**:
+
+```bash
+cd /Users/john/Git/healthcare-cost-ops
+# 1. Edit the role filterExpression in examples/medicaid_sdud_2026/out/model.bim
+# 2. Auth to Fabric (the script reads `az account get-access-token \
+#    --resource https://api.fabric.microsoft.com`):
+az login --tenant <prod1-tenant-id>
+# 3. Publish:
+python -m services.powerbi.fabric_publish \
+  --workspace "$PBI_WORKSPACE_ID" \
+  --model examples/medicaid_sdud_2026/out/model.bim \
+  --layout examples/medicaid_sdud_2026/out/layout.json \
+  --name medicaid_sdud_2026 \
+  --verbose
+```
+
+`PBI_WORKSPACE_ID` is the same value stored in the Cloudflare Pages
+project (`johndegraft-app` → Settings → Environment Variables).
+`fabric_publish.py` uses the Fabric REST `Items` API and republishes
+the semantic-model definition in TMSL form, base64-encoded. Logs print
+the new `semantic_model_id`.
+
+#### Verify after publish
+
+```bash
+# Token mint should still succeed
+curl -s -A "<UA>" https://johndegraft.app/api/pbi-token | jq '.reportId'
+
+# Visuals should now load — verdict transitions from "Loading data…"
+# to populated chart tiles
+node scripts/debug/playwright-project-pages.mjs
+# Inspect scripts/debug/out/healthcare-dashboard.png
+```
+
+#### If you change the role name
+
+If you rename `state_code` or add a sibling public role, update
+**both** constants in `functions/api/pbi-token.ts:14-15`:
+
+```ts
+const EMBED_USERNAME = "portfolio-viewer";
+const EMBED_ROLES    = ["state_code"];
+```
+
+The username can be any non-empty string — only the role-name and the
+DAX expression's branch keyed on that username need to agree.
+
+Until the BIM patch ships, the dashboard stays `WIRED-BROKEN`. The
+`/map` choropleth on the same project renders correctly and is the
+recommended "Try It Out" entry point in the meantime.
 
 ### 5.4 react-leaflet map stuck on "Loading map…"
 
