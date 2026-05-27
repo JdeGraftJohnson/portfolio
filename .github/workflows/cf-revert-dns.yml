@@ -1,0 +1,110 @@
+name: cf-revert-dns
+
+# One-shot workflow to revert johndegraft.app DNS back to Cloudflare Pages
+# after the prod1 Azure SWA cutover served an older build artifact.
+#
+#   johndegraft.app -> johndegraft-app.pages.dev   (proxied, CNAME-flattened at apex)
+#
+# Also clears the _dnsauth TXT record that bound the SWA, so the SWA stops
+# claiming ownership of the apex domain.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  revert:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      CF_TOKEN: ${{ secrets.CF_DNS_EDIT_TOKEN }}
+      ZONE: johndegraft.app
+      RECORD: johndegraft.app
+      NEW_TARGET: johndegraft-app.pages.dev
+    steps:
+      - name: Verify token + resolve zone
+        id: zone
+        run: |
+          set -e
+          echo "Token length: ${#CF_TOKEN}"
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/user/tokens/verify" \
+            | jq '{success, status:.result.status}'
+          zone_id=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones?name=$ZONE" | jq -r '.result[0].id // empty')
+          if [ -z "$zone_id" ]; then
+            echo "::error::zone $ZONE not visible to token"
+            exit 1
+          fi
+          echo "zone_id=$zone_id" >> "$GITHUB_OUTPUT"
+          echo "Resolved zone $ZONE -> $zone_id"
+
+      - name: Repoint apex CNAME to Cloudflare Pages
+        env:
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+        run: |
+          set -e
+          existing=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?name=$RECORD&type=CNAME")
+          record_id=$(echo "$existing" | jq -r '.result[0].id // empty')
+          current=$(echo "$existing" | jq -r '.result[0].content // empty')
+          echo "current record_id: ${record_id:-<none>}"
+          echo "current content:   ${current:-<none>}"
+          payload="{\"type\":\"CNAME\",\"name\":\"$RECORD\",\"content\":\"$NEW_TARGET\",\"ttl\":1,\"proxied\":true}"
+          if [ -z "$record_id" ]; then
+            echo "Creating CNAME $RECORD -> $NEW_TARGET (proxied)"
+            curl -sS -X POST -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+              "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records" \
+              -d "$payload" \
+              | jq '{success, errors, name:.result.name, content:.result.content, proxied:.result.proxied}'
+          else
+            echo "Updating CNAME $RECORD (was $current) -> $NEW_TARGET (proxied)"
+            curl -sS -X PATCH -H "Authorization: Bearer $CF_TOKEN" -H "Content-Type: application/json" \
+              "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$record_id" \
+              -d "$payload" \
+              | jq '{success, errors, name:.result.name, content:.result.content, proxied:.result.proxied}'
+          fi
+
+      - name: Remove SWA _dnsauth TXT record (if present)
+        env:
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+        run: |
+          set -e
+          existing=$(curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?name=_dnsauth.$ZONE&type=TXT")
+          ids=$(echo "$existing" | jq -r '.result[].id')
+          if [ -z "$ids" ]; then
+            echo "No _dnsauth TXT record present — nothing to delete."
+            exit 0
+          fi
+          for rid in $ids; do
+            echo "Deleting TXT record _dnsauth.$ZONE id=$rid"
+            curl -sS -X DELETE -H "Authorization: Bearer $CF_TOKEN" \
+              "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$rid" \
+              | jq '{success, errors}'
+          done
+
+      - name: Verify post-update
+        env:
+          ZONE_ID: ${{ steps.zone.outputs.zone_id }}
+        run: |
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?name=$RECORD" \
+            | jq --arg r "$RECORD" '{record:$r, records:([(.result // [])[] | {type, content, proxied, ttl}])}'
+          curl -sS -H "Authorization: Bearer $CF_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?name=_dnsauth.$ZONE" \
+            | jq '{dnsauth_remaining: ([(.result // [])[] | {type, content}])}'
+
+      - name: Smoke test apex via public DNS + HTTP
+        run: |
+          set +e
+          echo "=== dig johndegraft.app ==="
+          dig +short johndegraft.app
+          echo "=== curl -I https://johndegraft.app ==="
+          curl -sI https://johndegraft.app | head -20
+          echo "=== marker check (propfirmbot) ==="
+          if curl -s https://johndegraft.app | grep -q propfirmbot; then
+            echo "[OK] propfirmbot marker present"
+          else
+            echo "[WARN] propfirmbot marker missing — CF edge may still be caching the SWA response; retry in a few minutes"
+          fi
