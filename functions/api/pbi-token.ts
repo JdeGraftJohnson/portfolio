@@ -8,6 +8,18 @@ interface Env {
 
 const PBI_SCOPE = "https://analysis.windows.net/powerbi/api/.default";
 
+// Embed RLS identity. The Medicaid dataset enforces row-level security
+// (GenerateToken returns 400 "requires effective identity to be provided"
+// without it). The role name and username below MUST match a real role
+// definition in the PBI dataset. If visuals render empty / hang on
+// "Loading data...", the role exists but the username doesn't match any
+// rows — fix the dataset's RLS DAX (e.g. add a `portfolio-viewer`-aware
+// branch that returns the public row-set). See docs/runbooks/
+// project-button-audit.md "Power BI embed troubleshooting" for the full
+// diagnostic chain.
+const EMBED_USERNAME = "portfolio-viewer";
+const EMBED_ROLES = ["state_code"];
+
 interface AadTokenResponse {
   access_token: string;
   expires_in: number;
@@ -83,16 +95,16 @@ async function generateEmbedToken(
   reportId: string,
   datasetId: string
 ): Promise<EmbedTokenResponse> {
-  // RLS identity was previously hardcoded as { username: "portfolio-viewer",
-  // roles: ["state_code"] }. That identity matched no rows in the dataset's
-  // state_code RLS role, so every visual returned empty and the report hung
-  // on "Loading data...". The portfolio embed is intentionally public, so
-  // we mint a no-identity token — the dataset must either remove its RLS
-  // role or expose a public row-set for this to render. See runbook
-  // docs/runbooks/project-button-audit.md for the diagnostic chain.
   const body: GenerateTokenBody = {
     accessLevel: "View",
     datasets: [{ id: datasetId }],
+    identities: [
+      {
+        username: EMBED_USERNAME,
+        roles: EMBED_ROLES,
+        datasets: [datasetId],
+      },
+    ],
   };
   const res = await fetch(
     `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}/GenerateToken`,
