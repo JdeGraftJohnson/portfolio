@@ -14,3 +14,4 @@ out/
 
 # Local-only design exploration (MCP-generated /rag variants, page backups, etc.)
 scratch/
+scripts/debug/out/
