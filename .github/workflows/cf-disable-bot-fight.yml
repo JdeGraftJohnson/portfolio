@@ -15,10 +15,11 @@ jobs:
     permissions:
       contents: read
     env:
-      # Prefer the broader token; fall back to the DNS-edit token if that
-      # is the only one with zone visibility. Either token must have
-      # Zone Settings:Edit + Bot Management Write on johndegraft.app.
-      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CF_DNS_EDIT_TOKEN }}
+      # Use the zone-scoped token that cf-revert-dns proved can see this
+      # zone. If its scope is DNS-only (likely) the settings PATCH calls
+      # below will return a permission error — that is itself diagnostic
+      # output and the operator can broaden the token from there.
+      CF_TOKEN: ${{ secrets.CF_DNS_EDIT_TOKEN }}
       ZONE: johndegraft.app
     steps:
       - name: Verify token + resolve zone
