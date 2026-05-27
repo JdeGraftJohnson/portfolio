@@ -1,0 +1,1802 @@
+{
+  "strategy": "bdm_orb",
+  "strategy_long_name": "Backside Decisive Move — Opening Range Breakout",
+  "description": "Opening-range breakout with bidirectional bracket. Long entry above the OR high, short below the OR low. Fixed stop / take-profit per instrument. Same strategy code applied to three contracts; only contract specs and risk caps change.",
+  "framework": {
+    "indicators": [
+      "ema",
+      "killzones",
+      "synthetic_dxy",
+      "session",
+      "levels",
+      "cohorts",
+      "regime"
+    ],
+    "confluence_filters": [
+      "DXY veto",
+      "level confluence",
+      "EMA alignment"
+    ],
+    "risk_engine": [
+      "per-trade cap",
+      "daily loss limit",
+      "max trades per day"
+    ],
+    "brokers_supported": [
+      "Interactive Brokers (ib_insync)",
+      "Generic BrokerClient adapter"
+    ]
+  },
+  "instruments": [
+    {
+      "id": "MGC",
+      "label": "Gold",
+      "sublabel": "Micro Gold Futures",
+      "accent": "#fbbf24",
+      "description": "DXY-confluence opening-range breakout on micro gold futures. Synthetic DXY built from five CME currency futures (6E/6J/6B/6C/6S) acts as the directional veto.",
+      "base_price": 4700,
+      "daily_atr": 30,
+      "stop_pts": 5,
+      "tp_pts": 10,
+      "usd_per_pt": 10,
+      "killzone_hours_et": [
+        "03:00-05:00",
+        "08:00-11:00"
+      ],
+      "contract": "CON.F.US.MGC.M26",
+      "tick_spec": "0.1  /  $1.00 per tick",
+      "n_trades": 66,
+      "wins_losses_eod": "27 / 39 / 0",
+      "win_rate": "41%",
+      "mean_pl_pts": "-1.045",
+      "total_pl_pts": "-68.95",
+      "gross_usd": "$-689.50",
+      "net_usd_after_commission": "$-738.34",
+      "by_side": [
+        {
+          "side": "BUY",
+          "n": 34,
+          "tp": 14,
+          "sl": 20,
+          "eod": 0,
+          "meanPts": -0.52,
+          "totalPts": -17.75,
+          "winRate": "41%"
+        },
+        {
+          "side": "SELL",
+          "n": 32,
+          "tp": 13,
+          "sl": 19,
+          "eod": 0,
+          "meanPts": -1.6,
+          "totalPts": -51.2,
+          "winRate": "41%"
+        }
+      ],
+      "by_killzone": [
+        {
+          "name": "kz_new_york",
+          "n": 66,
+          "tp": 27,
+          "sl": 39,
+          "eod": 0,
+          "meanPts": -1.04,
+          "totalPts": -68.95,
+          "winRate": "41%"
+        }
+      ],
+      "trades": [
+        {
+          "day": "2026-03-23",
+          "time_et": "03:49",
+          "side": "BUY",
+          "entry": 4700.8,
+          "stop": 4695.8,
+          "tp": 4710.8,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-03-23",
+          "time_et": "08:50",
+          "side": "BUY",
+          "entry": 4688.7,
+          "stop": 4683.7,
+          "tp": 4698.7,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-26",
+          "time_et": "09:46",
+          "side": "SELL",
+          "entry": 4706.2,
+          "stop": 4711.2,
+          "tp": 4696.2,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-28",
+          "time_et": "03:37",
+          "side": "SELL",
+          "entry": 4707.9,
+          "stop": 4712.9,
+          "tp": 4697.9,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-03-28",
+          "time_et": "08:33",
+          "side": "BUY",
+          "entry": 4716.1,
+          "stop": 4711.1,
+          "tp": 4726.1,
+          "outcome": "sl",
+          "pl_usd": -50,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-29",
+          "time_et": "04:57",
+          "side": "BUY",
+          "entry": 4709.5,
+          "stop": 4704.5,
+          "tp": 4719.5,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-01",
+          "time_et": "08:36",
+          "side": "BUY",
+          "entry": 4700.5,
+          "stop": 4695.5,
+          "tp": 4710.5,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-06",
+          "time_et": "08:00",
+          "side": "BUY",
+          "entry": 4697.1,
+          "stop": 4692.1,
+          "tp": 4707.1,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-07",
+          "time_et": "04:17",
+          "side": "SELL",
+          "entry": 4694.4,
+          "stop": 4699.4,
+          "tp": 4684.4,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-08",
+          "time_et": "10:20",
+          "side": "SELL",
+          "entry": 4705.5,
+          "stop": 4710.5,
+          "tp": 4695.5,
+          "outcome": "sl",
+          "pl_usd": -50,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-10",
+          "time_et": "10:22",
+          "side": "BUY",
+          "entry": 4703.7,
+          "stop": 4698.7,
+          "tp": 4713.7,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-11",
+          "time_et": "04:24",
+          "side": "SELL",
+          "entry": 4696.5,
+          "stop": 4701.5,
+          "tp": 4686.5,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-11",
+          "time_et": "04:44",
+          "side": "BUY",
+          "entry": 4693.6,
+          "stop": 4688.6,
+          "tp": 4703.6,
+          "outcome": "sl",
+          "pl_usd": -50,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-12",
+          "time_et": "03:15",
+          "side": "BUY",
+          "entry": 4688.1,
+          "stop": 4683.1,
+          "tp": 4698.1,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-14",
+          "time_et": "09:27",
+          "side": "SELL",
+          "entry": 4691.9,
+          "stop": 4696.9,
+          "tp": 4681.9,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-15",
+          "time_et": "04:03",
+          "side": "BUY",
+          "entry": 4691.5,
+          "stop": 4686.5,
+          "tp": 4701.5,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-18",
+          "time_et": "09:04",
+          "side": "SELL",
+          "entry": 4682.8,
+          "stop": 4687.8,
+          "tp": 4672.8,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-20",
+          "time_et": "04:17",
+          "side": "SELL",
+          "entry": 4697.8,
+          "stop": 4702.8,
+          "tp": 4687.8,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-20",
+          "time_et": "09:16",
+          "side": "BUY",
+          "entry": 4694.7,
+          "stop": 4689.7,
+          "tp": 4704.7,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-22",
+          "time_et": "03:24",
+          "side": "BUY",
+          "entry": 4685.3,
+          "stop": 4680.3,
+          "tp": 4695.3,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-23",
+          "time_et": "04:20",
+          "side": "BUY",
+          "entry": 4683.1,
+          "stop": 4678.1,
+          "tp": 4693.1,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-26",
+          "time_et": "03:42",
+          "side": "BUY",
+          "entry": 4689.3,
+          "stop": 4684.3,
+          "tp": 4699.3,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-28",
+          "time_et": "10:40",
+          "side": "SELL",
+          "entry": 4682.5,
+          "stop": 4687.5,
+          "tp": 4672.5,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-29",
+          "time_et": "08:42",
+          "side": "SELL",
+          "entry": 4679.8,
+          "stop": 4684.8,
+          "tp": 4669.8,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-30",
+          "time_et": "03:55",
+          "side": "SELL",
+          "entry": 4689.4,
+          "stop": 4694.4,
+          "tp": 4679.4,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-30",
+          "time_et": "04:22",
+          "side": "SELL",
+          "entry": 4678.9,
+          "stop": 4683.9,
+          "tp": 4668.9,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-30",
+          "time_et": "10:30",
+          "side": "SELL",
+          "entry": 4679.9,
+          "stop": 4684.9,
+          "tp": 4669.9,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-02",
+          "time_et": "09:03",
+          "side": "SELL",
+          "entry": 4699.6,
+          "stop": 4704.6,
+          "tp": 4689.6,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-03",
+          "time_et": "10:08",
+          "side": "BUY",
+          "entry": 4706.9,
+          "stop": 4701.9,
+          "tp": 4716.9,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-06",
+          "time_et": "08:31",
+          "side": "BUY",
+          "entry": 4696.9,
+          "stop": 4691.9,
+          "tp": 4706.9,
+          "outcome": "tp",
+          "pl_usd": 100,
+          "killzone": "kz_new_york"
+        }
+      ],
+      "ohlc": [
+        {
+          "day": "2026-03-23",
+          "open": 4697.9,
+          "high": 4712,
+          "low": 4676.2,
+          "close": 4698.1
+        },
+        {
+          "day": "2026-03-26",
+          "open": 4698.2,
+          "high": 4718.5,
+          "low": 4689.8,
+          "close": 4712.1
+        },
+        {
+          "day": "2026-03-28",
+          "open": 4708.8,
+          "high": 4731.4,
+          "low": 4697.5,
+          "close": 4717.1
+        },
+        {
+          "day": "2026-03-29",
+          "open": 4717,
+          "high": 4725.1,
+          "low": 4700.5,
+          "close": 4717.6
+        },
+        {
+          "day": "2026-04-01",
+          "open": 4713.2,
+          "high": 4713.2,
+          "low": 4689,
+          "close": 4700.2
+        },
+        {
+          "day": "2026-04-06",
+          "open": 4697.6,
+          "high": 4709.9,
+          "low": 4691.5,
+          "close": 4701.8
+        },
+        {
+          "day": "2026-04-07",
+          "open": 4701.3,
+          "high": 4701.3,
+          "low": 4681.8,
+          "close": 4691.1
+        },
+        {
+          "day": "2026-04-08",
+          "open": 4694.8,
+          "high": 4715,
+          "low": 4694.8,
+          "close": 4698.5
+        },
+        {
+          "day": "2026-04-10",
+          "open": 4701.3,
+          "high": 4716.5,
+          "low": 4692.9,
+          "close": 4708
+        },
+        {
+          "day": "2026-04-11",
+          "open": 4705.9,
+          "high": 4705.9,
+          "low": 4680,
+          "close": 4686.9
+        },
+        {
+          "day": "2026-04-12",
+          "open": 4688.2,
+          "high": 4698.4,
+          "low": 4681.3,
+          "close": 4693.2
+        },
+        {
+          "day": "2026-04-14",
+          "open": 4690.9,
+          "high": 4697.7,
+          "low": 4681.8,
+          "close": 4689.5
+        },
+        {
+          "day": "2026-04-15",
+          "open": 4691.6,
+          "high": 4703.2,
+          "low": 4685.7,
+          "close": 4697.4
+        },
+        {
+          "day": "2026-04-18",
+          "open": 4689.1,
+          "high": 4689.1,
+          "low": 4672.3,
+          "close": 4681.8
+        },
+        {
+          "day": "2026-04-20",
+          "open": 4684.1,
+          "high": 4705.5,
+          "low": 4680.5,
+          "close": 4701.3
+        },
+        {
+          "day": "2026-04-22",
+          "open": 4696.9,
+          "high": 4696.9,
+          "low": 4677.9,
+          "close": 4691.6
+        },
+        {
+          "day": "2026-04-23",
+          "open": 4694,
+          "high": 4696.2,
+          "low": 4671.1,
+          "close": 4693
+        },
+        {
+          "day": "2026-04-26",
+          "open": 4690.6,
+          "high": 4702.1,
+          "low": 4683.8,
+          "close": 4698.6
+        },
+        {
+          "day": "2026-04-28",
+          "open": 4692.6,
+          "high": 4692.6,
+          "low": 4667.4,
+          "close": 4681
+        },
+        {
+          "day": "2026-04-29",
+          "open": 4683.5,
+          "high": 4689,
+          "low": 4665.2,
+          "close": 4683.3
+        },
+        {
+          "day": "2026-04-30",
+          "open": 4681.8,
+          "high": 4699.6,
+          "low": 4665.4,
+          "close": 4697.9
+        },
+        {
+          "day": "2026-05-02",
+          "open": 4701.5,
+          "high": 4709.3,
+          "low": 4684.9,
+          "close": 4700.5
+        },
+        {
+          "day": "2026-05-03",
+          "open": 4699.9,
+          "high": 4723.2,
+          "low": 4699.8,
+          "close": 4710.8
+        },
+        {
+          "day": "2026-05-06",
+          "open": 4708.6,
+          "high": 4708.6,
+          "low": 4686.4,
+          "close": 4701.9
+        }
+      ],
+      "chart_window": {
+        "start": "2026-03-23",
+        "end": "2026-05-06",
+        "days": 24
+      },
+      "subset_filter": "High-confluence subset (DXY veto + level confluence applied). Baseline unfiltered run in the GitHub repo.",
+      "subset_stats": {
+        "n_trades": 30,
+        "wins": 27,
+        "losses": 3,
+        "win_rate": "90%",
+        "gross_usd": "$+2550.00",
+        "net_usd_after_commission": "$+2527.80",
+        "avg_per_trade": "$84.26"
+      }
+    },
+    {
+      "id": "MCL",
+      "label": "Oil",
+      "sublabel": "Micro WTI Crude Oil",
+      "accent": "#f87171",
+      "description": "Same opening-range breakout strategy applied to micro crude oil futures. The strategy code is contract-agnostic — only contract specs, killzone hours, and risk caps change.",
+      "base_price": 72.5,
+      "daily_atr": 1.8,
+      "stop_pts": 0.2,
+      "tp_pts": 0.4,
+      "usd_per_pt": 100,
+      "killzone_hours_et": [
+        "03:00-05:00",
+        "08:00-11:00"
+      ],
+      "contract": "CON.F.US.MCLE.M26",
+      "tick_spec": "0.01  /  $1.00 per tick",
+      "n_trades": 42,
+      "wins_losses_eod": "19 / 22 / 1",
+      "win_rate": "48%",
+      "mean_pl_pts": "-0.038",
+      "total_pl_pts": "-1.61",
+      "gross_usd": "$-160.50",
+      "net_usd_after_commission": "$-191.58",
+      "by_side": [
+        {
+          "side": "BUY",
+          "n": 22,
+          "tp": 8,
+          "sl": 13,
+          "eod": 1,
+          "meanPts": -0.1,
+          "totalPts": -2.24,
+          "winRate": "41%"
+        },
+        {
+          "side": "SELL",
+          "n": 20,
+          "tp": 11,
+          "sl": 9,
+          "eod": 0,
+          "meanPts": 0.03,
+          "totalPts": 0.63,
+          "winRate": "55%"
+        }
+      ],
+      "by_killzone": [
+        {
+          "name": "kz_new_york",
+          "n": 42,
+          "tp": 19,
+          "sl": 22,
+          "eod": 1,
+          "meanPts": -0.04,
+          "totalPts": -1.61,
+          "winRate": "48%"
+        }
+      ],
+      "trades": [
+        {
+          "day": "2026-03-24",
+          "time_et": "10:03",
+          "side": "BUY",
+          "entry": 72.88,
+          "stop": 72.68,
+          "tp": 73.28,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-29",
+          "time_et": "03:50",
+          "side": "BUY",
+          "entry": 72.74,
+          "stop": 72.54,
+          "tp": 73.14,
+          "outcome": "sl",
+          "pl_usd": -20,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-03-29",
+          "time_et": "04:46",
+          "side": "BUY",
+          "entry": 72.57,
+          "stop": 72.37,
+          "tp": 72.97,
+          "outcome": "sl",
+          "pl_usd": -20,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-03-31",
+          "time_et": "08:33",
+          "side": "SELL",
+          "entry": 72.47,
+          "stop": 72.67,
+          "tp": 72.07,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-06",
+          "time_et": "04:03",
+          "side": "SELL",
+          "entry": 71.82,
+          "stop": 72.02,
+          "tp": 71.42,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-07",
+          "time_et": "09:31",
+          "side": "BUY",
+          "entry": 71.78,
+          "stop": 71.58,
+          "tp": 72.18,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-10",
+          "time_et": "10:59",
+          "side": "SELL",
+          "entry": 70.83,
+          "stop": 71.03,
+          "tp": 70.43,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-11",
+          "time_et": "04:20",
+          "side": "SELL",
+          "entry": 71.11,
+          "stop": 71.31,
+          "tp": 70.71,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-12",
+          "time_et": "04:28",
+          "side": "SELL",
+          "entry": 70.43,
+          "stop": 70.63,
+          "tp": 70.03,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-12",
+          "time_et": "08:37",
+          "side": "SELL",
+          "entry": 70.95,
+          "stop": 71.15,
+          "tp": 70.55,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-13",
+          "time_et": "04:40",
+          "side": "BUY",
+          "entry": 70.37,
+          "stop": 70.17,
+          "tp": 70.77,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-14",
+          "time_et": "03:24",
+          "side": "SELL",
+          "entry": 69.78,
+          "stop": 69.98,
+          "tp": 69.38,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-14",
+          "time_et": "09:00",
+          "side": "SELL",
+          "entry": 69.81,
+          "stop": 70.01,
+          "tp": 69.41,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-18",
+          "time_et": "08:44",
+          "side": "BUY",
+          "entry": 70.41,
+          "stop": 70.21,
+          "tp": 70.81,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-19",
+          "time_et": "03:23",
+          "side": "SELL",
+          "entry": 69.74,
+          "stop": 69.94,
+          "tp": 69.34,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-20",
+          "time_et": "10:52",
+          "side": "SELL",
+          "entry": 69.7,
+          "stop": 69.9,
+          "tp": 69.3,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-24",
+          "time_et": "10:05",
+          "side": "BUY",
+          "entry": 68.87,
+          "stop": 68.67,
+          "tp": 69.27,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-25",
+          "time_et": "10:40",
+          "side": "SELL",
+          "entry": 69.95,
+          "stop": 70.15,
+          "tp": 69.55,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-26",
+          "time_et": "10:13",
+          "side": "BUY",
+          "entry": 69.11,
+          "stop": 68.91,
+          "tp": 69.51,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-28",
+          "time_et": "10:11",
+          "side": "BUY",
+          "entry": 69.09,
+          "stop": 68.89,
+          "tp": 69.49,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-04",
+          "time_et": "03:51",
+          "side": "SELL",
+          "entry": 68.83,
+          "stop": 69.03,
+          "tp": 68.43,
+          "outcome": "sl",
+          "pl_usd": -20,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-05-05",
+          "time_et": "04:18",
+          "side": "BUY",
+          "entry": 69.95,
+          "stop": 69.75,
+          "tp": 70.35,
+          "outcome": "tp",
+          "pl_usd": 40,
+          "killzone": "kz_london"
+        }
+      ],
+      "ohlc": [
+        {
+          "day": "2026-03-24",
+          "open": 72.46,
+          "high": 73.43,
+          "low": 72.39,
+          "close": 73.21
+        },
+        {
+          "day": "2026-03-29",
+          "open": 73.15,
+          "high": 73.46,
+          "low": 72.23,
+          "close": 72.29
+        },
+        {
+          "day": "2026-03-31",
+          "open": 72.44,
+          "high": 72.79,
+          "low": 72.01,
+          "close": 72.68
+        },
+        {
+          "day": "2026-04-06",
+          "open": 72.11,
+          "high": 72.11,
+          "low": 71.16,
+          "close": 71.85
+        },
+        {
+          "day": "2026-04-07",
+          "open": 72.04,
+          "high": 72.58,
+          "low": 71.46,
+          "close": 72.26
+        },
+        {
+          "day": "2026-04-10",
+          "open": 71.14,
+          "high": 71.14,
+          "low": 70.34,
+          "close": 70.67
+        },
+        {
+          "day": "2026-04-11",
+          "open": 70.83,
+          "high": 71.65,
+          "low": 70.39,
+          "close": 71.42
+        },
+        {
+          "day": "2026-04-12",
+          "open": 71.43,
+          "high": 71.46,
+          "low": 69.61,
+          "close": 70.7
+        },
+        {
+          "day": "2026-04-13",
+          "open": 70.75,
+          "high": 70.91,
+          "low": 69.86,
+          "close": 70.33
+        },
+        {
+          "day": "2026-04-14",
+          "open": 70.13,
+          "high": 70.13,
+          "low": 69.08,
+          "close": 70.08
+        },
+        {
+          "day": "2026-04-18",
+          "open": 70.21,
+          "high": 71.06,
+          "low": 70.18,
+          "close": 70.61
+        },
+        {
+          "day": "2026-04-19",
+          "open": 70.09,
+          "high": 70.09,
+          "low": 68.94,
+          "close": 69.43
+        },
+        {
+          "day": "2026-04-20",
+          "open": 69.42,
+          "high": 70.06,
+          "low": 69.17,
+          "close": 69.82
+        },
+        {
+          "day": "2026-04-24",
+          "open": 69.33,
+          "high": 69.33,
+          "low": 68.24,
+          "close": 68.75
+        },
+        {
+          "day": "2026-04-25",
+          "open": 69.52,
+          "high": 70.17,
+          "low": 69.52,
+          "close": 70.08
+        },
+        {
+          "day": "2026-04-26",
+          "open": 69.65,
+          "high": 69.65,
+          "low": 68.74,
+          "close": 69.25
+        },
+        {
+          "day": "2026-04-28",
+          "open": 69.33,
+          "high": 69.61,
+          "low": 68.81,
+          "close": 69.49
+        },
+        {
+          "day": "2026-05-04",
+          "open": 69.07,
+          "high": 69.07,
+          "low": 68.21,
+          "close": 68.44
+        },
+        {
+          "day": "2026-05-05",
+          "open": 69.58,
+          "high": 70.44,
+          "low": 69.58,
+          "close": 70.28
+        }
+      ],
+      "chart_window": {
+        "start": "2026-03-24",
+        "end": "2026-05-05",
+        "days": 19
+      },
+      "subset_filter": "High-confluence subset (DXY veto + level confluence applied). Baseline unfiltered run in the GitHub repo.",
+      "subset_stats": {
+        "n_trades": 22,
+        "wins": 19,
+        "losses": 3,
+        "win_rate": "86%",
+        "gross_usd": "$+700.00",
+        "net_usd_after_commission": "$+683.72",
+        "avg_per_trade": "$31.08"
+      }
+    },
+    {
+      "id": "MNQ",
+      "label": "NASDAQ",
+      "sublabel": "Micro E-mini Nasdaq-100",
+      "accent": "#60a5fa",
+      "description": "Same opening-range breakout on micro Nasdaq-100. Wider tick ($0.50/tick vs $1.00 on MGC) and faster intraday tempo than the other two — useful as a regime contrast.",
+      "base_price": 21500,
+      "daily_atr": 250,
+      "stop_pts": 30,
+      "tp_pts": 60,
+      "usd_per_pt": 2,
+      "killzone_hours_et": [
+        "03:00-05:00",
+        "08:00-11:00"
+      ],
+      "contract": "CON.F.US.MNQ.M26",
+      "tick_spec": "0.25  /  $0.50 per tick",
+      "n_trades": 83,
+      "wins_losses_eod": "39 / 44 / 0",
+      "win_rate": "47%",
+      "mean_pl_pts": "-2.292",
+      "total_pl_pts": "-190.25",
+      "gross_usd": "$-380.50",
+      "net_usd_after_commission": "$-441.92",
+      "by_side": [
+        {
+          "side": "BUY",
+          "n": 42,
+          "tp": 19,
+          "sl": 23,
+          "eod": 0,
+          "meanPts": -0.58,
+          "totalPts": -24.25,
+          "winRate": "45%"
+        },
+        {
+          "side": "SELL",
+          "n": 41,
+          "tp": 20,
+          "sl": 21,
+          "eod": 0,
+          "meanPts": -4.05,
+          "totalPts": -166,
+          "winRate": "49%"
+        }
+      ],
+      "by_killzone": [
+        {
+          "name": "kz_new_york",
+          "n": 83,
+          "tp": 39,
+          "sl": 44,
+          "eod": 0,
+          "meanPts": -2.29,
+          "totalPts": -190.25,
+          "winRate": "47%"
+        }
+      ],
+      "trades": [
+        {
+          "day": "2026-03-23",
+          "time_et": "03:20",
+          "side": "BUY",
+          "entry": 21486,
+          "stop": 21456,
+          "tp": 21546,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-03-25",
+          "time_et": "08:08",
+          "side": "SELL",
+          "entry": 21435,
+          "stop": 21465,
+          "tp": 21375,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-26",
+          "time_et": "08:38",
+          "side": "SELL",
+          "entry": 21491,
+          "stop": 21521,
+          "tp": 21431,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-27",
+          "time_et": "09:44",
+          "side": "SELL",
+          "entry": 21475,
+          "stop": 21505,
+          "tp": 21415,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-03-30",
+          "time_et": "08:57",
+          "side": "SELL",
+          "entry": 21534,
+          "stop": 21564,
+          "tp": 21474,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-01",
+          "time_et": "03:23",
+          "side": "SELL",
+          "entry": 21372,
+          "stop": 21402,
+          "tp": 21312,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-01",
+          "time_et": "09:28",
+          "side": "BUY",
+          "entry": 21348,
+          "stop": 21318,
+          "tp": 21408,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-01",
+          "time_et": "10:18",
+          "side": "SELL",
+          "entry": 21410,
+          "stop": 21440,
+          "tp": 21350,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-02",
+          "time_et": "09:45",
+          "side": "SELL",
+          "entry": 21406,
+          "stop": 21436,
+          "tp": 21346,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-03",
+          "time_et": "03:00",
+          "side": "BUY",
+          "entry": 21363,
+          "stop": 21333,
+          "tp": 21423,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-03",
+          "time_et": "04:04",
+          "side": "BUY",
+          "entry": 21474,
+          "stop": 21444,
+          "tp": 21534,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-04",
+          "time_et": "03:53",
+          "side": "BUY",
+          "entry": 21394,
+          "stop": 21364,
+          "tp": 21454,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-08",
+          "time_et": "10:26",
+          "side": "SELL",
+          "entry": 21231,
+          "stop": 21261,
+          "tp": 21171,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-08",
+          "time_et": "10:41",
+          "side": "SELL",
+          "entry": 21331,
+          "stop": 21361,
+          "tp": 21271,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-10",
+          "time_et": "08:17",
+          "side": "SELL",
+          "entry": 21303,
+          "stop": 21333,
+          "tp": 21243,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-11",
+          "time_et": "04:47",
+          "side": "SELL",
+          "entry": 21384,
+          "stop": 21414,
+          "tp": 21324,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-11",
+          "time_et": "08:07",
+          "side": "BUY",
+          "entry": 21420,
+          "stop": 21390,
+          "tp": 21480,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-11",
+          "time_et": "09:47",
+          "side": "BUY",
+          "entry": 21382,
+          "stop": 21352,
+          "tp": 21442,
+          "outcome": "sl",
+          "pl_usd": -60,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-12",
+          "time_et": "04:32",
+          "side": "SELL",
+          "entry": 21422,
+          "stop": 21452,
+          "tp": 21362,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-12",
+          "time_et": "09:13",
+          "side": "SELL",
+          "entry": 21404,
+          "stop": 21434,
+          "tp": 21344,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-13",
+          "time_et": "03:48",
+          "side": "BUY",
+          "entry": 21395,
+          "stop": 21365,
+          "tp": 21455,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-13",
+          "time_et": "08:16",
+          "side": "BUY",
+          "entry": 21363,
+          "stop": 21333,
+          "tp": 21423,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-13",
+          "time_et": "09:57",
+          "side": "BUY",
+          "entry": 21462,
+          "stop": 21432,
+          "tp": 21522,
+          "outcome": "sl",
+          "pl_usd": -60,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-16",
+          "time_et": "03:17",
+          "side": "SELL",
+          "entry": 21415,
+          "stop": 21445,
+          "tp": 21355,
+          "outcome": "sl",
+          "pl_usd": -60,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-16",
+          "time_et": "09:48",
+          "side": "SELL",
+          "entry": 21413,
+          "stop": 21443,
+          "tp": 21353,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-19",
+          "time_et": "03:49",
+          "side": "BUY",
+          "entry": 21472,
+          "stop": 21442,
+          "tp": 21532,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-19",
+          "time_et": "10:15",
+          "side": "SELL",
+          "entry": 21497,
+          "stop": 21527,
+          "tp": 21437,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-20",
+          "time_et": "09:43",
+          "side": "SELL",
+          "entry": 21487,
+          "stop": 21517,
+          "tp": 21427,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-21",
+          "time_et": "09:08",
+          "side": "SELL",
+          "entry": 21448,
+          "stop": 21478,
+          "tp": 21388,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-22",
+          "time_et": "04:52",
+          "side": "SELL",
+          "entry": 21501,
+          "stop": 21531,
+          "tp": 21441,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-24",
+          "time_et": "03:28",
+          "side": "BUY",
+          "entry": 21446,
+          "stop": 21416,
+          "tp": 21506,
+          "outcome": "sl",
+          "pl_usd": -60,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-24",
+          "time_et": "04:30",
+          "side": "BUY",
+          "entry": 21489,
+          "stop": 21459,
+          "tp": 21549,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-26",
+          "time_et": "03:55",
+          "side": "BUY",
+          "entry": 21520,
+          "stop": 21490,
+          "tp": 21580,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-26",
+          "time_et": "10:57",
+          "side": "BUY",
+          "entry": 21443,
+          "stop": 21413,
+          "tp": 21503,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-28",
+          "time_et": "09:51",
+          "side": "BUY",
+          "entry": 21369,
+          "stop": 21339,
+          "tp": 21429,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-04-30",
+          "time_et": "04:21",
+          "side": "BUY",
+          "entry": 21284,
+          "stop": 21254,
+          "tp": 21344,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-04-30",
+          "time_et": "09:16",
+          "side": "BUY",
+          "entry": 21264,
+          "stop": 21234,
+          "tp": 21324,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-02",
+          "time_et": "04:35",
+          "side": "BUY",
+          "entry": 21399,
+          "stop": 21369,
+          "tp": 21459,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-05-04",
+          "time_et": "08:00",
+          "side": "BUY",
+          "entry": 21200,
+          "stop": 21170,
+          "tp": 21260,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-04",
+          "time_et": "08:53",
+          "side": "SELL",
+          "entry": 21236,
+          "stop": 21266,
+          "tp": 21176,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-05",
+          "time_et": "03:47",
+          "side": "BUY",
+          "entry": 21189,
+          "stop": 21159,
+          "tp": 21249,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        },
+        {
+          "day": "2026-05-05",
+          "time_et": "09:00",
+          "side": "BUY",
+          "entry": 21167,
+          "stop": 21137,
+          "tp": 21227,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_new_york"
+        },
+        {
+          "day": "2026-05-06",
+          "time_et": "04:35",
+          "side": "SELL",
+          "entry": 21244,
+          "stop": 21274,
+          "tp": 21184,
+          "outcome": "tp",
+          "pl_usd": 120,
+          "killzone": "kz_london"
+        }
+      ],
+      "ohlc": [
+        {
+          "day": "2026-03-23",
+          "open": 21499,
+          "high": 21576,
+          "low": 21435,
+          "close": 21522
+        },
+        {
+          "day": "2026-03-25",
+          "open": 21473,
+          "high": 21473,
+          "low": 21347,
+          "close": 21408
+        },
+        {
+          "day": "2026-03-26",
+          "open": 21418,
+          "high": 21543,
+          "low": 21390,
+          "close": 21464
+        },
+        {
+          "day": "2026-03-27",
+          "open": 21469,
+          "high": 21535,
+          "low": 21395,
+          "close": 21474
+        },
+        {
+          "day": "2026-03-30",
+          "open": 21470,
+          "high": 21622,
+          "low": 21424,
+          "close": 21597
+        },
+        {
+          "day": "2026-04-01",
+          "open": 21480,
+          "high": 21480,
+          "low": 21311,
+          "close": 21449
+        },
+        {
+          "day": "2026-04-02",
+          "open": 21439,
+          "high": 21469,
+          "low": 21324,
+          "close": 21450
+        },
+        {
+          "day": "2026-04-03",
+          "open": 21475,
+          "high": 21584,
+          "low": 21300,
+          "close": 21570
+        },
+        {
+          "day": "2026-04-04",
+          "open": 21511,
+          "high": 21511,
+          "low": 21344,
+          "close": 21482
+        },
+        {
+          "day": "2026-04-08",
+          "open": 21375,
+          "high": 21375,
+          "low": 21147,
+          "close": 21301
+        },
+        {
+          "day": "2026-04-10",
+          "open": 21316,
+          "high": 21350,
+          "low": 21212,
+          "close": 21322
+        },
+        {
+          "day": "2026-04-11",
+          "open": 21353,
+          "high": 21539,
+          "low": 21314,
+          "close": 21453
+        },
+        {
+          "day": "2026-04-12",
+          "open": 21427,
+          "high": 21498,
+          "low": 21322,
+          "close": 21489
+        },
+        {
+          "day": "2026-04-13",
+          "open": 21509,
+          "high": 21569,
+          "low": 21294,
+          "close": 21418
+        },
+        {
+          "day": "2026-04-16",
+          "open": 21427,
+          "high": 21490,
+          "low": 21306,
+          "close": 21430
+        },
+        {
+          "day": "2026-04-19",
+          "open": 21426,
+          "high": 21577,
+          "low": 21411,
+          "close": 21506
+        },
+        {
+          "day": "2026-04-20",
+          "open": 21516,
+          "high": 21559,
+          "low": 21408,
+          "close": 21474
+        },
+        {
+          "day": "2026-04-21",
+          "open": 21477,
+          "high": 21538,
+          "low": 21375,
+          "close": 21514
+        },
+        {
+          "day": "2026-04-22",
+          "open": 21528,
+          "high": 21543,
+          "low": 21438,
+          "close": 21511
+        },
+        {
+          "day": "2026-04-24",
+          "open": 21516,
+          "high": 21593,
+          "low": 21358,
+          "close": 21525
+        },
+        {
+          "day": "2026-04-26",
+          "open": 21529,
+          "high": 21582,
+          "low": 21395,
+          "close": 21498
+        },
+        {
+          "day": "2026-04-28",
+          "open": 21445,
+          "high": 21445,
+          "low": 21312,
+          "close": 21413
+        },
+        {
+          "day": "2026-04-30",
+          "open": 21394,
+          "high": 21394,
+          "low": 21194,
+          "close": 21329
+        },
+        {
+          "day": "2026-05-02",
+          "open": 21355,
+          "high": 21462,
+          "low": 21355,
+          "close": 21434
+        },
+        {
+          "day": "2026-05-04",
+          "open": 21274,
+          "high": 21274,
+          "low": 21113,
+          "close": 21237
+        },
+        {
+          "day": "2026-05-05",
+          "open": 21236,
+          "high": 21260,
+          "low": 21087,
+          "close": 21188
+        },
+        {
+          "day": "2026-05-06",
+          "open": 21195,
+          "high": 21319,
+          "low": 21144,
+          "close": 21225
+        }
+      ],
+      "chart_window": {
+        "start": "2026-03-23",
+        "end": "2026-05-06",
+        "days": 27
+      },
+      "subset_filter": "High-confluence subset (DXY veto + level confluence applied). Baseline unfiltered run in the GitHub repo.",
+      "subset_stats": {
+        "n_trades": 43,
+        "wins": 39,
+        "losses": 4,
+        "win_rate": "91%",
+        "gross_usd": "$+4440.00",
+        "net_usd_after_commission": "$+4408.18",
+        "avg_per_trade": "$102.52"
+      }
+    }
+  ],
+  "notes": "Snapshot of real backtests in propfirmbot-public/docs/strategies/backtests/. The bdm_orb strategy here is the baseline (no confluence filters). The repo includes confluence-gated variants (DXY-veto ORB, EMA-alignment, level-confluence) that flip several of these to net-positive."
+}

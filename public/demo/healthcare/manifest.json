@@ -1,0 +1,71 @@
+{
+  "name": "medicaid_sdud_2026",
+  "domain": "healthcare",
+  "audience": "state Medicaid program managers + CMS analysts",
+  "bronze": {
+    "rows_total": 31028144,
+    "years": [2020, 2021, 2022, 2023, 2024, 2025],
+    "compressed_mb": 553,
+    "per_year": [
+      {"year": 2020, "rows": 4884121, "mb_gz": 88},
+      {"year": 2021, "rows": 5057639, "mb_gz": 91},
+      {"year": 2022, "rows": 5189398, "mb_gz": 93},
+      {"year": 2023, "rows": 5325080, "mb_gz": 95},
+      {"year": 2024, "rows": 5304728, "mb_gz": 94},
+      {"year": 2025, "rows": 5267178, "mb_gz": 93}
+    ]
+  },
+  "tom_model": {
+    "tables": 5,
+    "measures": 39,
+    "relationships": 4,
+    "rls_roles": 1
+  },
+  "layout": {
+    "pages": 5,
+    "visuals": 17,
+    "page_names": [
+      "Executive Overview",
+      "Cost Concentration",
+      "Trend and Forecast",
+      "Substitution and Outliers",
+      "Quality Scorecard"
+    ]
+  },
+  "templates": [
+    {"id": "01", "label": "Executive Overview",      "measures": 6},
+    {"id": "02", "label": "Top N + Other",           "measures": 4},
+    {"id": "03", "label": "YoY Growth",              "measures": 4},
+    {"id": "04", "label": "State Choropleth",        "measures": 3},
+    {"id": "06", "label": "Forecast Band",           "measures": 5},
+    {"id": "07", "label": "Pareto 80/20",            "measures": 4},
+    {"id": "08", "label": "Brand vs Generic",        "measures": 5},
+    {"id": "09", "label": "Outlier Flag",            "measures": 3},
+    {"id": "10", "label": "Quality Scorecard",       "measures": 5}
+  ],
+  "judges": {
+    "deterministic": [
+      {"name": "dax_syntax",      "weight": 2.0, "tier": "deterministic", "what": "Static DAX parse + column / function existence"},
+      {"name": "dax_perf",        "weight": 1.0, "tier": "deterministic", "what": "Catches FILTER(ALL(...)), nested CALCULATE, EARLIER-in-measures"},
+      {"name": "model_design",    "weight": 1.5, "tier": "deterministic", "what": "Star schema · single-direction filters · marked date table"},
+      {"name": "pii_leak",        "weight": 3.0, "tier": "deterministic", "what": "MRN / SSN / DOB / phone / email pattern hunt"},
+      {"name": "accessibility",   "weight": 0.5, "tier": "deterministic", "what": "WCAG AA contrast + non-placeholder visual titles"},
+      {"name": "governance",      "weight": 1.5, "tier": "deterministic", "what": "RLS roles present · data sources annotated"},
+      {"name": "refresh_health",  "weight": 0.5, "tier": "deterministic", "what": "Last refresh + 30-day success rate"},
+      {"name": "template_fit",    "weight": 1.0, "tier": "deterministic", "what": "Spec templates → emitted measure coverage"}
+    ],
+    "llm": [
+      {"name": "business_narrative",  "weight": 1.5, "tier": "llm", "what": "Executive caption quality · headline → trend → outlook"},
+      {"name": "visualization_choice","weight": 1.0, "tier": "llm", "what": "Chart type fit · no pie>5cats · no 3D · no twin-axis-on-different-scales"},
+      {"name": "forecast_method",     "weight": 1.5, "tier": "llm", "what": "Method named · MAPE shown · confidence band shown · native PBI forecast not used"},
+      {"name": "dax_review",          "weight": 1.5, "tier": "llm", "what": "VAR/RETURN · DIVIDE · time-intel on marked date table · KEEPFILTERS"},
+      {"name": "domain_relevance",    "weight": 1.0, "tier": "llm", "what": "Healthcare vocab present: NDC HCPCS ICD-10 HEDIS PMPM T-MSIS CMS"}
+    ],
+    "auditors": [
+      {"name": "dax_auditor",        "weight": 1.0, "tier": "auditor", "what": "Re-checks dax_syntax + dax_perf in surrounding context (CONFIRM / DISMISS / ESCALATE)"},
+      {"name": "model_auditor",      "weight": 1.0, "tier": "auditor", "what": "Re-checks model_design + governance findings against the .bim"},
+      {"name": "narrative_auditor",  "weight": 1.0, "tier": "auditor", "what": "Cross-references narrative numbers against measures · catches hallucinations"}
+    ]
+  },
+  "github": "https://github.com/JdeGraftJohnson/healthcare-cost-ops"
+}

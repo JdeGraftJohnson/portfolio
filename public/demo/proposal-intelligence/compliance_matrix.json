@@ -1,0 +1,833 @@
+{
+  "rfp_id": "state_local_gov_it_services",
+  "source_pdf": "/Users/john/Downloads/[State] IT Professional Services RFP.pdf",
+  "extracted_at": "2026-05-18T22:30:00.000000Z",
+  "extraction_method": "merged",
+  "evaluation_summary": {
+    "total_points": 100,
+    "criteria": [
+      {
+        "name": "Technical Approach and Staffing Capability",
+        "points": 25,
+        "section": "technical_approach_and_staffing_capability"
+      },
+      {
+        "name": "Relevant Experience and Past Performance",
+        "points": 25,
+        "section": "relevant_experience_and_past_performance"
+      },
+      {
+        "name": "Management Approach and Transition Plan",
+        "points": 15,
+        "section": "management_approach_and_transition_plan"
+      },
+      {
+        "name": "Cost",
+        "points": 15,
+        "section": "cost_proposal"
+      },
+      {
+        "name": "Organizational Capacity and Financial Stability",
+        "points": 10,
+        "section": "company_background_and_qualifications"
+      },
+      {
+        "name": "DBE Participation",
+        "points": 10,
+        "section": "dbe_participation_plan"
+      }
+    ],
+    "hard_disqualifiers": [
+      "LATE PROPOSALS WILL NOT BE ACCEPTED. Proposals delivered after the said deadline will not be accepted.",
+      "Failure to complete and submit the required documents and attachments may result in your proposal being deemed non-responsive.",
+      "Failure to complete and submit the DBE forms according to the above instructions will render your bid non-responsive.",
+      "Fax submission will not be acceptable.",
+      "This form [Cover Sheet] must be completed in its entirety. Deviations and failure to complete and sign this form will deem your proposal non-responsive."
+    ]
+  },
+  "requirements": [
+    {
+      "id": "req_001",
+      "page": 35,
+      "text": "Technical Approach and Staffing Capability (25%). Proposer's demonstrated ability to recruit, retain, and manage qualified IT professionals across all service categories in Section 2.2, including depth of candidate pipeline, workforce management processes, and experience supporting technical environments. Proposals demonstrating capability in Cybersecurity, OT, or Information Management receive favorable consideration.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "eval_criteria",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": 25,
+      "what_it_measures": "Depth of IT talent pipeline, workforce management maturity, breadth across IT Operations and Specialized Technical Services; bonus credit for Cybersecurity/OT/IM capability.",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "recruitment methodology",
+        "retention strategy",
+        "workforce management",
+        "cybersecurity capability",
+        "SCADA / OT capability"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_002",
+      "page": 35,
+      "text": "Relevant Experience and Past Performance (25%). Proposer's record of providing IT professional services to public-sector or utility clients of comparable size and complexity; quality of client references; demonstrated continuity of service delivery.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "client_reference_form"
+      ],
+      "category": "eval_criteria",
+      "criterion": "Relevant Experience and Past Performance",
+      "points": 25,
+      "what_it_measures": "Track record with public-sector / utility clients of similar scale; reference quality; service continuity evidence.",
+      "proposal_section": "relevant_experience_and_past_performance",
+      "must_cover": [
+        "public sector IT staffing experience",
+        "utility client references",
+        "continuity of service",
+        "comparable contract size"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_003",
+      "page": 35,
+      "text": "Management Approach and Transition Plan (15%). Proposer's contract management structure; quality assurance processes; reporting capabilities; knowledge transfer methodology; plan for onboarding and transitioning personnel at contract start.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "eval_criteria",
+      "criterion": "Management Approach and Transition Plan",
+      "points": 15,
+      "what_it_measures": "Contract Manager qualifications, QA discipline, reporting systems, 90-day transition plan, knowledge transfer approach, incumbent staff retention strategy.",
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "contract management structure",
+        "quality assurance",
+        "90-day transition plan",
+        "knowledge transfer",
+        "incumbent personnel retention"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_004",
+      "page": 36,
+      "text": "Cost (15%). Cost score computed as CS = (LPC/PC * 15) where LPC = lowest proposed cost of all proposers and PC = proposer's cost. Evaluated on total estimated annual cost for base year staffing complement at fully burdened hourly rates.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "pricing_form_excel"
+      ],
+      "category": "eval_criteria",
+      "criterion": "Cost",
+      "points": 15,
+      "what_it_measures": "Fully burdened hourly rates across all position categories in the standardized staffing scenario (2,080 hours/year each). Lowest cost receives full 15 points.",
+      "proposal_section": "cost_proposal",
+      "must_cover": [
+        "fully burdened hourly rates",
+        "base year rates",
+        "option year rates",
+        "emergency pay rates"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_005",
+      "page": 36,
+      "text": "Organizational Capacity and Financial Stability (10%). Company background; financial statements or D&B report; organizational depth; insurance capacity; completeness of proposal response.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "company_background_form"
+      ],
+      "category": "eval_criteria",
+      "criterion": "Organizational Capacity and Financial Stability",
+      "points": 10,
+      "what_it_measures": "Financial health (2 years audited statements or D&B), org depth to absorb a 55+ person engagement, insurance capacity meeting minimums, completeness of submission.",
+      "proposal_section": "company_background_and_qualifications",
+      "must_cover": [
+        "financial statements",
+        "organizational depth",
+        "insurance certificates",
+        "years in business"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_006",
+      "page": 36,
+      "text": "DBE Participation (10%). Proposer's plan to meet or exceed the DBE participation goal of 25% established for this solicitation. DBE firms must be SLDBE or LaUCP certified.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "edbp_participation_summary_sheet",
+        "edbp_acknowledgement_of_negotiated_terms"
+      ],
+      "category": "eval_criteria",
+      "criterion": "DBE Participation",
+      "points": 10,
+      "what_it_measures": "Credibility and specificity of plan to achieve 25% DBE contract spend using SLDBE/LaUCP-certified firms.",
+      "proposal_section": "dbe_participation_plan",
+      "must_cover": [
+        "25% DBE goal",
+        "SLDBE or LaUCP certified firms",
+        "scope of DBE work",
+        "dollar value commitment"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_007",
+      "page": 6,
+      "text": "Proposals must be received by [Agency] Procurement Department by June 11, 2026, at 11:00 a.m. CDT local time. LATE PROPOSALS WILL NOT BE ACCEPTED.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [],
+      "category": "hard_rule",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": null,
+      "must_cover": [],
+      "owner": null
+    },
+    {
+      "id": "req_008",
+      "page": 6,
+      "text": "Electronic Submission: (1) Digitally signed technical proposal and (1) digitally signed cost proposal in searchable PDF format to [email redacted]. Subject Line: 2026-SWB-30 – Information Technology Professional Services – [Proposer Name]. Fax submission will not be acceptable.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [],
+      "category": "hard_rule",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": null,
+      "must_cover": [],
+      "owner": null
+    },
+    {
+      "id": "req_009",
+      "page": 6,
+      "text": "Cost proposals must be submitted in a separate envelope or file (if emailed) marked 'Cost Proposal'. Cost and technical proposals must be submitted as separate files.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [],
+      "category": "hard_rule",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": null,
+      "must_cover": [],
+      "owner": null
+    },
+    {
+      "id": "req_010",
+      "page": 7,
+      "text": "From the time of advertising, and until the final award, there is a prohibition on communication by Respondents (or anyone on their behalf) with Board's staff, Selection Committee members and elected officials. Breaking the established prohibition on communication may result in a disqualification of the proposal.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [],
+      "category": "hard_rule",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": null,
+      "must_cover": [],
+      "owner": null
+    },
+    {
+      "id": "req_011",
+      "page": 46,
+      "text": "ATTACHMENT – COVER SHEET: Must be completed in its entirety and digitally signed by an authorized representative. Deviations and failure to complete and sign this form will deem your proposal non-responsive.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "cover_sheet"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "attachments",
+      "must_cover": [
+        "authorized signature",
+        "company name",
+        "contact information"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_012",
+      "page": 45,
+      "text": "ATTACHMENT – COMPANY BACKGROUND FORM: Required for proposal submission. Must include company legal name, headquarters address, nearest office to [City], year established, states of incorporation, [State] business license status, total employees, IT professionals employed, DUNS number, Federal Tax ID.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "company_background_form"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "attachments",
+      "must_cover": [
+        "DUNS number",
+        "[State] licensure",
+        "IT professionals count"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_013",
+      "page": 45,
+      "text": "ATTACHMENT – QUESTIONS: Seven mandatory questions covering IT staffing history, public-sector contracts, geographic recruitment reach, strategic alliances, employee retention rate, outstanding litigation, and subcontractor intent. Must be completed as part of Proposal Section 2.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "attachment_questions"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "company_background_and_qualifications",
+      "must_cover": [
+        "retention rate",
+        "public-sector contracts",
+        "recruitment reach",
+        "litigation disclosure"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_014",
+      "page": 45,
+      "text": "ATTACHMENT – STAFFING PLAN FORM: Required for proposal submission. Must show each position category with minimum education, minimum years experience, required certifications, average time to fill (days), and proposed hourly rate range. Must also include org chart, Contract Manager resume, emergency staffing plan (ER1/ER2).",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "staffing_plan_form"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "staffing_plan_and_position_qualifications",
+      "must_cover": [
+        "position categories",
+        "certifications",
+        "Contract Manager resume",
+        "ER1/ER2 emergency staffing"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_015",
+      "page": 45,
+      "text": "ATTACHMENT – CLIENT REFERENCE FORM: Must provide at least five (5) references from clients for whom Proposer has provided IT professional services of comparable scope and complexity within the past five (5) years. At least three (3) references must be from public-sector or utility clients.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "client_reference_form"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "relevant_experience_and_past_performance",
+      "must_cover": [
+        "5 references",
+        "3 public-sector or utility",
+        "contract value",
+        "personnel count"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_016",
+      "page": 42,
+      "text": "EDBP Participation Summary Sheet Form (separate file): Name, address and phone of each DBE firm; scope of work; dollar value for each DBE; signature of prime on form. Required at proposal submission. Failure to submit renders bid non-responsive.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "edbp_participation_summary_sheet"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "dbe_participation_plan",
+      "must_cover": [
+        "DBE firm names",
+        "scope of DBE work",
+        "dollar value",
+        "prime signature"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_017",
+      "page": 42,
+      "text": "EDBP Acknowledgement of Negotiated Terms Form (separate file, one per DBE firm): Signed by both prime and DBE subcontractor. DBE must be SLDBE or LaUCP certified. Required at proposal submission.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "edbp_acknowledgement_of_negotiated_terms"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "dbe_participation_plan",
+      "must_cover": [
+        "SLDBE or LaUCP certification",
+        "dual signatures"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_018",
+      "page": 43,
+      "text": "ATTACHMENT – PRICING FORM (Excel format, separate file): Fully burdened hourly rates for each position category for base year and four option years. Emergency pay rates as separate line items. Time-and-materials primary structure. Contract Manager not a separately billable position.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [
+        "pricing_form_excel"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "cost_proposal",
+      "must_cover": [
+        "fully burdened rates",
+        "base year",
+        "4 option years",
+        "emergency pay rates"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_019",
+      "page": 13,
+      "text": "2.2.1 IT Operations (Core Scope): Contractor shall provide personnel for Help Desk and End-User Support, PC Deployment and Lifecycle Management, Enterprise Application Support (Oracle Fusion ERP, CIS/Billing, EAMS/Trimble Unity, Dayforce, GIS), Database Administration (Oracle, SQL Server), GIS Operations (ESRI ArcGIS Enterprise), Network Administration and Infrastructure Operations (LAN/WAN/VPN/firewall), Server and Data Center Operations, Web Administration and Digital Content, Audio-Visual and Meeting Support, Baseline Cybersecurity Operations, and Emergency and Continuity Operations.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": null,
+      "what_it_measures": "Coverage of all IT Operations functional areas listed in Section 2.2.1",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "Oracle Fusion ERP",
+        "ESRI ArcGIS",
+        "network administration",
+        "help desk",
+        "database administration"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_020",
+      "page": 16,
+      "text": "2.2.2 Specialized Technical Services: Contractor shall provide Project Managers for enterprise modernization, Cloud Engineers for Azure and other cloud environments, Database Architects and Senior Administrators, Network Engineers for security architecture, and Enterprise Application Specialists for Oracle Fusion, Trimble Unity, Dayforce, and GIS Utility Network.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": null,
+      "what_it_measures": "Ability to place specialized senior roles; Oracle, Azure, GIS Utility Network experience",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "cloud engineers",
+        "Microsoft Azure",
+        "Oracle Fusion specialists",
+        "project managers"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_021",
+      "page": 17,
+      "text": "2.2.3 Cybersecurity Services (at Board discretion): Services may include GRC support, Identity and Access Management (IAM) administration, Security Operations Center (SOC) operations or SOC-as-a-Service, vulnerability management and assessment, incident response support, and security awareness program support. Capability not required for a responsive proposal but will receive favorable consideration.",
+      "mandatory": false,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": null,
+      "what_it_measures": "Favorable consideration for demonstrated cybersecurity staffing capability (GRC, IAM, SOC)",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "SOC-as-a-Service",
+        "IAM administration",
+        "GRC",
+        "vulnerability management"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_022",
+      "page": 18,
+      "text": "2.2.4 Operational Technology / SCADA: The Proposer shall include a minimum of 40 hours of monthly SCADA application support in their base bid. This support covers PI Data Archive, PI Asset Framework, PI Vision, and iFIX HMI/SCADA systems. The Proposer may fulfill this requirement through a qualified subcontractor.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": null,
+      "what_it_measures": "Ability to provide or subcontract SCADA support (PI Suite, iFIX); minimum 40 hours/month must be priced in base bid",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "SCADA",
+        "PI Data Archive",
+        "iFIX HMI",
+        "40 hours monthly",
+        "subcontractor"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_023",
+      "page": 19,
+      "text": "2.2.5 Information Management (at Board discretion): Services may include administrative workflow modernization, digitization, process automation (Digital Transformation branch) and records retention, compliance documentation, scanning and digitization (Records Management branch) aligned with ISO 15489 and NARA standards.",
+      "mandatory": false,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": null,
+      "what_it_measures": "Favorable consideration for IM capability; ISO 15489 and NARA records management knowledge",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "digital transformation",
+        "records management",
+        "ISO 15489"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_024",
+      "page": 22,
+      "text": "2.2.11.5 Key Personnel: Contractor shall designate a Contract Manager ([State]-based, not separately billable, included in management overhead) and Technical Leads for each major functional area. Contract Manager requires prior written [Agency] IT Director approval to replace; 30 calendar days advance notice for planned changes.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "staffing_plan_form"
+      ],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "[State]-based Contract Manager identified with resume; Technical Leads named per functional area",
+      "proposal_section": "staffing_plan_and_position_qualifications",
+      "must_cover": [
+        "Contract Manager",
+        "[State]-based",
+        "technical leads",
+        "functional area"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_025",
+      "page": 23,
+      "text": "2.2.11.6 Subcontractors: Contractor may use subcontractors subject to prior written Board approval. Proposer shall identify proposed subcontractors and their roles in the proposal submission.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "company_background_and_qualifications",
+      "must_cover": [
+        "subcontractor names",
+        "subcontractor roles"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_026",
+      "page": 23,
+      "text": "2.2.11.7 Personnel Retention: Contractor shall maintain an annual retention rate of not less than 85% for personnel assigned to this contract, calculated over 12 consecutive months. Contractor's proposal shall describe its approach to retaining personnel.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "Commitment to 85% retention rate; narrative on compensation, career development, and retention practices",
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "85% retention",
+        "compensation practices",
+        "professional development"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_027",
+      "page": 26,
+      "text": "2.2.13 Emergency Operations: Contractor shall designate Tier 1 (ER1) personnel for on-site continuous IT support during activated emergency operations (up to 12 hours/day, including curfew conditions) and Tier 2 (ER2) personnel available to return on short notice. Emergency staffing rosters must be established before each hurricane season (June 1) and updated as changes occur.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "staffing_plan_form"
+      ],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "Hurricane/emergency staffing plan credibility; ER1/ER2 designation process; business continuity posture",
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "ER1 personnel",
+        "ER2 personnel",
+        "hurricane season",
+        "emergency operations",
+        "business continuity"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_028",
+      "page": 28,
+      "text": "2.2.14 Background Checks: All personnel requiring access to [Agency] systems or facilities shall complete background checks including criminal history (7 years), employment verification (5 years), education verification, professional license verification, and sex offender registry search.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "background check",
+        "criminal history"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_029",
+      "page": 28,
+      "text": "2.2.15 Cybersecurity Incident Notification: Contractor shall notify [Agency] within two (2) hours of discovery of any cybersecurity incident that may affect [Agency] data or systems. Contractor shall implement reasonable administrative, technical, and physical safeguards consistent with applicable cybersecurity standards.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "2-hour incident notification",
+        "cybersecurity safeguards"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_030",
+      "page": 20,
+      "text": "2.2.6(e) Reporting Requirements: Contractor shall provide weekly Project Status Reports, monthly Help Desk Metrics, monthly System Availability Reports, monthly Position Status Reports, monthly Security Incident Summaries, quarterly Work Plan Updates, quarterly DBE Utilization Reports, annual Strategic Recommendations, annual Disaster Recovery Test Results, and annual Policy and Procedure Reviews.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "Reporting infrastructure and cadence; proposer must demonstrate systems for weekly, monthly, quarterly, and annual reporting",
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "weekly status reports",
+        "monthly metrics",
+        "quarterly DBE reporting",
+        "disaster recovery reporting"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_031",
+      "page": 31,
+      "text": "2.9 Insurance Requirements: Contractor shall maintain Workers' Compensation (statutory + $1M Employers Liability), Commercial General Liability ($1M each occurrence / $2M aggregate), Business Automobile ($1M combined single limit), and Errors & Omissions / Professional Liability ($1M each claim / $2M annual aggregate, 5-year tail). Certificates must be filed with [Agency] Risk Manager before work commences.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "mandatory_submittal",
+      "criterion": "Organizational Capacity and Financial Stability",
+      "points": null,
+      "what_it_measures": "Evidence of adequate insurance capacity at required minimums",
+      "proposal_section": "company_background_and_qualifications",
+      "must_cover": [
+        "workers compensation",
+        "general liability",
+        "errors and omissions",
+        "insurance certificates"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_032",
+      "page": 40,
+      "text": "4.4 Company Background and Qualifications: Must provide audited financial information for past two (2) completed fiscal years (income statements, balance sheets, statements of cash flows). Privately held companies must provide a current Dun & Bradstreet (D&B) report.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "company_background_form"
+      ],
+      "category": "mandatory_submittal",
+      "criterion": "Organizational Capacity and Financial Stability",
+      "points": null,
+      "what_it_measures": "Financial stability; audited financials or D&B report required",
+      "proposal_section": "company_background_and_qualifications",
+      "must_cover": [
+        "audited financials",
+        "balance sheet",
+        "D&B report"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_033",
+      "page": 40,
+      "text": "4.5 Technical Approach and Staffing Capability: Proposer must address recruitment and retention methodology, workforce management approach, demonstrated capability to support IT Operations and Specialized Technical Services (Microsoft 365, SQL Server/Oracle, data center ops, cloud solutions, help desk, IT networking, GIS). Proposers encouraged to also demonstrate Cybersecurity, OT, and IM capability.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Technical Approach and Staffing Capability",
+      "points": null,
+      "what_it_measures": "Breadth of technical capability narrative; Microsoft 365, Oracle, SQL Server, GIS, cloud, help desk all specifically named",
+      "proposal_section": "technical_approach_and_staffing_capability",
+      "must_cover": [
+        "Microsoft 365",
+        "SQL Server",
+        "Oracle",
+        "GIS",
+        "cloud solutions",
+        "help desk"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_034",
+      "page": 41,
+      "text": "4.6 Management Approach and Transition Plan: Must address transition plan for first 90 days including onboarding incumbent personnel, knowledge transfer from outgoing contractor, emergency and business continuity staffing plan per Section 2.9, and plan for maintaining operations during knowledge transfer period including dual-staffing for first 30-60 days if needed.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "Credibility of 90-day transition plan; approach to retaining incumbent staff from predecessor contract expiring November 2026",
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "90-day transition",
+        "incumbent personnel",
+        "dual-staffing",
+        "knowledge transfer"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_035",
+      "page": 41,
+      "text": "4.7 Staffing Plan and Position Qualifications: Must provide detailed staffing plan with proposed organizational chart, minimum qualifications for each position category (education, certifications, years experience, technical competencies), average time to fill positions by category, and approach to retaining personnel. Must also include resumes for proposed Contract Manager and any identified Technical Leads.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [
+        "staffing_plan_form"
+      ],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "Staffing plan completeness; Contract Manager resume required; position qualifications documented",
+      "proposal_section": "staffing_plan_and_position_qualifications",
+      "must_cover": [
+        "Contract Manager resume",
+        "org chart",
+        "position qualifications",
+        "time to fill"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_036",
+      "page": 34,
+      "text": "2.14 Living Wage: Contractor agrees to abide by City Code sections 70-801, et seq. (Living Wage Ordinance). Current living wage is $16.01 per hour. Covered employees must receive at least $16.01/hour and seven days per year of compensated leave. Failure to comply may result in termination.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "cost_proposal",
+      "must_cover": [
+        "living wage",
+        "$16.01 per hour"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_037",
+      "page": 24,
+      "text": "2.2.12.1 Separation and Fee Restrictions: Contractor shall not impose non-compete clauses, conversion fees, buyout charges, or other contractual barriers that would prevent Contractor personnel from applying for or accepting Civil Service employment with [Agency]. No conversion fee applies after 26 consecutive weeks of service.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "no non-compete",
+        "no conversion fee"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_038",
+      "page": 29,
+      "text": "2.2.18 Performance Standards and Remedies: Position vacancy beyond 90 days triggers 25% monthly penalty; beyond 180 days triggers 50% penalty. Critical system (Tier 1 or Tier 2) outage response required within 1 hour of notification or $1,000 per occurrence penalty. Status meetings twice monthly or $250 per missed occurrence. Annual corporate visit required or $5,000 penalty.",
+      "mandatory": true,
+      "hard_disqualifier": false,
+      "form_candidates": [],
+      "category": "scope",
+      "criterion": "Management Approach and Transition Plan",
+      "points": null,
+      "what_it_measures": "Vendor understanding of and commitment to meeting performance standards and penalty regime",
+      "proposal_section": "management_approach_and_transition_plan",
+      "must_cover": [
+        "vacancy standards",
+        "1-hour critical response",
+        "performance penalties"
+      ],
+      "owner": null
+    },
+    {
+      "id": "req_039",
+      "page": 31,
+      "text": "2.8 Convicted Felon Statement: The Contractor confirms that no principal, member, or officer of the Contractor has, within the preceding 5 years, been convicted of or pled guilty to a felony under state or federal statutes for embezzlement, theft of public funds, bribery, or falsification or destruction of public records.",
+      "mandatory": true,
+      "hard_disqualifier": true,
+      "form_candidates": [],
+      "category": "hard_rule",
+      "criterion": null,
+      "points": null,
+      "what_it_measures": null,
+      "proposal_section": null,
+      "must_cover": [],
+      "owner": null
+    }
+  ],
+  "bench_gaps": [
+    "RFP requires SCADA application support (PI Data Archive, PI Asset Framework, PI Vision, iFIX HMI) — minimum 40 hours/month in base bid. No cstaff in current bench has documented SCADA/OT platform expertise. Fulfillable via qualified subcontractor per Section 2.2.4.",
+    "RFP Section 2.1.6 references NIST SP 800-82 (OT cybersecurity) and IEC 62443 compliance. No cstaff certification in IEC 62443 or NIST 800-82 on bench.",
+    "RFP requires Contract Manager to be [State]-based with regular on-site presence at [Agency] facilities. No cstaff profile confirms [State] residency or [City] metro presence.",
+    "RFP requires at least 5 client references, 3 of which must be public-sector or utility clients, for IT staffing services within the past 5 years. Bench past-performance YAMLs should be verified to confirm at least 3 public-sector/utility IT staffing engagements are documented."
+  ]
+}

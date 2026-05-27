@@ -1,0 +1,276 @@
+{
+  "rfp_id": "state_local_gov_it_services",
+  "measured_at": "2026-05-19T00:59:50.038773+00:00",
+  "composite_weighted_total": 3.7,
+  "judges": [
+    {
+      "judge_id": "pii_leak",
+      "dim_scores": {
+        "no_pii_in_docx": 5,
+        "no_pii_in_yamls": 5,
+        "no_real_name_in_data": 5
+      },
+      "weighted_total": 5,
+      "verdict": "Submit as-is",
+      "findings": [],
+      "measured_at": "2026-05-19T00:59:49.510699+00:00",
+      "notes": "docx_pii=0 yaml_pii=0 real_name_violations=0"
+    },
+    {
+      "judge_id": "unresolved_tokens",
+      "dim_scores": {
+        "technical_unresolved": 0,
+        "pricing_unresolved": 0,
+        "score_0_5": 5
+      },
+      "weighted_total": 5,
+      "verdict": "Submit as-is",
+      "findings": [],
+      "measured_at": "2026-05-19T00:59:49.564791+00:00",
+      "notes": ""
+    },
+    {
+      "judge_id": "styling",
+      "dim_scores": {
+        "page_geometry": 5,
+        "semantic_heading_hierarchy": 5,
+        "brand_fonts": 5,
+        "brand_color": 5,
+        "cover_image_integrity": 5,
+        "section_dividers": 5,
+        "page_breaks": 1,
+        "tables": 3,
+        "letter_of_submittal": 5,
+        "no_unresolved_markers": 5
+      },
+      "weighted_total": 4.4,
+      "verdict": "Submit as-is",
+      "findings": [
+        {
+          "tier": "suggestion",
+          "issue": "12 page breaks — likely excessive",
+          "fix": "Only call add_page_break() before major sections 1–5."
+        }
+      ],
+      "measured_at": "2026-05-19T00:59:49.716392+00:00",
+      "notes": ""
+    },
+    {
+      "judge_id": "formatting_alignment",
+      "dim_scores": {
+        "paragraph_alignment_consistency": 5,
+        "line_spacing_consistency": 5,
+        "paragraph_spacing": 3,
+        "font_face_declared": 5,
+        "font_size_hierarchy": 5,
+        "font_weight_bold_usage": 5,
+        "font_color": 5,
+        "run_level_overrides": 5,
+        "list_formatting": 1,
+        "hyphenation_widows_orphans": 4,
+        "page_break_placement": 1,
+        "table_alignment": 3
+      },
+      "weighted_total": 4.35,
+      "verdict": "Submit as-is",
+      "findings": [
+        {
+          "tier": "suggestion",
+          "issue": "Body paragraph_format.space_after is 0 — reads dense",
+          "fix": "Set styles['Normal'].paragraph_format.space_after = Pt(6) in build_templates.py."
+        },
+        {
+          "tier": "suggestion",
+          "issue": "11 body paragraph(s) start with hand-typed bullet glyphs",
+          "fix": "Use d.add_paragraph(text, style='List Bullet') instead of typed •/■/▸."
+        }
+      ],
+      "measured_at": "2026-05-19T00:59:49.824187+00:00",
+      "notes": ""
+    },
+    {
+      "judge_id": "section_length",
+      "dim_scores": {
+        "sections_present": 5,
+        "length_within_target": 4,
+        "must_cover_keywords": 3
+      },
+      "weighted_total": 4.2,
+      "verdict": "Submit as-is",
+      "findings": [
+        {
+          "tier": "important",
+          "issue": "Section 'Staffing Plan and Position Qualifications' is 63 sentences (over target 20-40)",
+          "fix": "Trim section content by ~23 sentences; per RFP rubric the over-length material may be excised from evaluation."
+        },
+        {
+          "tier": "important",
+          "issue": "Section 'Relevant Experience and Past Performance' is 14 sentences (under target 30-60)",
+          "fix": "Expand section content with 16 more substantive sentences."
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Executive Summary' missing must-cover item: 'Brief statement of [Prime]'s understanding of [Agency]'s IT staffing needs and contrac...'",
+          "fix": "Add a sentence addressing: Brief statement of [Prime]'s understanding of [Agency]'s IT staffing needs and contract scope"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Executive Summary' missing must-cover item: 'Firm's relevant qualifications and distinguishing capabilities at a high level...'",
+          "fix": "Add a sentence addressing: Firm's relevant qualifications and distinguishing capabilities at a high level"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Company Background and Qualifications' missing must-cover item: 'Legal entity name, corporate structure, state of incorporation, and principal pl...'",
+          "fix": "Add a sentence addressing: Legal entity name, corporate structure, state of incorporation, and principal place of business"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Company Background and Qualifications' missing must-cover item: '[State] office presence — physical location, staffing, and years operating in-...'",
+          "fix": "Add a sentence addressing: [State] office presence — physical location, staffing, and years operating in-state"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Company Background and Qualifications' missing must-cover item: 'Organizational chart showing corporate hierarchy and reporting lines to [Agency] ac...'",
+          "fix": "Add a sentence addressing: Organizational chart showing corporate hierarchy and reporting lines to [Agency] account"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Company Background and Qualifications' missing must-cover item: 'Evidence of financial stability (e.g., D&B rating, annual revenue range, or audi...'",
+          "fix": "Add a sentence addressing: Evidence of financial stability (e.g., D&B rating, annual revenue range, or audited financials)"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Company Background and Qualifications' missing must-cover item: 'Current certificate(s) of insurance meeting RFP minimums: Workers Comp statutory...'",
+          "fix": "Add a sentence addressing: Current certificate(s) of insurance meeting RFP minimums: Workers Comp statutory + $1M EL, CGL $1M/$2M, Auto $1M, E&O $1M/$2M with 5-year tail"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Company Background and Qualifications' missing must-cover item: 'Statement on litigation, debarment, or material adverse events in the prior 5 ye...'",
+          "fix": "Add a sentence addressing: Statement on litigation, debarment, or material adverse events in the prior 5 years"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Relevant Experience and Past Performance' missing must-cover item: 'Minimum 5 client references, of which at least 3 must be public sector or utilit...'",
+          "fix": "Add a sentence addressing: Minimum 5 client references, of which at least 3 must be public sector or utility/special district"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Relevant Experience and Past Performance' missing must-cover item: '5-year lookback: all references must be from contracts active within the past 5 ...'",
+          "fix": "Add a sentence addressing: 5-year lookback: all references must be from contracts active within the past 5 years"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Relevant Experience and Past Performance' missing must-cover item: 'Engagement descriptions demonstrating comparable scope: multi-discipline IT staf...'",
+          "fix": "Add a sentence addressing: Engagement descriptions demonstrating comparable scope: multi-discipline IT staffing, volume placement, and retention metrics"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Relevant Experience and Past Performance' missing must-cover item: 'At least one engagement requiring cybersecurity staffing (GRC, SOC, or IAM roles...'",
+          "fix": "Add a sentence addressing: At least one engagement requiring cybersecurity staffing (GRC, SOC, or IAM roles)"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Relevant Experience and Past Performance' missing must-cover item: 'Documented fill rate and retention outcomes from each reference engagement where...'",
+          "fix": "Add a sentence addressing: Documented fill rate and retention outcomes from each reference engagement where available"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Relevant Experience and Past Performance' missing must-cover item: 'Any [State] or [Region] public sector IT staffing experience should be highl...'",
+          "fix": "Add a sentence addressing: Any [State] or [Region] public sector IT staffing experience should be highlighted"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Exceptions and Deviations' missing must-cover item: 'If exceptions exist: cite the specific RFP section, state the exception clearly,...'",
+          "fix": "Add a sentence addressing: If exceptions exist: cite the specific RFP section, state the exception clearly, and provide proposed alternative language"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'Exceptions and Deviations' missing must-cover item: 'Acknowledgment that [Agency] is not obligated to accept any exceptions...'",
+          "fix": "Add a sentence addressing: Acknowledgment that [Agency] is not obligated to accept any exceptions"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'DBE Participation Plan' missing must-cover item: 'DBE firm's ownership percentage and controlling interest confirmation...'",
+          "fix": "Add a sentence addressing: DBE firm's ownership percentage and controlling interest confirmation"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'DBE Participation Plan' missing must-cover item: 'Certification basis: [State] USDOT DBE, SBA 8(a), or equivalent recognized cer...'",
+          "fix": "Add a sentence addressing: Certification basis: [State] USDOT DBE, SBA 8(a), or equivalent recognized certification"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'DBE Participation Plan' missing must-cover item: 'Completed EDBP Participation Summary Sheet (mandatory attachment — failure = non...'",
+          "fix": "Add a sentence addressing: Completed EDBP Participation Summary Sheet (mandatory attachment — failure = non-responsive)"
+        },
+        {
+          "tier": "suggestion",
+          "issue": "Section 'DBE Participation Plan' missing must-cover item: 'Completed EDBP Acknowledgement of Negotiated Terms (mandatory attachment)...'",
+          "fix": "Add a sentence addressing: Completed EDBP Acknowledgement of Negotiated Terms (mandatory attachment)"
+        }
+      ],
+      "measured_at": "2026-05-19T00:59:49.882793+00:00",
+      "notes": "pattern=state_local_gov_it_services/state_local_gov_it_services sections_required=8 found=8 length_within=6 length_out=2 kw_hits=43/63"
+    },
+    {
+      "judge_id": "compliance_coverage",
+      "dim_scores": {
+        "mandatory_form_attachment_presence": 5,
+        "requirement_section_coverage": 4.72,
+        "eval_criteria_addressed": 5,
+        "no_hard_disqualifiers_triggered": 5
+      },
+      "weighted_total": 4.89,
+      "verdict": "Submit as-is",
+      "findings": [],
+      "measured_at": "2026-05-19T00:59:49.933017+00:00",
+      "notes": "mode=full matrix_rows=39 mandatory_forms=8 attach_found=8 rfp_keywords=119"
+    },
+    {
+      "judge_id": "pricing_math",
+      "dim_scores": {
+        "validity_window_present": 5,
+        "gsa_math_consistency": 5,
+        "price_page_artifact_referenced": 5,
+        "rate_table_completeness": 0,
+        "transparent_derivation": 2
+      },
+      "weighted_total": 3.7,
+      "verdict": "Strong; tighten",
+      "findings": [],
+      "measured_at": "2026-05-19T00:59:49.949999+00:00",
+      "notes": "pricing_pattern=time_and_materials_fully_burdened"
+    },
+    {
+      "judge_id": "past_perf_coverage",
+      "dim_scores": {
+        "no_fabrication": 5,
+        "yaml_pp_used_in_draft": 5,
+        "diversity_of_citations": 5
+      },
+      "weighted_total": 5,
+      "verdict": "Submit as-is",
+      "findings": [],
+      "measured_at": "2026-05-19T00:59:49.994808+00:00",
+      "notes": "yaml_count=4 cited_in_draft=4"
+    },
+    {
+      "judge_id": "named_personnel",
+      "dim_scores": {
+        "all_kp_names_present": 0,
+        "named_signatory_present": 0
+      },
+      "weighted_total": 0,
+      "verdict": "not_implemented",
+      "findings": [
+        {
+          "tier": "info",
+          "issue": "proposed_personnel list not set in rfp_structures/state_local_gov_it_services.yml",
+          "fix": "Add proposed_personnel: [cstaff_NNN, ...] to scope this judge to the named team."
+        }
+      ],
+      "measured_at": "2026-05-19T00:59:50.038756+00:00",
+      "notes": ""
+    }
+  ]
+}

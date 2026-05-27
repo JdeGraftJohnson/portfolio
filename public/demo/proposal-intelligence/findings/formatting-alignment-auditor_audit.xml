@@ -1,0 +1,22 @@
+<thoughts>
+Two deterministic suggestions to adjudicate:
+1. space_after=0: The agent confirmed that Normal style has NO pPr element at all (no w:spacing child). This means space_after is inherited from the DOCX theme defaults, not explicitly set to 0pt. The deterministic judge misread None-from-python-docx as 0. False positive — dismiss.
+2. Hand-typed bullets: Agent found 18 paragraphs (deterministic said 11 — undercounting). Confirmed present: em-dash (—) in paras 84-90 (staffing SLA commitments), filled square (■) in paras 111-113 (Win Themes), bullet (•) in paras 204-211 (attachment checklist). All in Normal style, not List Bullet style. Legitimate suggestion — confirm. However these are suggestion-tier (not important/critical) and the overall proposal reads professionally. The attachment checklist bullets (paras 204-211) in particular use a variable-substitution pattern that may be intentional template formatting.
+</thoughts>
+<verdicts>
+  <finding id="space_after_0" tier="suggestion" action="dismiss">
+    <original_text>Body paragraph_format.space_after is 0 — reads dense</original_text>
+    <detail>Normal style has no pPr element at all — paragraph_format.space_after returns None (inherited from DOCX theme defaults), not 0pt. The deterministic judge misinterprets None as 0. Actual spacing is controlled by theme inheritance and reads appropriately in Word.</detail>
+    <fix>No fix needed. False positive from deterministic judge's None-vs-0 conflation.</fix>
+  </finding>
+  <finding id="hand_typed_bullets" tier="suggestion" action="confirm">
+    <original_text>11 body paragraph(s) start with hand-typed bullet glyphs</original_text>
+    <detail>18 paragraphs confirmed (deterministic undercounted): em-dash (—) paras 84-90 (staffing SLA response-time commitments), filled square (■) paras 111-113 (Win Themes section), bullet (•) paras 204-211 (attachment checklist). All use Normal style, not List Bullet style. The em-dash rows are structured as a response-time SLA table in prose; the ■ rows are win-theme callouts.</detail>
+    <fix>For em-dash rows: consider wrapping in a Word table (2-col: SLA metric | commitment time). For ■ rows: switch to d.add_paragraph(text, style='List Bullet') in build_templates.py. The attachment checklist • rows are auto-generated from manifest and are suggestion-only — template formatting is acceptable there.</fix>
+  </finding>
+</verdicts>
+<new_findings>
+  <!-- No additional formatting issues found beyond the hand-typed bullet count discrepancy (18 vs 11). -->
+</new_findings>
+<adjusted_score>4.60</adjusted_score>
+<audit_verdict>CLEAN</audit_verdict>

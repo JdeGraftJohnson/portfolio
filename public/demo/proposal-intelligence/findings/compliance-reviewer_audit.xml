@@ -1,0 +1,39 @@
+<thoughts>
+Compliance-reviewer's job: verify the deterministic compliance_coverage score (4.11/5) and identify actionable fixes for the 8 missed scope requirements. All 8 have their sections present in the DOCX — the problem is specific keywords missing from the rendered content, not missing sections.
+
+Key gaps by section:
+- Staffing Plan: missing "Contract Manager", "[State]-based", "technical leads"
+- Company Background: missing "subcontractor names", "subcontractor roles" ([DBE Subcontractor] is referenced but not named as subcontractor)
+- Management Approach (4 requirements missed):
+  - "85% retention", "compensation practices", "professional development"
+  - "ER1 personnel", "ER2 personnel", "hurricane season"
+  - "weekly status reports", "monthly metrics", "quarterly DBE reporting"
+  - "no non-compete", "no conversion fee"
+  - "vacancy standards", "1-hour critical response", "performance penalties"
+- Technical Approach: missing "2-hour incident notification", "cybersecurity safeguards"
+
+These are all RFP-specific compliance keywords that should be in the methodology YAML.
+
+The mandatory forms check (8/8) and eval criteria (5.0) are clean. The 10/18 scope hit rate (2.78/5) is the main weakness.
+</thoughts>
+<verdicts>
+  <finding id="scope_requirement_coverage" tier="important" action="confirm">
+    <original_text>10/18 scope requirements addressed in proposal sections</original_text>
+    <detail>Confirmed: 8 scope requirements miss their must_cover keywords. All 8 have their DOCX section found (H2 marker matched). The gaps are specific RFP-compliance keywords absent from rendered prose:
+      (1) Staffing Plan: no "Contract Manager" role named, no "[State]-based" personnel statement, no "technical leads" category.
+      (2) Company Background: [DBE Subcontractor] is mentioned but not introduced with "subcontractor names" / "subcontractor roles" framing.
+      (3) Management Approach [4 requirements]: missing "85% retention" target, "compensation practices", "professional development"; missing "ER1 personnel" / "ER2 personnel" / "hurricane season" emergency response categories; missing "weekly status reports", "monthly metrics", "quarterly DBE reporting" cadences; missing "no non-compete" / "no conversion fee" policy statement; missing "vacancy standards", "1-hour critical response", "performance penalties" SLA language.
+      (4) Technical Approach: missing "2-hour incident notification" cybersecurity SLA and "cybersecurity safeguards" language.</detail>
+    <fix>
+      1. data/methodology/state_local_gov_it_services.yml — management_approach section: add sentences for (a) 85% retention target, (b) compensation practices including Living Wage compliance, (c) ER1/ER2 emergency response categories and hurricane season mobilization plan, (d) weekly status reports, monthly metrics dashboard, quarterly DBE reporting, (e) no non-compete / no conversion fee policy, (f) vacancy response standards: 1-hour critical response, 24-hour replacement initiation, performance penalties for missed SLAs.
+      2. data/methodology/state_local_gov_it_services.yml — staffing section: name "Contract Manager" as the dedicated account lead title, add "[State]-based or immediately relocatable technical leads" statement.
+      3. data/methodology/state_local_gov_it_services.yml — technical/cybersecurity section: add "2-hour cybersecurity incident notification to [Agency]" SLA and list cybersecurity safeguards (access control, audit logging, MFA).
+      4. services/render_proposal.py or company_background content: explicitly name [DBE Subcontractor] as [Prime]'s DBE subcontractor with role description.
+    </fix>
+  </finding>
+</verdicts>
+<new_findings>
+  <!-- Mandatory forms: 8/8 confirmed present. Eval criteria: 5.0 confirmed. No hard disqualifiers. No new issues beyond the 8 keyword gaps. -->
+</new_findings>
+<adjusted_score>4.11</adjusted_score>
+<audit_verdict>ESCALATION_REQUIRED</audit_verdict>

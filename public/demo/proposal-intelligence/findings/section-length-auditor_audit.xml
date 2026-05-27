@@ -1,0 +1,33 @@
+<thoughts>
+Two important findings plus many suggestion-tier must-cover misses.
+
+1. Staffing Plan 59 sentences over 20-40 target: The section includes key personnel bios — 7 personnel at ~4-5 sentences each = ~30-35 bio sentences plus 20+ sentences of staffing approach content. For a staffing-category RFP ([State] IT Professional Services), personnel qualifications in the Staffing Plan are the evaluator's primary interest. The sentence-count target of 20-40 was calibrated for general proposals where bios go in a separate KP section. Here, bios ARE the staffing plan content. Escalating with a domain note, not dismissing, because evaluator may genuinely stop reading at a certain length.
+
+2. Past Performance 14 sentences under 30-60 target: Only 4 YAML entries with limited prose. The relevance_text fields were case-mismatched in a prior run but are now fixed. Even so, 14 sentences is genuinely thin for a section that should describe engagement scope, outcomes, references, and fill-rate metrics across 4 engagements. Confirmed finding — expand needed.
+
+Must-cover suggestions: Many keyword misses are genuine content gaps (fill rate, 5-year lookback, reference contact details, [State] office presence, D&B rating, insurance certificates, debarment statement). These should be escalated as they are evaluator-scored items.
+</thoughts>
+<verdicts>
+  <finding id="staffing_plan_over" tier="important" action="escalate">
+    <original_text>Section 'Staffing Plan and Position Qualifications' is 59 sentences (over target 20-40)</original_text>
+    <detail>59 sentences confirmed. Section includes ~30-35 sentences of KP bio content (7 personnel × ~4-5 sentences each) plus ~20-24 sentences of staffing approach, sourcing methodology, and compliance language. For a staffing-category RFP, KP bios in the Staffing Plan section are primary evaluation content, not padding. However, evaluators may enforce page limits — the over-length is real even if contextually appropriate.</detail>
+    <fix>Compress each bio from 4-5 sentences to 2-3 sentences (name, role, headline credential, one relevant achievement). This would reduce section to ~40 sentences — top of target range. Alternatively, add a prose summary upfront noting "Full CVs available upon request" and cut two of the less-relevant personnel from inline bios.</fix>
+  </finding>
+  <finding id="past_perf_under" tier="important" action="confirm">
+    <original_text>Section 'Relevant Experience and Past Performance' is 14 sentences (under target 30-60)</original_text>
+    <detail>14 sentences confirmed for 4 past-performance entries. Each entry currently has ~3-4 sentences of narrative. Missing: reference contact information, documented fill-rate/retention outcomes, 5-year lookback statement, [State]/[Region] proximity call-out, and cybersecurity staffing highlights. These are all scorecard evaluation items for [State] IT staffing RFPs.</detail>
+    <fix>Expand each YAML entry's "why_this_matters" field and add a framing paragraph at the section start that explicitly addresses the RFP's reference requirements (minimum 5 clients, 3 public sector, 5-year lookback). Target 25-30 sentences by adding outcomes data and a reference table.</fix>
+  </finding>
+</verdicts>
+<new_findings>
+  <finding id="company_background_gaps" tier="suggestion">
+    <detail>Section 'Company Background and Qualifications' is missing: (1) [State] office presence statement, (2) evidence of financial stability (D&B rating or revenue range), (3) statement on litigation/debarment in prior 5 years, (4) insurance certificate summary meeting RFP minimums. All are evaluator-scored items per the section pattern.</detail>
+    <fix>Add 4-5 sentences to company_background content covering: "[Prime] maintains [state/region] operations...", "[Prime] carries Workers Comp statutory + $1M EL, CGL $1M/$2M...", "No material litigation or debarment in the prior five years.", "[Prime]'s revenue has grown consistently...", or equivalent.</fix>
+  </finding>
+  <finding id="dbe_section_gaps" tier="suggestion">
+    <detail>DBE Participation Plan section missing: DBE firm ownership percentage and controlling interest confirmation, certification basis ([State] USDOT DBE / SBA 8(a)), and references to the mandatory EDBP Participation Summary Sheet and EDBP Acknowledgement of Negotiated Terms attachments. These are mandatory per [State] RFP — failure = non-responsive.</detail>
+    <fix>Add sentences naming the DBE subcontractor's ownership percentage and certification, and explicitly reference both mandatory EDBP forms as attached. Template the WMBE section to include these fields from the DBE partner YAML when available.</fix>
+  </finding>
+</verdicts>
+<adjusted_score>4.00</adjusted_score>
+<audit_verdict>ESCALATION_REQUIRED</audit_verdict>

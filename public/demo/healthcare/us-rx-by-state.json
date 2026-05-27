@@ -1,0 +1,2456 @@
+{
+  "year": 2024,
+  "source": "CMS Medicaid State Drug Utilization Data",
+  "source_url": "https://data.medicaid.gov/dataset/state-drug-utilization-data",
+  "states": [
+    {
+      "state_code": "CA",
+      "state_name": "California",
+      "region": "West",
+      "division": "Pacific",
+      "rx_count": 89958802,
+      "total_reimb": 16162012633.48,
+      "top_class": "Diabetes (GLP-1 / SGLT2)",
+      "top_class_share": 0.2974,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 93759,
+          "spend": 484552352.77,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHA ",
+          "rx_count": 377473,
+          "spend": 380308448.04,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "OZEMPIC 1M",
+          "rx_count": 285669,
+          "spend": 293437320.11,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 33752,
+          "spend": 286323116.46,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0153",
+          "product_name": "JARDIANCE ",
+          "rx_count": 439459,
+          "spend": 276151938.15,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "NY",
+      "state_name": "New York",
+      "region": "Northeast",
+      "division": "Middle Atlantic",
+      "rx_count": 73358832,
+      "total_reimb": 11053981404.55,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2224,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "LIORESAL I",
+          "rx_count": 163028,
+          "spend": 694811915.63,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 30269,
+          "spend": 247060938.25,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 199236,
+          "spend": 212126882.08,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT P",
+          "rx_count": 42627,
+          "spend": 162250415.48,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "MILK OF MA",
+          "rx_count": 26289,
+          "spend": 155062457.26,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "PA",
+      "state_name": "Pennsylvania",
+      "region": "Northeast",
+      "division": "Middle Atlantic",
+      "rx_count": 34451897,
+      "total_reimb": 4863395030.86,
+      "top_class": "Diabetes (GLP-1 / SGLT2)",
+      "top_class_share": 0.2523,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 43762,
+          "spend": 172384364.08,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 18661,
+          "spend": 150741938.61,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "ESZOPICLON",
+          "rx_count": 66180,
+          "spend": 96046911.93,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "ACETAMINOP",
+          "rx_count": 122828,
+          "spend": 91510070.48,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRIAMCINOL",
+          "rx_count": 35622,
+          "spend": 84741716.36,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        }
+      ]
+    },
+    {
+      "state_code": "OH",
+      "state_name": "Ohio",
+      "region": "Midwest",
+      "division": "East North Central",
+      "rx_count": 38343946,
+      "total_reimb": 4579188492.04,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2255,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 16906,
+          "spend": 145138082.64,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "1433",
+          "product_name": "TRULICITY ",
+          "rx_count": 99186,
+          "spend": 93584620.04,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "XYREM     ",
+          "rx_count": 113570,
+          "spend": 71526148.56,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "1434",
+          "product_name": "TRULICITY ",
+          "rx_count": 75776,
+          "spend": 71084374.58,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "0894",
+          "product_name": "DROSPIRENO",
+          "rx_count": 99346,
+          "spend": 69947607.41,
+          "drug_class": "Hormonal"
+        }
+      ]
+    },
+    {
+      "state_code": "MI",
+      "state_name": "Michigan",
+      "region": "Midwest",
+      "division": "East North Central",
+      "rx_count": 28629901,
+      "total_reimb": 3760821277.82,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2508,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 16351,
+          "spend": 133795302.7,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 20804,
+          "spend": 70889551.7,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "CLOBETASOL",
+          "rx_count": 8768,
+          "spend": 68829273.64,
+          "drug_class": "Topical"
+        },
+        {
+          "ndc11": "0639",
+          "product_name": "COSENTYX S",
+          "rx_count": 17414,
+          "spend": 68808614.24,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE  ",
+          "rx_count": 171228,
+          "spend": 68628058.93,
+          "drug_class": "Pain / Opioid"
+        }
+      ]
+    },
+    {
+      "state_code": "VA",
+      "state_name": "Virginia",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 22388916,
+      "total_reimb": 3724111629.54,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.1555,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "ISOTRETINO",
+          "rx_count": 19356,
+          "spend": 83811350.03,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0049",
+          "product_name": "LAMOTRIGIN",
+          "rx_count": 76999,
+          "spend": 80877689.88,
+          "drug_class": "Pain / Neuro"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 9540,
+          "spend": 74558816.3,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "9094",
+          "product_name": "FENTANYL C",
+          "rx_count": 20799,
+          "spend": 60647959.33,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE  ",
+          "rx_count": 211880,
+          "spend": 58386503.62,
+          "drug_class": "Pain / Opioid"
+        }
+      ]
+    },
+    {
+      "state_code": "TX",
+      "state_name": "Texas",
+      "region": "South",
+      "division": "West South Central",
+      "rx_count": 27397980,
+      "total_reimb": 3543290834.9,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.1713,
+      "top_drugs": [
+        {
+          "ndc11": "0100",
+          "product_name": "CENTRATEX ",
+          "rx_count": 68668,
+          "spend": 95734197.59,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 12179,
+          "spend": 64879999.98,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "DEXMETHYLP",
+          "rx_count": 36985,
+          "spend": 61844149.52,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY 5",
+          "rx_count": 14828,
+          "spend": 57612728.68,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "3026",
+          "product_name": "KEYTRUDA 1",
+          "rx_count": 4341,
+          "spend": 56080652.83,
+          "drug_class": "Oncology"
+        }
+      ]
+    },
+    {
+      "state_code": "NC",
+      "state_name": "North Carolina",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 19774956,
+      "total_reimb": 3508404923.08,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2626,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 27629,
+          "spend": 111645064.71,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 11371,
+          "spend": 107540995.32,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT P",
+          "rx_count": 16344,
+          "spend": 63579623.02,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 55316,
+          "spend": 58540028.1,
+          "drug_class": "Respiratory / Asthma"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 8219,
+          "spend": 58166818.24,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "FL",
+      "state_name": "Florida",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 22739082,
+      "total_reimb": 3269589953.7,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2354,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 27194,
+          "spend": 109089667.23,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "PULMOZYME ",
+          "rx_count": 75777,
+          "spend": 86806817.69,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 10661,
+          "spend": 84282809.56,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRIKAFTA  ",
+          "rx_count": 8008,
+          "spend": 53932112.61,
+          "drug_class": "Cystic Fibrosis"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "AVASTIN   ",
+          "rx_count": 8649,
+          "spend": 46812452.37,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "IL",
+      "state_name": "Illinois",
+      "region": "Midwest",
+      "division": "East North Central",
+      "rx_count": 23717188,
+      "total_reimb": 3178260452.68,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2309,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 32200,
+          "spend": 146335885.18,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 17159,
+          "spend": 137069753.1,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0153",
+          "product_name": "JARDIANCE ",
+          "rx_count": 107519,
+          "spend": 67880076.56,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "1433",
+          "product_name": "TRULICITY ",
+          "rx_count": 62031,
+          "spend": 65624329.32,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "0152",
+          "product_name": "JARDIANCE ",
+          "rx_count": 98728,
+          "spend": 64472323.25,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "IN",
+      "state_name": "Indiana",
+      "region": "Midwest",
+      "division": "East North Central",
+      "rx_count": 19005080,
+      "total_reimb": 2829140185.24,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2453,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 9844,
+          "spend": 79301564.0,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 14805,
+          "spend": 57864537.42,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHA ",
+          "rx_count": 58083,
+          "spend": 53596978.3,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRIKAFTA (",
+          "rx_count": 4579,
+          "spend": 52256429.54,
+          "drug_class": "Cystic Fibrosis"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "LAMOTRIGIN",
+          "rx_count": 41926,
+          "spend": 45054360.0,
+          "drug_class": "Pain / Neuro"
+        }
+      ]
+    },
+    {
+      "state_code": "LA",
+      "state_name": "Louisiana",
+      "region": "South",
+      "division": "West South Central",
+      "rx_count": 18374956,
+      "total_reimb": 2506509422.48,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2305,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 23275,
+          "spend": 94898848.01,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 9136,
+          "spend": 78105940.32,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 57780,
+          "spend": 55029733.36,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT P",
+          "rx_count": 12584,
+          "spend": 48097754.09,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "OZEMPIC   ",
+          "rx_count": 50317,
+          "spend": 46275714.19,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "MA",
+      "state_name": "Massachusetts",
+      "region": "Northeast",
+      "division": "New England",
+      "rx_count": 14748452,
+      "total_reimb": 2398230909.14,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2651,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 9693,
+          "spend": 79172546.56,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE 8",
+          "rx_count": 223449,
+          "spend": 75668170.6,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "AVASTIN 40",
+          "rx_count": 5549,
+          "spend": 66033484.14,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY 5",
+          "rx_count": 15906,
+          "spend": 60286706.17,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "ESZOPICLON",
+          "rx_count": 41226,
+          "spend": 47468386.95,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "KY",
+      "state_name": "Kentucky",
+      "region": "South",
+      "division": "East South Central",
+      "rx_count": 23491944,
+      "total_reimb": 2251726155.53,
+      "top_class": "Diabetes (GLP-1 / SGLT2)",
+      "top_class_share": 0.2067,
+      "top_drugs": [
+        {
+          "ndc11": "0115",
+          "product_name": "SM ANTISEP",
+          "rx_count": 97146,
+          "spend": 66327386.23,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "RHOPHYLAC ",
+          "rx_count": 46471,
+          "spend": 52039611.67,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "LAMOTRIGIN",
+          "rx_count": 57323,
+          "spend": 50269089.85,
+          "drug_class": "Pain / Neuro"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "ROPINIROLE",
+          "rx_count": 6452,
+          "spend": 49489252.33,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0130",
+          "product_name": "METHYLPRED",
+          "rx_count": 62357,
+          "spend": 48390101.69,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        }
+      ]
+    },
+    {
+      "state_code": "NJ",
+      "state_name": "New Jersey",
+      "region": "Northeast",
+      "division": "Middle Atlantic",
+      "rx_count": 20530202,
+      "total_reimb": 2088066803.4,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2652,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 23590,
+          "spend": 93713620.06,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0150",
+          "product_name": "RELISTOR T",
+          "rx_count": 70292,
+          "spend": 41977085.2,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 10796,
+          "spend": 41113892.98,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "LABETALOL ",
+          "rx_count": 9172,
+          "spend": 38070161.22,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 4760,
+          "spend": 36215802.19,
+          "drug_class": "Autoimmune / Biologic"
+        }
+      ]
+    },
+    {
+      "state_code": "AZ",
+      "state_name": "Arizona",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 15219891,
+      "total_reimb": 2053324996.81,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2113,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 23154,
+          "spend": 89184374.63,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "LISDEXAMFE",
+          "rx_count": 31104,
+          "spend": 61135625.72,
+          "drug_class": "ADHD"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 6318,
+          "spend": 48570373.36,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2625",
+          "product_name": "MAVYRET   ",
+          "rx_count": 2528,
+          "spend": 30893049.53,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "GLIMEPIRID",
+          "rx_count": 32246,
+          "spend": 29938248.2,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "WI",
+      "state_name": "Wisconsin",
+      "region": "Midwest",
+      "division": "East North Central",
+      "rx_count": 12655286,
+      "total_reimb": 2012056904.11,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2693,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 14476,
+          "spend": 120099288.36,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 10135,
+          "spend": 39256958.63,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "CLOBETASOL",
+          "rx_count": 3592,
+          "spend": 37986343.27,
+          "drug_class": "Topical"
+        },
+        {
+          "ndc11": "0894",
+          "product_name": "ELIQUIS   ",
+          "rx_count": 56665,
+          "spend": 32288140.26,
+          "drug_class": "Anticoagulant"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE S",
+          "rx_count": 91259,
+          "spend": 30864399.1,
+          "drug_class": "Pain / Opioid"
+        }
+      ]
+    },
+    {
+      "state_code": "CT",
+      "state_name": "Connecticut",
+      "region": "Northeast",
+      "division": "New England",
+      "rx_count": 9298254,
+      "total_reimb": 1967111516.52,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.255,
+      "top_drugs": [
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHA ",
+          "rx_count": 63732,
+          "spend": 67916974.48,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 6122,
+          "spend": 66703584.18,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "OZEMPIC 1M",
+          "rx_count": 48783,
+          "spend": 55653520.03,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 8817,
+          "spend": 48827633.85,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "4772",
+          "product_name": "OZEMPIC 2M",
+          "rx_count": 37408,
+          "spend": 45583845.01,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "MO",
+      "state_name": "Missouri",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 15473009,
+      "total_reimb": 1794728418.34,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.1757,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 19294,
+          "spend": 72977816.2,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 8229,
+          "spend": 68474485.54,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "NITROGLYCE",
+          "rx_count": 33623,
+          "spend": 43257683.69,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "2625",
+          "product_name": "MAVYRET   ",
+          "rx_count": 2161,
+          "spend": 33039451.96,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "1433",
+          "product_name": "TRULICITY ",
+          "rx_count": 33777,
+          "spend": 31937857.8,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "MD",
+      "state_name": "Maryland",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 15236713,
+      "total_reimb": 1741610462.93,
+      "top_class": "HIV / Antiretroviral",
+      "top_class_share": 0.171,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY 5",
+          "rx_count": 32733,
+          "spend": 130533956.79,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "1212",
+          "product_name": "CREON DR 1",
+          "rx_count": 95756,
+          "spend": 54936920.33,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "RHOPHYLAC ",
+          "rx_count": 24967,
+          "spend": 37442943.61,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE 8",
+          "rx_count": 130928,
+          "spend": 35845596.2,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "AVASTIN 40",
+          "rx_count": 5400,
+          "spend": 30980529.31,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "WA",
+      "state_name": "Washington",
+      "region": "West",
+      "division": "Pacific",
+      "rx_count": 13259881,
+      "total_reimb": 1719130142.88,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.3533,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 15403,
+          "spend": 115969057.95,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "AVASTIN 40",
+          "rx_count": 3537,
+          "spend": 47196532.09,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE 8",
+          "rx_count": 115248,
+          "spend": 42034315.21,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0153",
+          "product_name": "JARDIANCE ",
+          "rx_count": 58747,
+          "spend": 33543108.53,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "SUBLOCADE ",
+          "rx_count": 19283,
+          "spend": 31626607.76,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "TN",
+      "state_name": "Tennessee",
+      "region": "South",
+      "division": "East South Central",
+      "rx_count": 12444738,
+      "total_reimb": 1488020114.02,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2363,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 4378,
+          "spend": 36869768.55,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2201",
+          "product_name": "TRETINOIN ",
+          "rx_count": 1790,
+          "spend": 30485979.58,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0115",
+          "product_name": "HYDROXYZIN",
+          "rx_count": 48747,
+          "spend": 28342149.89,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 5984,
+          "spend": 24005358.75,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 6085,
+          "spend": 23480935.56,
+          "drug_class": "HIV / Antiretroviral"
+        }
+      ]
+    },
+    {
+      "state_code": "CO",
+      "state_name": "Colorado",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 8030243,
+      "total_reimb": 1478416689.99,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2731,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 6019,
+          "spend": 54453308.25,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRIKAFTA  ",
+          "rx_count": 3357,
+          "spend": 42112149.28,
+          "drug_class": "Cystic Fibrosis"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 5277,
+          "spend": 35292331.51,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT P",
+          "rx_count": 6577,
+          "spend": 24768770.7,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "1445",
+          "product_name": "CLINDAMYCI",
+          "rx_count": 2961,
+          "spend": 24764976.76,
+          "drug_class": "Antibiotics"
+        }
+      ]
+    },
+    {
+      "state_code": "GA",
+      "state_name": "Georgia",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 14468357,
+      "total_reimb": 1336967109.11,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2219,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 11150,
+          "spend": 42778090.57,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "PRAMIPEXOL",
+          "rx_count": 9068,
+          "spend": 36094436.8,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "CEFPROZIL ",
+          "rx_count": 32521,
+          "spend": 28965885.86,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "OLANZAPINE",
+          "rx_count": 22916,
+          "spend": 26938017.79,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT P",
+          "rx_count": 6740,
+          "spend": 26497058.26,
+          "drug_class": "Autoimmune / Biologic"
+        }
+      ]
+    },
+    {
+      "state_code": "PR",
+      "state_name": "Puerto Rico",
+      "region": "Territory",
+      "division": "Caribbean",
+      "rx_count": 13617761,
+      "total_reimb": 1204370174.94,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.403,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 9747,
+          "spend": 73768927.77,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "AVASTIN   ",
+          "rx_count": 3847,
+          "spend": 51192006.63,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "3026",
+          "product_name": "KEYTRUDA  ",
+          "rx_count": 2526,
+          "spend": 29315209.04,
+          "drug_class": "Oncology"
+        },
+        {
+          "ndc11": "1445",
+          "product_name": "TALTZ     ",
+          "rx_count": 3560,
+          "spend": 27289736.53,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0150",
+          "product_name": "QUETIAPINE",
+          "rx_count": 26688,
+          "spend": 27133679.93,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "OK",
+      "state_name": "Oklahoma",
+      "region": "South",
+      "division": "West South Central",
+      "rx_count": 7987678,
+      "total_reimb": 1071672103.76,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2649,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 6905,
+          "spend": 59299865.86,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "LISDEXAMFE",
+          "rx_count": 16199,
+          "spend": 30730836.16,
+          "drug_class": "ADHD"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 6907,
+          "spend": 29640041.0,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0032",
+          "product_name": "METOPROLOL",
+          "rx_count": 8083,
+          "spend": 28347461.4,
+          "drug_class": "Cardiovascular"
+        },
+        {
+          "ndc11": "2625",
+          "product_name": "MAVYRET 10",
+          "rx_count": 1558,
+          "spend": 22525478.51,
+          "drug_class": "HIV / Antiretroviral"
+        }
+      ]
+    },
+    {
+      "state_code": "AL",
+      "state_name": "Alabama",
+      "region": "South",
+      "division": "East South Central",
+      "rx_count": 6970160,
+      "total_reimb": 1051662275.74,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2463,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 3460,
+          "spend": 32208974.74,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 5144,
+          "spend": 28994384.46,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "DEXMETHYL ",
+          "rx_count": 15036,
+          "spend": 24511351.94,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 5725,
+          "spend": 22897078.89,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 18215,
+          "spend": 21987100.12,
+          "drug_class": "Respiratory / Asthma"
+        }
+      ]
+    },
+    {
+      "state_code": "MN",
+      "state_name": "Minnesota",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 9312130,
+      "total_reimb": 1040848337.3,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.223,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 6017,
+          "spend": 48993016.61,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "STELARA   ",
+          "rx_count": 2451,
+          "spend": 17938518.8,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4524",
+          "product_name": "WEGOVY    ",
+          "rx_count": 13158,
+          "spend": 17266900.81,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "METOPROLOL",
+          "rx_count": 21484,
+          "spend": 16014952.63,
+          "drug_class": "Cardiovascular"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 3968,
+          "spend": 15264824.09,
+          "drug_class": "HIV / Antiretroviral"
+        }
+      ]
+    },
+    {
+      "state_code": "IA",
+      "state_name": "Iowa",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 8240957,
+      "total_reimb": 958365251.29,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2497,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 3909,
+          "spend": 31601758.18,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHA ",
+          "rx_count": 17022,
+          "spend": 15646857.94,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "CLOBETASOL",
+          "rx_count": 3196,
+          "spend": 14961612.13,
+          "drug_class": "Topical"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 3659,
+          "spend": 14391954.58,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "CITALOPRAM",
+          "rx_count": 13634,
+          "spend": 14385469.1,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "OR",
+      "state_name": "Oregon",
+      "region": "West",
+      "division": "Pacific",
+      "rx_count": 11007755,
+      "total_reimb": 944567467.33,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.1813,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 7330,
+          "spend": 30307440.98,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0894",
+          "product_name": "ZOVIA 1/35",
+          "rx_count": 37461,
+          "spend": 20466155.17,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "FINASTERID",
+          "rx_count": 2003,
+          "spend": 20202270.53,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "LISDEXAMFE",
+          "rx_count": 19308,
+          "spend": 14112209.69,
+          "drug_class": "ADHD"
+        },
+        {
+          "ndc11": "3026",
+          "product_name": "KEYTRUDA 1",
+          "rx_count": 1086,
+          "spend": 13786046.62,
+          "drug_class": "Oncology"
+        }
+      ]
+    },
+    {
+      "state_code": "SC",
+      "state_name": "South Carolina",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 7446930,
+      "total_reimb": 886283924.83,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2092,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 7304,
+          "spend": 26943359.39,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0150",
+          "product_name": "HYDROCODON",
+          "rx_count": 25974,
+          "spend": 23768386.43,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "CITALOPRAM",
+          "rx_count": 15764,
+          "spend": 17208873.92,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT P",
+          "rx_count": 4269,
+          "spend": 16986220.98,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 6648,
+          "spend": 16870907.27,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "WV",
+      "state_name": "West Virginia",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 7855377,
+      "total_reimb": 881798067.69,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2046,
+      "top_drugs": [
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE 8",
+          "rx_count": 288252,
+          "spend": 54528002.5,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 4942,
+          "spend": 42044356.69,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 29380,
+          "spend": 27294190.18,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "LAMOTRIGIN",
+          "rx_count": 24883,
+          "spend": 22497175.71,
+          "drug_class": "Pain / Neuro"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "SUBLOCADE ",
+          "rx_count": 15971,
+          "spend": 20630751.8,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "NV",
+      "state_name": "Nevada",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 5170946,
+      "total_reimb": 702567860.52,
+      "top_class": "Diabetes (GLP-1 / SGLT2)",
+      "top_class_share": 0.1918,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 9920,
+          "spend": 36591307.28,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "3828",
+          "product_name": "KOVALTRY  ",
+          "rx_count": 44,
+          "spend": 19026667.29,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 16051,
+          "spend": 16892832.03,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "0894",
+          "product_name": "ELIQUIS   ",
+          "rx_count": 24333,
+          "spend": 14393261.25,
+          "drug_class": "Anticoagulant"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "OZEMPIC   ",
+          "rx_count": 11395,
+          "spend": 11575587.09,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "NM",
+      "state_name": "New Mexico",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 5212599,
+      "total_reimb": 621006067.41,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2091,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 2094,
+          "spend": 16639689.42,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 14745,
+          "spend": 13307483.36,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY 5",
+          "rx_count": 3411,
+          "spend": 12961426.84,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "2625",
+          "product_name": "MAVYRET 10",
+          "rx_count": 890,
+          "spend": 11043250.21,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "LAMOTRIGIN",
+          "rx_count": 12206,
+          "spend": 10060511.56,
+          "drug_class": "Pain / Neuro"
+        }
+      ]
+    },
+    {
+      "state_code": "ID",
+      "state_name": "Idaho",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 3859823,
+      "total_reimb": 570006764.01,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.3001,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 2982,
+          "spend": 22750051.05,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "PULMOZYME ",
+          "rx_count": 9226,
+          "spend": 12823747.01,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 12574,
+          "spend": 11744123.39,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "LAMOTRIGIN",
+          "rx_count": 12256,
+          "spend": 10261832.76,
+          "drug_class": "Pain / Neuro"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRIKAFTA  ",
+          "rx_count": 2070,
+          "spend": 10165993.48,
+          "drug_class": "Cystic Fibrosis"
+        }
+      ]
+    },
+    {
+      "state_code": "MS",
+      "state_name": "Mississippi",
+      "region": "South",
+      "division": "East South Central",
+      "rx_count": 5273594,
+      "total_reimb": 559869156.88,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2458,
+      "top_drugs": [
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 2981,
+          "spend": 17736963.01,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 2145,
+          "spend": 17718560.1,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "LISDEXAMFE",
+          "rx_count": 10248,
+          "spend": 17292642.52,
+          "drug_class": "ADHD"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 3118,
+          "spend": 12852800.18,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 3522,
+          "spend": 12299323.97,
+          "drug_class": "Autoimmune / Biologic"
+        }
+      ]
+    },
+    {
+      "state_code": "ME",
+      "state_name": "Maine",
+      "region": "Northeast",
+      "division": "New England",
+      "rx_count": 3009786,
+      "total_reimb": 528532892.25,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2737,
+      "top_drugs": [
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE  ",
+          "rx_count": 93978,
+          "spend": 23072240.69,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 2693,
+          "spend": 22537731.31,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "AVASTIN   ",
+          "rx_count": 1115,
+          "spend": 17799617.64,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 3398,
+          "spend": 13334798.07,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 9755,
+          "spend": 9614502.8,
+          "drug_class": "Respiratory / Asthma"
+        }
+      ]
+    },
+    {
+      "state_code": "NE",
+      "state_name": "Nebraska",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 4044392,
+      "total_reimb": 478196490.28,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2452,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 2066,
+          "spend": 14968243.49,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 2677,
+          "spend": 10681593.26,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "ENOXAPARIN",
+          "rx_count": 5845,
+          "spend": 8208384.13,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "PRAMIPEXOL",
+          "rx_count": 909,
+          "spend": 8072555.4,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "LABETALOL ",
+          "rx_count": 782,
+          "spend": 7921106.31,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    },
+    {
+      "state_code": "AR",
+      "state_name": "Arkansas",
+      "region": "South",
+      "division": "West South Central",
+      "rx_count": 5380757,
+      "total_reimb": 476484456.65,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2021,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 1667,
+          "spend": 13708571.65,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0682",
+          "product_name": "VENTOLIN H",
+          "rx_count": 148871,
+          "spend": 10139504.37,
+          "drug_class": "Respiratory / Asthma"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "INVEGA SUS",
+          "rx_count": 9763,
+          "spend": 10006608.55,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 2478,
+          "spend": 9611671.18,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "4060",
+          "product_name": "VICTOZA 2-",
+          "rx_count": 13393,
+          "spend": 9141197.75,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "UT",
+      "state_name": "Utah",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 2941392,
+      "total_reimb": 426707881.23,
+      "top_class": "Mental Health",
+      "top_class_share": 0.2074,
+      "top_drugs": [
+        {
+          "ndc11": "0564",
+          "product_name": "CITALOPRAM",
+          "rx_count": 6860,
+          "spend": 11726168.1,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "SYNJARDY X",
+          "rx_count": 6378,
+          "spend": 11005678.66,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 7878,
+          "spend": 9688777.35,
+          "drug_class": "Respiratory / Asthma"
+        },
+        {
+          "ndc11": "0150",
+          "product_name": "HYDROCODON",
+          "rx_count": 11556,
+          "spend": 9036252.56,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 1151,
+          "spend": 8468952.0,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "KS",
+      "state_name": "Kansas",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 3637077,
+      "total_reimb": 388797483.61,
+      "top_class": "Mental Health",
+      "top_class_share": 0.2148,
+      "top_drugs": [
+        {
+          "ndc11": "0564",
+          "product_name": "CITALOPRAM",
+          "rx_count": 7573,
+          "spend": 10006324.64,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 1121,
+          "spend": 8681026.73,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "3026",
+          "product_name": "KEYTRUDA 1",
+          "rx_count": 947,
+          "spend": 8409611.85,
+          "drug_class": "Oncology"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 10299,
+          "spend": 6389424.76,
+          "drug_class": "Respiratory / Asthma"
+        },
+        {
+          "ndc11": "0284",
+          "product_name": "FUROSEMIDE",
+          "rx_count": 346,
+          "spend": 6278580.46,
+          "drug_class": "Cardiovascular"
+        }
+      ]
+    },
+    {
+      "state_code": "MT",
+      "state_name": "Montana",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 2845305,
+      "total_reimb": 380484967.28,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2823,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 2042,
+          "spend": 16065631.61,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 1214,
+          "spend": 12532714.95,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE 8",
+          "rx_count": 29176,
+          "spend": 10079166.36,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "STELARA 90",
+          "rx_count": 484,
+          "spend": 9108987.61,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0639",
+          "product_name": "COSENTYX S",
+          "rx_count": 1855,
+          "spend": 8699222.57,
+          "drug_class": "Autoimmune / Biologic"
+        }
+      ]
+    },
+    {
+      "state_code": "DC",
+      "state_name": "District of Columbia",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 2192842,
+      "total_reimb": 378212815.39,
+      "top_class": "HIV / Antiretroviral",
+      "top_class_share": 0.4551,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY 5",
+          "rx_count": 19019,
+          "spend": 74120330.07,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "1901",
+          "product_name": "GENVOYA TA",
+          "rx_count": 2523,
+          "spend": 9853957.42,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0240",
+          "product_name": "CABENUVA 6",
+          "rx_count": 1727,
+          "spend": 9597932.63,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0800",
+          "product_name": "CLOTRIMAZO",
+          "rx_count": 2273,
+          "spend": 8414536.75,
+          "drug_class": "Topical"
+        },
+        {
+          "ndc11": "2002",
+          "product_name": "CLOTRIMAZO",
+          "rx_count": 3610,
+          "spend": 7223411.26,
+          "drug_class": "Topical"
+        }
+      ]
+    },
+    {
+      "state_code": "RI",
+      "state_name": "Rhode Island",
+      "region": "Northeast",
+      "division": "New England",
+      "rx_count": 3464848,
+      "total_reimb": 300663266.39,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2456,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 4446,
+          "spend": 17058631.81,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "STELARA 90",
+          "rx_count": 694,
+          "spend": 8151098.5,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHA ",
+          "rx_count": 8403,
+          "spend": 7681868.4,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "0150",
+          "product_name": "TRIAMC AC ",
+          "rx_count": 16556,
+          "spend": 6297012.3,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 1562,
+          "spend": 5817693.23,
+          "drug_class": "Autoimmune / Biologic"
+        }
+      ]
+    },
+    {
+      "state_code": "HI",
+      "state_name": "Hawaii",
+      "region": "West",
+      "division": "Pacific",
+      "rx_count": 2749414,
+      "total_reimb": 295560520.7,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2538,
+      "top_drugs": [
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 13949,
+          "spend": 8664139.26,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT 3",
+          "rx_count": 2775,
+          "spend": 7705311.85,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "OZEMPIC 1 ",
+          "rx_count": 8236,
+          "spend": 7668297.64,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "2100",
+          "product_name": "SKYRIZI 15",
+          "rx_count": 707,
+          "spend": 6739417.69,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "4772",
+          "product_name": "OZEMPIC 2 ",
+          "rx_count": 7094,
+          "spend": 6664830.83,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "DE",
+      "state_name": "Delaware",
+      "region": "South",
+      "division": "South Atlantic",
+      "rx_count": 2392138,
+      "total_reimb": 271620709.77,
+      "top_class": "Diabetes (GLP-1 / SGLT2)",
+      "top_class_share": 0.2178,
+      "top_drugs": [
+        {
+          "ndc11": "2501",
+          "product_name": "BIKTARVY  ",
+          "rx_count": 4169,
+          "spend": 16185443.69,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "0534",
+          "product_name": "EMTRICTABN",
+          "rx_count": 6787,
+          "spend": 12030579.68,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 1454,
+          "spend": 10461284.54,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0478",
+          "product_name": "METHYLPHEN",
+          "rx_count": 2944,
+          "spend": 8298689.25,
+          "drug_class": "ADHD"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHA ",
+          "rx_count": 7776,
+          "spend": 7214282.41,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        }
+      ]
+    },
+    {
+      "state_code": "SD",
+      "state_name": "South Dakota",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 1203802,
+      "total_reimb": 263615836.2,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2133,
+      "top_drugs": [
+        {
+          "ndc11": "0150",
+          "product_name": "QUETIAPINE",
+          "rx_count": 5575,
+          "spend": 9156503.99,
+          "drug_class": "Mental Health"
+        },
+        {
+          "ndc11": "3026",
+          "product_name": "KEYTRUDA 1",
+          "rx_count": 239,
+          "spend": 5318553.26,
+          "drug_class": "Oncology"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "STELARA 90",
+          "rx_count": 318,
+          "spend": 4835696.31,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0564",
+          "product_name": "LISDEXAMFE",
+          "rx_count": 3109,
+          "spend": 4540596.9,
+          "drug_class": "ADHD"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 432,
+          "spend": 3880414.09,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "NH",
+      "state_name": "New Hampshire",
+      "region": "Northeast",
+      "division": "New England",
+      "rx_count": 2026726,
+      "total_reimb": 240380356.58,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.3041,
+      "top_drugs": [
+        {
+          "ndc11": "0061",
+          "product_name": "STELARA   ",
+          "rx_count": 460,
+          "spend": 8033500.84,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 969,
+          "spend": 7966753.01,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "SUBLOCADE ",
+          "rx_count": 4431,
+          "spend": 6695514.6,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 7457,
+          "spend": 6405776.22,
+          "drug_class": "Respiratory / Asthma"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 3466,
+          "spend": 5964922.94,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "AK",
+      "state_name": "Alaska",
+      "region": "West",
+      "division": "Pacific",
+      "rx_count": 1285090,
+      "total_reimb": 215744085.2,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.3043,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 1735,
+          "spend": 12968284.98,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0300",
+          "product_name": "SUBLOCADE ",
+          "rx_count": 5352,
+          "spend": 9464059.83,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "2625",
+          "product_name": "MAVYRET   ",
+          "rx_count": 510,
+          "spend": 6233327.43,
+          "drug_class": "HIV / Antiretroviral"
+        },
+        {
+          "ndc11": "4130",
+          "product_name": "OZEMPIC   ",
+          "rx_count": 7271,
+          "spend": 6180575.43,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "4181",
+          "product_name": "DEXAMETHAS",
+          "rx_count": 6451,
+          "spend": 5798624.06,
+          "drug_class": "Corticosteroid / Anti-Inflammatory"
+        }
+      ]
+    },
+    {
+      "state_code": "VT",
+      "state_name": "Vermont",
+      "region": "Northeast",
+      "division": "New England",
+      "rx_count": 1401790,
+      "total_reimb": 173998663.5,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2089,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 1181,
+          "spend": 9465399.75,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "1208",
+          "product_name": "SUBOXONE S",
+          "rx_count": 32968,
+          "spend": 7445058.68,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "1212",
+          "product_name": "SUBOXONE S",
+          "rx_count": 18962,
+          "spend": 6191448.94,
+          "drug_class": "Pain / Opioid"
+        },
+        {
+          "ndc11": "0061",
+          "product_name": "STELARA 90",
+          "rx_count": 281,
+          "spend": 5226908.52,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0331",
+          "product_name": "TRAZODONE ",
+          "rx_count": 1047,
+          "spend": 3398112.58,
+          "drug_class": "Mental Health"
+        }
+      ]
+    },
+    {
+      "state_code": "ND",
+      "state_name": "North Dakota",
+      "region": "Midwest",
+      "division": "West North Central",
+      "rx_count": 892471,
+      "total_reimb": 96420437.29,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.2962,
+      "top_drugs": [
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA(CF)",
+          "rx_count": 917,
+          "spend": 7251269.3,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "2701",
+          "product_name": "SOFOSBUVIR",
+          "rx_count": 167,
+          "spend": 3861669.7,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "4060",
+          "product_name": "VICTOZA 2-",
+          "rx_count": 4820,
+          "spend": 3422996.99,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        },
+        {
+          "ndc11": "1445",
+          "product_name": "TALTZ 80 M",
+          "rx_count": 452,
+          "spend": 2527521.06,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0153",
+          "product_name": "JARDIANCE ",
+          "rx_count": 3743,
+          "spend": 2097509.68,
+          "drug_class": "Diabetes (GLP-1 / SGLT2)"
+        }
+      ]
+    },
+    {
+      "state_code": "WY",
+      "state_name": "Wyoming",
+      "region": "West",
+      "division": "Mountain",
+      "rx_count": 393722,
+      "total_reimb": 42706875.18,
+      "top_class": "Autoimmune / Biologic",
+      "top_class_share": 0.1784,
+      "top_drugs": [
+        {
+          "ndc11": "0331",
+          "product_name": "NP THYROID",
+          "rx_count": 153,
+          "spend": 2099287.65,
+          "drug_class": "Other / Unknown"
+        },
+        {
+          "ndc11": "0554",
+          "product_name": "HUMIRA PEN",
+          "rx_count": 251,
+          "spend": 1960867.13,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0100",
+          "product_name": "SPIRIVA RE",
+          "rx_count": 1250,
+          "spend": 1553955.47,
+          "drug_class": "Respiratory / Asthma"
+        },
+        {
+          "ndc11": "5915",
+          "product_name": "DUPIXENT S",
+          "rx_count": 257,
+          "spend": 1077575.11,
+          "drug_class": "Autoimmune / Biologic"
+        },
+        {
+          "ndc11": "0150",
+          "product_name": "TRIAMC AC ",
+          "rx_count": 1313,
+          "spend": 1024499.01,
+          "drug_class": "Other / Unknown"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "states_count": 52,
+    "total_rx_count": 724815768,
+    "total_reimb": 100759241652.35
+  }
+}

@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/Hero";
 import { StatsBar } from "@/components/StatsBar";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
     <main style={{ background: "#fafafa", minHeight: "100vh" }}>
       <Hero />
       <StatsBar />
+      <ExperienceSection />
       <ProjectsSection />
 
       <footer id="contact" className="py-16 md:py-20 bg-white text-gray-800">

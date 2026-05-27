@@ -1,0 +1,330 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "generated_at": "2026-05-24",
+  "generator_model": {
+    "id": "deepseek-v3",
+    "vendor": "DeepSeek (open weights, MIT)",
+    "context_window_nominal": 131072,
+    "context_window_reliable": 65536,
+    "azure_foundry_pricing_usd_per_1m": { "input": 0.27, "output": 1.10 },
+    "github_models_free_tier": { "requests_per_day": 10, "ctx_cap": 8192 },
+    "strengths": [
+      "long context for big retrieval bundles",
+      "JSON mode reliable for citation schemas",
+      "10x cheaper than GPT-4o for comparable reasoning",
+      "open weights → portable fallback"
+    ],
+    "risks": [
+      "lighter safety alignment than Claude/GPT-4 — needs constitutional prompts in clinical/legal/financial",
+      "weaker multi-tool chains than GPT-4o",
+      "no native vision",
+      "training cutoff ~2024-Q3 — needs RAG for current events"
+    ],
+    "recommended_role": "generator only; pair with dedicated embedder + reranker"
+  },
+  "projects": [
+    {
+      "id": "clinical-rag",
+      "rag_applicability": "primary",
+      "current_stack": "Gemma 4 on Azure AI + ada-002 + Azure Cognitive Search",
+      "corpus": {
+        "sources": [
+          "NICE guidelines (50k+ chunks)",
+          "BNF drug data",
+          "SNOMED CT ontology",
+          "user-authored Q&A pairs at ~/Documents/Claude/Projects/Clinical RAG/qna.json"
+        ],
+        "size_chunks_estimate": 60000,
+        "refresh_cadence": "monthly (NICE) · quarterly (BNF)",
+        "license": "Open Government Licence v3.0 (NICE), Crown copyright (BNF)"
+      },
+      "ml_layers": {
+        "embedder": "text-embedding-3-large (3072d) OR bge-large-en-v1.5 for self-host",
+        "vector_store": "Azure Cognitive Search · cosine similarity",
+        "retriever": "hybrid (BM25 + vector) · top_k=12",
+        "reranker": "bge-reranker-v2-m3 OR Cohere rerank-multilingual-v3.0",
+        "generator": "deepseek-v3 · temperature 0.1 · json_mode for citation schema",
+        "guardrails": [
+          "constitutional system prompt with NICE-citation requirement",
+          "mandatory_human_review flag non-bypassable",
+          "regex blocklist for personal-identifier patterns",
+          "confidence threshold ≥ 0.70 or escalate to clinician review"
+        ],
+        "evaluation": "LangSmith + inspect_petri trace logging + monthly clinician audit"
+      },
+      "deepseek_v3_fit": {
+        "score": 3,
+        "score_scale": "1-5 where 5 is best fit",
+        "verdict": "Use only behind a constitutional + mandatory-review gate. Cost win is real ($/M ≈ 1/10 of GPT-4o) but the safety alignment gap matters in clinical. Acceptable if every output carries the mandatory_human_review flag and a confidence band.",
+        "strengths_for_project": ["long-context allows full guideline-section retrieval", "JSON mode produces clean SNOMED-code citations"],
+        "risks_for_project": ["lighter clinical-safety alignment than Claude", "less aggressive refusal on borderline queries"],
+        "mitigations": ["wrap with MHRA-aligned system prompt", "non-bypassable review flag", "log every response to immutable audit trail"]
+      },
+      "system_prompt_pattern": "You are a clinical-evidence retrieval assistant for qualified NHS clinicians. Every answer MUST cite NICE guideline reference + SNOMED CT code. If evidence is insufficient, respond 'INSUFFICIENT_EVIDENCE'. Output JSON: {answer, citations[{nice_ref, snomed_code, confidence}], requires_human_review: true}."
+    },
+    {
+      "id": "patient-disengagement",
+      "rag_applicability": "secondary",
+      "current_stack": "XGBoost predictor + Neo4j graph + Gemma 4 chat",
+      "corpus": {
+        "sources": [
+          "OMOP CDM patient summaries (synthetic CPRD Gold cohort)",
+          "QOF condition codes",
+          "NHS Core20PLUS5 inequalities framework docs",
+          "user-authored Q&A pairs at ~/Documents/Claude/Projects/Patient Disengagement/qna.json"
+        ],
+        "size_chunks_estimate": 12000,
+        "refresh_cadence": "weekly (OMOP) · annual (QOF/Core20PLUS5)",
+        "license": "synthetic / open"
+      },
+      "ml_layers": {
+        "embedder": "bge-small-en-v1.5 (384d) — small corpus, embed locally",
+        "vector_store": "Postgres + pgvector",
+        "retriever": "vector top_k=6 + Neo4j 1-hop graph expansion",
+        "reranker": "none (corpus too small to need)",
+        "generator": "deepseek-v3 — explains XGBoost SHAP outputs in plain English",
+        "guardrails": [
+          "no individual patient PII echoed back (validation step)",
+          "explain-don't-decide framing in system prompt",
+          "UK GDPR Art.22 disclaimer appended to every response"
+        ],
+        "evaluation": "equalized-odds drift checks on cohort + qualitative clinician review"
+      },
+      "deepseek_v3_fit": {
+        "score": 4,
+        "verdict": "Good fit. The RAG layer is explanatory (not diagnostic) — DeepSeek V3's reasoning translates SHAP/IMD/risk numbers into clinician-readable narratives well. Cost matters at scale (every cohort traversal triggers ~3 LLM calls).",
+        "strengths_for_project": ["narrative explanation of structured ML outputs", "long context fits full SHAP table + cohort summary"],
+        "risks_for_project": ["may over-confidently narrate edge-case risk scores"],
+        "mitigations": ["confidence-band post-processor", "temperature ≤ 0.2"]
+      },
+      "system_prompt_pattern": "You are a patient-disengagement risk explainer for GP practice staff. Given an XGBoost risk score and SHAP contributors, explain in plain English what drives the score and what next-step the NICE pathway recommends. NEVER diagnose. Output JSON: {explanation, top_drivers[], suggested_pathway_ref, confidence_band}."
+    },
+    {
+      "id": "proposal-intelligence",
+      "rag_applicability": "primary",
+      "current_stack": "Claude SDK + multi-judge eval pipeline",
+      "corpus": {
+        "sources": [
+          "RFP PDFs (1000+ government solicitations)",
+          "past-performance YAMLs",
+          "Cyfi proposal templates",
+          "operator_profile.yml",
+          "data/proposal_section_patterns/*.yml"
+        ],
+        "size_chunks_estimate": 25000,
+        "refresh_cadence": "per-RFP intake (irregular, daily-ish)",
+        "license": "client-confidential — never push to public repos"
+      },
+      "ml_layers": {
+        "embedder": "text-embedding-3-large — recall matters for compliance matrix coverage",
+        "vector_store": "Cosmos DB vector index (asi.kb_chunks pattern)",
+        "retriever": "hybrid + section-aware filter (technical vs pricing vs Q&A)",
+        "reranker": "bge-reranker-v2-m3",
+        "generator": "deepseek-v3 for first-pass drafting · claude-opus for judge/rewrite",
+        "guardrails": [
+          "no real client data echoed in public-facing logs",
+          "compliance-matrix coverage check before any output",
+          "wMBE/Section 3 narrative legitimacy judge gates publish"
+        ],
+        "evaluation": "compliance-reviewer + technical-proposal-judge + pricing-proposal-judge"
+      },
+      "deepseek_v3_fit": {
+        "score": 5,
+        "verdict": "Strong primary generator for cost-sensitive draft passes. The 16+ judge pipeline already catches outputs that drift; DeepSeek V3 at $0.27/1M in saves ~$50/proposal vs running Opus end-to-end. Keep Claude for the final-pass technical/pricing judge calls where safety + nuance matter.",
+        "strengths_for_project": ["draft length (DeepSeek can output a 10-page technical section in one call)", "JSON-mode compliance matrix structuring", "cost-per-RFP drops 8-10x"],
+        "risks_for_project": ["less polished prose than Claude — judges must catch awkward phrasing", "weaker at preserving exact RFP-section numbering on long docs"],
+        "mitigations": ["section-rewrite-evaluator pass after every DeepSeek draft", "Claude does the final pricing-math + compliance-matrix validation"]
+      },
+      "system_prompt_pattern": "You are a government-proposal draft generator. Use ONLY the retrieved past-performance and template context. Every claim must trace to a citation_id from the corpus. Output the section in the cookbook XML schema: <thoughts/><draft/><citations/>."
+    },
+    {
+      "id": "healthcare-dashboard-ops",
+      "rag_applicability": "tertiary",
+      "current_stack": "Claude SDK judges + DAX templates + Power BI Fabric REST",
+      "corpus": {
+        "sources": [
+          "dashboard_spec.yml (per-domain)",
+          "DAX measure library + perf anti-patterns docs",
+          "AUDIT.md history (run-over-run regression context)",
+          "Microsoft Power BI documentation (scraped subset)"
+        ],
+        "size_chunks_estimate": 8000,
+        "refresh_cadence": "per-release · audit-run frequency",
+        "license": "MIT (own code) + MS docs (fair use citation)"
+      },
+      "ml_layers": {
+        "embedder": "bge-small-en-v1.5 — small high-precision corpus",
+        "vector_store": "in-process FAISS (no external dep)",
+        "retriever": "vector top_k=8 + tag-filter (dax/perf/governance)",
+        "reranker": "none",
+        "generator": "deepseek-v3 — narrates AUDIT.md findings + suggests rewrites",
+        "guardrails": [
+          "no real RLS-filtered data echoed in audit summaries",
+          "deterministic judges always win ties against LLM judges"
+        ],
+        "evaluation": "16-evaluator harness self-eval (judges judging the explainer)"
+      },
+      "deepseek_v3_fit": {
+        "score": 4,
+        "verdict": "Good fit for the human-readable AUDIT.md narrative generation. Existing Claude judges stay as-is; DeepSeek V3 powers the optional 'explain this finding in plain English' RAG layer that translates judge XML into operator briefings.",
+        "strengths_for_project": ["cheap enough to run on every PR", "long context fits full AUDIT.md + dashboard_spec"],
+        "risks_for_project": ["could miss subtle DAX-syntax nuance compared to Claude — keep DAX-judge calls on Claude"],
+        "mitigations": ["DeepSeek does narration only, never the structured judging"]
+      },
+      "system_prompt_pattern": "You are an audit-narrative explainer. Given an AUDIT.md and dashboard_spec.yml, write a 3-paragraph operator brief: what passed, what to tighten, what to re-work. Cite the specific judge_id and finding_id for every claim."
+    },
+    {
+      "id": "stockhub",
+      "rag_applicability": "secondary",
+      "current_stack": "Lambda + Postgres + various data feeds (Schwab, FRED, GDELT)",
+      "corpus": {
+        "sources": [
+          "SEC filings (10-K/10-Q/8-K text)",
+          "earnings call transcripts",
+          "FRED macro release notes",
+          "GDELT geopolitical event extracts",
+          "user-authored research notes"
+        ],
+        "size_chunks_estimate": 500000,
+        "refresh_cadence": "intraday (8-K, GDELT) · quarterly (10-Q)",
+        "license": "public SEC + GDELT + EDGAR"
+      },
+      "ml_layers": {
+        "embedder": "FinBERT (financial domain) + text-embedding-3-large for general",
+        "vector_store": "Cosmos asi.kb_chunks",
+        "retriever": "hybrid + ticker-filter + recency-decay",
+        "reranker": "Cohere rerank for cross-encoder precision on macro queries",
+        "generator": "deepseek-v3 for cost · GPT-4o for high-stakes earnings interpretation",
+        "guardrails": [
+          "no trade recommendations (compliance — 'analysis not advice' disclaimer)",
+          "every claim traces to filing section + page",
+          "confidence threshold for figure extraction"
+        ],
+        "evaluation": "FinBERT sentiment alignment check + manual analyst spot-check"
+      },
+      "deepseek_v3_fit": {
+        "score": 4,
+        "verdict": "Strong cost-efficient generator for the bulk of analyst Q&A. Long context fits a full 10-K section + macro context in one shot. Reserve GPT-4o for earnings-call-interpretation queries where numerical reasoning + nuance must be tightest.",
+        "strengths_for_project": ["cheap enough for high-volume analyst queries", "JSON mode for structured filing-fact extraction"],
+        "risks_for_project": ["weaker on inferential earnings-quality scoring vs GPT-4o"],
+        "mitigations": ["route earnings-call queries to GPT-4o; route filing summarization to DeepSeek"]
+      },
+      "system_prompt_pattern": "You are an SEC-filing retrieval assistant. Every numerical claim cites <document_type>/<section>/<page>. Refuse trade recommendations. Output JSON: {summary, citations[], confidence, disclaimer: 'analysis not advice'}."
+    },
+    {
+      "id": "uk-health-map",
+      "rag_applicability": "tertiary",
+      "current_stack": "Next.js + Leaflet + Delta Lake",
+      "corpus": {
+        "sources": [
+          "ICB metadata + boundary descriptions",
+          "CQC inspection reports",
+          "ONS health-inequality datasets"
+        ],
+        "size_chunks_estimate": 3000,
+        "refresh_cadence": "annual (boundaries) · quarterly (CQC)",
+        "license": "Open Government Licence v3.0"
+      },
+      "ml_layers": {
+        "embedder": "bge-small-en-v1.5",
+        "vector_store": "in-process",
+        "retriever": "vector top_k=4 — small enough for full-corpus retrieval per query",
+        "reranker": "none",
+        "generator": "deepseek-v3 — answers 'why is ICB X high-risk?' Q&A",
+        "guardrails": ["aggregated stats only — no practice-level identification"],
+        "evaluation": "spot-check"
+      },
+      "deepseek_v3_fit": {
+        "score": 4,
+        "verdict": "Fine for a Q&A overlay on the map. Low-volume usage; cost barely matters. DeepSeek V3 acceptable; even cheaper options (Phi-4) would also work."
+      },
+      "system_prompt_pattern": "You are an NHS ICB risk explainer. Given an ICB code + region stats, answer the user's question grounded in CQC + IMD + Core20PLUS5 context. Aggregated stats only — never name individual practices."
+    },
+    {
+      "id": "health-equity-audit",
+      "rag_applicability": "secondary",
+      "current_stack": "Python + NICE ESF + Fairlearn + LangSmith",
+      "corpus": {
+        "sources": [
+          "NICE Evidence Standards Framework (ESF) Tier B docs",
+          "NHS Core20PLUS5 inequalities framework",
+          "MHRA GMLP guidance",
+          "audit-report templates"
+        ],
+        "size_chunks_estimate": 4000,
+        "refresh_cadence": "annual (regulatory)",
+        "license": "Crown copyright / OGL v3.0"
+      },
+      "ml_layers": {
+        "embedder": "text-embedding-3-large — high recall on regulatory citation needed",
+        "vector_store": "in-process FAISS",
+        "retriever": "vector top_k=10 + framework-tag filter",
+        "reranker": "bge-reranker-v2-m3",
+        "generator": "deepseek-v3 for narrative audit-report body",
+        "guardrails": [
+          "every recommendation cites ESF/Core20PLUS5/GMLP section",
+          "no clinical advice — process advice only"
+        ],
+        "evaluation": "manual reviewer + LangSmith trace audit"
+      },
+      "deepseek_v3_fit": {
+        "score": 4,
+        "verdict": "Good for the human-readable audit-report narration. The structured fairness metrics (equalized-odds, demographic-parity) come from Fairlearn; DeepSeek V3 explains them against the regulatory framework references."
+      },
+      "system_prompt_pattern": "You are a model-fairness audit-report writer. Given Fairlearn metrics + protected-attribute breakdowns, write the audit body section. Cite NICE ESF Tier B + Core20PLUS5 + MHRA GMLP for every recommendation."
+    },
+    {
+      "id": "propfirmbot",
+      "rag_applicability": "low",
+      "current_stack": "Python + IBKR + Pine Script + ib_insync",
+      "rag_applicability_note": "Strategy framework — limited RAG fit. Optional: indicator-docs Q&A bot. Skip unless user explicitly wants it.",
+      "deepseek_v3_fit": { "score": 2, "verdict": "Skip. Not the right project for RAG." }
+    }
+  ],
+  "shared_infrastructure_recommendation": {
+    "embedder_default": "text-embedding-3-large (cross-project consistency, $0.13/1M)",
+    "embedder_self_host_fallback": "bge-large-en-v1.5 on a $30/mo Phi-tier compute",
+    "vector_store_default": "Cosmos DB asi.kb_chunks (already deployed; cross-project) OR pgvector for new projects",
+    "reranker_default": "bge-reranker-v2-m3 (free, self-hosted)",
+    "generator_routing": {
+      "deepseek-v3": "draft, narrative, explanation, high-volume Q&A",
+      "claude-opus": "judge, final-pass review, clinical/legal/financial high-stakes",
+      "gpt-4o": "tool-heavy agentic flows, vision, earnings interpretation"
+    },
+    "auth_path": "Azure Foundry serverless API (single endpoint, model-routed via deployment name) OR GitHub Models for dev/zero-cost prototyping",
+    "monitoring": "LangSmith for trace logging across all projects + custom judge harness for project-specific quality gates"
+  },
+  "rollout_order_recommendation": [
+    {
+      "step": 1,
+      "project": "proposal-intelligence",
+      "rationale": "Highest cost-savings ratio (DeepSeek draft → Claude judge); existing eval harness catches quality regressions; immediate ROI"
+    },
+    {
+      "step": 2,
+      "project": "healthcare-dashboard-ops",
+      "rationale": "Already has judge pipeline; adding DeepSeek as narration layer is low-risk"
+    },
+    {
+      "step": 3,
+      "project": "stockhub",
+      "rationale": "Big corpus, high query volume — cost savings compound; FinBERT specialization stays as-is"
+    },
+    {
+      "step": 4,
+      "project": "patient-disengagement",
+      "rationale": "Explainer role suits DeepSeek; lower regulatory risk than clinical-rag"
+    },
+    {
+      "step": 5,
+      "project": "clinical-rag",
+      "rationale": "Last — needs the most safety scaffolding before swapping Gemma 4. Pilot in shadow mode (log both Gemma + DeepSeek outputs, compare) before any production swap"
+    },
+    {
+      "step": 6,
+      "project": "health-equity-audit + uk-health-map",
+      "rationale": "Lower-volume; bundle together after main flows are stable"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "title": "State/Local Government IT Professional Services RFP",
+  "agency": "[Agency] — State/Local Government",
+  "due_date": "Sealed bid · publicly recorded deadline",
+  "page_count": 38,
+  "evaluation_criteria": [
+    {
+      "name": "Technical Approach and Staffing Capability",
+      "points": 25,
+      "section": "technical_approach_and_staffing_capability"
+    },
+    {
+      "name": "Relevant Experience and Past Performance",
+      "points": 25,
+      "section": "relevant_experience_and_past_performance"
+    },
+    {
+      "name": "Management Approach and Transition Plan",
+      "points": 15,
+      "section": "management_approach_and_transition_plan"
+    },
+    {
+      "name": "Cost",
+      "points": 15,
+      "section": "cost_proposal"
+    },
+    {
+      "name": "Organizational Capacity and Financial Stability",
+      "points": 10,
+      "section": "company_background_and_qualifications"
+    },
+    {
+      "name": "DBE Participation",
+      "points": 10,
+      "section": "dbe_participation_plan"
+    }
+  ],
+  "total_points": 100,
+  "hard_disqualifiers": [
+    "LATE PROPOSALS WILL NOT BE ACCEPTED. Proposals delivered after the said deadline will not be accepted.",
+    "Failure to complete and submit the required documents and attachments may result in your proposal being deemed non-responsive.",
+    "Failure to complete and submit the DBE forms according to the above instructions will render your bid non-responsive.",
+    "Fax submission will not be acceptable.",
+    "This form [Cover Sheet] must be completed in its entirety. Deviations and failure to complete and sign this form will deem your proposal non-responsive."
+  ],
+  "requirements_count": 39,
+  "notes": "Static snapshot of a real proposal-ops run. Agency, location, and proprietary identifiers redacted. Download the full system from GitHub to run against your own RFP."
+}

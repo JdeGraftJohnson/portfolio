@@ -1,0 +1,71 @@
+{
+  "composite_pre": 3.7,
+  "composite_post": 3.7,
+  "threshold": 3.5,
+  "verdict": "ACCEPTABLE — proceed to operator color-team review before submission.",
+  "judges": [
+    {
+      "judge_id": "pii_leak",
+      "pre": 5,
+      "post": 5,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "unresolved_tokens",
+      "pre": 5,
+      "post": 5,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "styling",
+      "pre": 4.4,
+      "post": 4.4,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "formatting_alignment",
+      "pre": 4.35,
+      "post": 4.35,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "section_length",
+      "pre": 4.2,
+      "post": 4.2,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "compliance_coverage",
+      "pre": 4.89,
+      "post": 4.89,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "pricing_math",
+      "pre": 3.7,
+      "post": 3.7,
+      "verdict": "Strong; tighten",
+      "weight": null
+    },
+    {
+      "judge_id": "past_perf_coverage",
+      "pre": 5,
+      "post": 5,
+      "verdict": "Submit as-is",
+      "weight": null
+    },
+    {
+      "judge_id": "named_personnel",
+      "pre": 0,
+      "post": 0,
+      "verdict": "not_implemented",
+      "weight": null
+    }
+  ]
+}

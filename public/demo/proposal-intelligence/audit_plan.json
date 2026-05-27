@@ -1,0 +1,60 @@
+{
+  "rfp_id": "state_local_gov_it_services",
+  "planned_at": "2026-05-18T22:55:42.604149+00:00",
+  "pre_audit_composite": 3.7,
+  "auditors_to_run": [
+    {
+      "auditor": "styling-auditor",
+      "judge_id": "styling",
+      "score": 4.8,
+      "findings_count": 0,
+      "reason": "score=4.80, 0 finding(s)"
+    },
+    {
+      "auditor": "formatting-alignment-auditor",
+      "judge_id": "formatting_alignment",
+      "score": 4.55,
+      "findings_count": 2,
+      "reason": "score=4.55, 2 finding(s)"
+    },
+    {
+      "auditor": "section-length-auditor",
+      "judge_id": "section_length",
+      "score": 4.2,
+      "findings_count": 22,
+      "reason": "score=4.20, 22 finding(s)"
+    },
+    {
+      "auditor": "compliance-reviewer",
+      "judge_id": "compliance_coverage",
+      "score": 4.11,
+      "findings_count": 1,
+      "reason": "score=4.11, 1 finding(s)"
+    },
+    {
+      "auditor": "past-perf-auditor",
+      "judge_id": "past_perf_coverage",
+      "score": 4.4,
+      "findings_count": 1,
+      "reason": "score=4.40, 1 finding(s)"
+    }
+  ],
+  "skip": [
+    {
+      "auditor": "named-personnel-auditor",
+      "judge_id": "named_personnel",
+      "reason": "verdict=not_implemented — deterministic judge failed; fix before auditing"
+    }
+  ],
+  "parallel_groups": [
+    [
+      "styling-auditor",
+      "formatting-alignment-auditor",
+      "section-length-auditor"
+    ],
+    [
+      "compliance-reviewer",
+      "past-perf-auditor"
+    ]
+  ]
+}
