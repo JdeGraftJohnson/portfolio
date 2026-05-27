@@ -6,8 +6,6 @@ interface Env {
   PBI_REPORT_ID: string;
 }
 
-const EMBED_USERNAME = "portfolio-viewer";
-
 const PBI_SCOPE = "https://analysis.windows.net/powerbi/api/.default";
 
 interface AadTokenResponse {
@@ -32,7 +30,7 @@ interface ReportMetadata {
 interface GenerateTokenBody {
   accessLevel: "View";
   datasets: { id: string }[];
-  identities: {
+  identities?: {
     username: string;
     roles: string[];
     datasets: string[];
@@ -85,16 +83,16 @@ async function generateEmbedToken(
   reportId: string,
   datasetId: string
 ): Promise<EmbedTokenResponse> {
+  // RLS identity was previously hardcoded as { username: "portfolio-viewer",
+  // roles: ["state_code"] }. That identity matched no rows in the dataset's
+  // state_code RLS role, so every visual returned empty and the report hung
+  // on "Loading data...". The portfolio embed is intentionally public, so
+  // we mint a no-identity token — the dataset must either remove its RLS
+  // role or expose a public row-set for this to render. See runbook
+  // docs/runbooks/project-button-audit.md for the diagnostic chain.
   const body: GenerateTokenBody = {
     accessLevel: "View",
     datasets: [{ id: datasetId }],
-    identities: [
-      {
-        username: EMBED_USERNAME,
-        roles: ["state_code"],
-        datasets: [datasetId],
-      },
-    ],
   };
   const res = await fetch(
     `https://api.powerbi.com/v1.0/myorg/groups/${workspaceId}/reports/${reportId}/GenerateToken`,
