@@ -23,6 +23,10 @@ env:
   # apex still serves the same artefact, so this is sufficient for go/no-go.
   SMOKE_HOST: johndegraft-app.pages.dev
   SMOKE_PATHS: "/ /rag /audit"
+  # Pages-Functions smoke: HEAD a function route. 200/405 = function exists,
+  # 404 = deploy didn't include functions/ (the failure mode we just fixed).
+  # ukhealth-chat is the cheapest — it proxies an external GET, no secrets required.
+  SMOKE_FUNCTION_PATH: "/api/ukhealth-chat"
 
 jobs:
   # Gate 1 — never deploy code that doesn't typecheck.
@@ -87,11 +91,19 @@ jobs:
     outputs:
       url: ${{ steps.cf.outputs.deployment-url }}
     steps:
+      # Checkout is needed so `functions/` and `wrangler.toml` sit at the
+      # deploy job's CWD — wrangler v3 picks up `./functions/` automatically
+      # when deploying via `pages deploy <static-dir>`, but only from CWD.
+      - uses: actions/checkout@v4
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: pages-out
           path: out
+      - name: Sanity-check functions/ presence
+        run: |
+          test -d functions || { echo "::error::functions/ missing at deploy CWD — Pages Functions will not be uploaded"; exit 1; }
+          echo "functions/ contains: $(ls functions/api/ | tr '\n' ' ')"
       - name: Deploy
         id: cf
         uses: cloudflare/wrangler-action@v3
@@ -129,4 +141,14 @@ jobs:
               fi
             done
           done
+          # Pages Function reachability check — 404 means the deploy lost
+          # functions/ (e.g. regressing past commit 4a5e8d0). Accept any non-404
+          # because the route may require POST or env secrets to return 200.
+          fcode=$(curl -sS -o /dev/null -w '%{http_code}' -X OPTIONS "https://$SMOKE_HOST$SMOKE_FUNCTION_PATH" || echo 000)
+          if [ "$fcode" = "404" ]; then
+            echo "::error::$SMOKE_FUNCTION_PATH returned 404 — Pages Functions were not deployed"
+            fail=1
+          else
+            echo "✓ $SMOKE_FUNCTION_PATH → $fcode (function present)"
+          fi
           exit $fail
