@@ -132,6 +132,7 @@ const PROJECTS: Project[] = [
     ],
     status: "live",
     actions: {
+      repo: "https://github.com/JdeGraftJohnson/patient-disengagement-prediction",
       tryItOut: { kind: "live", href: "/projects/patient-disengagement" },
     },
   },
