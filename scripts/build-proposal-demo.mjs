@@ -2,7 +2,7 @@
 // Reads a real proposal-ops run and produces sanitized fixtures for the
 // /projects/proposal-intelligence walkthrough.
 //
-// Source:  ~/Documents/Claude/Projects/AI Government Proposal/out/<rfp_id>/
+// Source:  $PROPOSAL_OPS_OUT_DIR  (operator-local proposal-ops output dir)
 // Dest:    public/demo/proposal-intelligence/
 //
 // Sanitization: agency, location, prime, sub, and PII tokens are scrubbed.
@@ -10,12 +10,12 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import os from "node:os";
 
-const SRC = path.join(
-  os.homedir(),
-  "Documents/Claude/Projects/AI Government Proposal/out/louisiana_it_professional_2026"
-);
+const SRC = process.env.PROPOSAL_OPS_OUT_DIR;
+if (!SRC) {
+  console.error("Set PROPOSAL_OPS_OUT_DIR to the local proposal-ops run dir.");
+  process.exit(1);
+}
 const DEST = path.resolve(
   path.dirname(new URL(import.meta.url).pathname),
   "../public/demo/proposal-intelligence"

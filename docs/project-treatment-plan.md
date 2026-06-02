@@ -1,7 +1,7 @@
 # Project Treatment Plan — 4 Health/RAG Cards
 
 **Scope.** Adds GitHub repo + Architecture map + Try It Out demo to four cards in
-`/Users/john/Git/johndegraft-app/components/ProjectsSection.tsx`:
+`components/ProjectsSection.tsx`:
 
 1. `clinical-rag` — Clinical Decision Support RAG Assistant
 2. `patient-disengagement` — Patient Disengagement Prediction (NHS)
@@ -10,13 +10,13 @@
 
 **Reference implementations** (read these first, do not modify):
 
-- `/Users/john/Git/johndegraft-app/components/architecture/ProposalJudgeMap.tsx` (355 LOC)
-- `/Users/john/Git/johndegraft-app/components/architecture/PropfirmbotMap.tsx` (251 LOC)
-- `/Users/john/Git/johndegraft-app/components/architecture/HealthcareDashboardMap.tsx` (228 LOC)
-- `/Users/john/Git/johndegraft-app/components/demo/proposal/Walkthrough.tsx` (684 LOC)
-- `/Users/john/Git/johndegraft-app/components/demo/healthcare/Walkthrough.tsx` (240 LOC)
-- `/Users/john/Git/johndegraft-app/components/demo/propfirmbot/StrategyLab.tsx` (+ siblings)
-- `/Users/john/Git/johndegraft-app/public/demo/healthcare/manifest.json` (fixture shape model)
+- `components/architecture/ProposalJudgeMap.tsx` (355 LOC)
+- `components/architecture/PropfirmbotMap.tsx` (251 LOC)
+- `components/architecture/HealthcareDashboardMap.tsx` (228 LOC)
+- `components/demo/proposal/Walkthrough.tsx` (684 LOC)
+- `components/demo/healthcare/Walkthrough.tsx` (240 LOC)
+- `components/demo/propfirmbot/StrategyLab.tsx` (+ siblings)
+- `public/demo/healthcare/manifest.json` (fixture shape model)
 
 **Global design constraints (apply to all four):**
 
@@ -31,7 +31,7 @@
 - Disclaimer chip component is reusable; model it on
   `components/demo/healthcare/HypotheticalDisclaimer.tsx` (32 LOC).
 - Shared primitive: extract a `QnaPicker` component
-  (`/Users/john/Git/johndegraft-app/components/demo/_shared/QnaPicker.tsx`)
+  (`components/demo/_shared/QnaPicker.tsx`)
   used by both clinical-rag and patient-disengagement. ~180 LOC. Renders a
   pill row of questions, an answer panel with Markdown rendering, a DOI/source
   citation strip, and an optional chart slot.
@@ -41,12 +41,12 @@
 ## BLOCKER — Source of Q&A pairs
 
 **Operator stated:** pre-generated Q&A pairs live under
-`/Users/john/Documents/Claude/Projects/`.
+`<operator-local-projects-path>/`.
 
 **Actual contents of that directory (verified 2026-05-23):**
 
 ```
-/Users/john/Documents/Claude/Projects/
+<operator-local-projects-path>/
   AI Government Proposal/        # proposal-ops backend; not Q&A
   AI Proposal Intelligence/      # already-shipped project
   Architecture Example.png
@@ -58,11 +58,11 @@
 
 No `clinical-rag` / `patient-disengagement` / `qna*.json` / `responses*.json`
 / `answers*.md` files exist under any subdirectory. A broader search across
-`/Users/john` (excluding `node_modules`) returned **zero candidate Q&A
-files**. Only matches were code scratchpads:
+the operator's home directory (excluding `node_modules`) returned **zero
+candidate Q&A files**. Only matches were code scratchpads:
 
-- `/Users/john/Git/johndegraft-app/scratch/disengagement/v1-crm-workspace-var75.html` (UI mock, no Q&A)
-- `/Users/john/Git/johndegraft-app/scratch/rag-variants/m1-warm-clinical/` (UI variants, no Q&A)
+- `scratch/disengagement/v1-crm-workspace-var75.html` (UI mock, no Q&A)
+- `scratch/rag-variants/m1-warm-clinical/` (UI variants, no Q&A)
 
 **Action required from operator before execution begins.**
 
@@ -99,7 +99,7 @@ high-quality answers total, ~25 min each).
   - No real patient data, no NHS practice IDs, no de-identified-but-linkable
     record samples
   - No `OPENAI_API_KEY`, `GEMINI_API_KEY`, `LANGCHAIN_API_KEY`
-    (cf. `LangChainAPIKey.txt` in `~/Documents/Claude/Projects/` — must
+    (cf. `LangChainAPIKey.txt` in `<operator-local-projects-path>/` — must
     never enter repo history)
   - No client names from card body (Causaly, Maven Clinic, Onsera, Heim
     Health, Gilead, Genomics England) used as if they were customers —
@@ -171,12 +171,12 @@ high-quality answers total, ~25 min each).
 
 ### 3. Try It Out demo
 
-- **Route:** `/Users/john/Git/johndegraft-app/app/projects/clinical-rag/page.tsx`
+- **Route:** `app/projects/clinical-rag/page.tsx`
 - **Mode:** **static fixture.** The card currently links to live `/rag` —
   redirect the Try It Out to the new demo route (which packs 4-6 pre-
   baked answers) and keep `/rag` as a separately advertised live endpoint
   under a small "Open live assistant" secondary link inside the demo page.
-- **Fixture path:** `/Users/john/Git/johndegraft-app/public/demo/clinical-rag/qna.json`
+- **Fixture path:** `public/demo/clinical-rag/qna.json`
 - **Fixture schema:**
   ```jsonc
   {
@@ -344,14 +344,14 @@ high-quality answers total, ~25 min each).
 
 ### 3. Try It Out demo
 
-- **Route:** `/Users/john/Git/johndegraft-app/app/projects/patient-disengagement/page.tsx`
+- **Route:** `app/projects/patient-disengagement/page.tsx`
 - **Mode:** **static fixture.** The Try It Out becomes a chat-shaped
   Q&A picker, NOT a live model inference page. Existing live chat at
   `chat.johndegraft.app` stays linked as a secondary CTA.
-- **Fixture path:** `/Users/john/Git/johndegraft-app/public/demo/patient-disengagement/qna.json`
+- **Fixture path:** `public/demo/patient-disengagement/qna.json`
 - **Fixture schema:** same shape as `clinical-rag/qna.json`, plus optional
   `related_chart_id` referring to a second fixture
-  `/Users/john/Git/johndegraft-app/public/demo/patient-disengagement/charts.json`:
+  `public/demo/patient-disengagement/charts.json`:
   ```jsonc
   {
     "charts": {
@@ -493,7 +493,7 @@ high-quality answers total, ~25 min each).
 
 ### 3. Try It Out demo
 
-- **Route:** `/Users/john/Git/johndegraft-app/app/projects/uk-health-map/page.tsx`
+- **Route:** `app/projects/uk-health-map/page.tsx`
 - **Mode:** **frozen snapshot embed** — recommended.
   - **Option A (recommended):** Iframe the live Azure SWA with a
     `sandbox="allow-scripts allow-same-origin"` attribute and a "Open in
@@ -507,7 +507,7 @@ high-quality answers total, ~25 min each).
   - **Recommendation: Option A primary** with Option B PNGs as
     fallback (loaded only if iframe fails / `prefers-reduced-motion`).
     The card's badge already says "Live" — Option A keeps that honest.
-- **Fixture path:** `/Users/john/Git/johndegraft-app/public/demo/uk-health-map/snapshots/{national,regional,icb,risk}.png`
+- **Fixture path:** `public/demo/uk-health-map/snapshots/{national,regional,icb,risk}.png`
   (only used in fallback)
 - **Components:**
   - `components/demo/uk-health-map/MapEmbed.tsx` (~140 LOC) — iframe
@@ -636,11 +636,11 @@ high-quality answers total, ~25 min each).
 
 ### 3. Try It Out demo
 
-- **Route:** `/Users/john/Git/johndegraft-app/app/projects/health-equity-audit/page.tsx`
+- **Route:** `app/projects/health-equity-audit/page.tsx`
 - **Mode:** **static fixture.** SHAP-Viewer-style multi-slice
   comparison page — one synthetic model with deliberately injected
   bias, audit results pre-baked.
-- **Fixture path:** `/Users/john/Git/johndegraft-app/public/demo/health-equity-audit/audit.json`
+- **Fixture path:** `public/demo/health-equity-audit/audit.json`
 - **Fixture schema:**
   ```jsonc
   {
@@ -771,7 +771,7 @@ to **60.5–66.5 hrs**.
 ## Open questions for the operator (must resolve before execution)
 
 1. **Q&A pairs location.** Operator states they live under
-   `/Users/john/Documents/Claude/Projects/` but no Q&A files exist
+   `<operator-local-projects-path>/` but no Q&A files exist
    there. Either point to the real path or commit to authoring 6+6 = 12
    pairs (≈ 6 hrs of authoring).
 2. **Existing repos.** Do `clinical-rag`, `patient-disengagement` (live

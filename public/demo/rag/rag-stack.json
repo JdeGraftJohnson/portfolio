@@ -33,7 +33,7 @@
           "NICE guidelines (50k+ chunks)",
           "BNF drug data",
           "SNOMED CT ontology",
-          "user-authored Q&A pairs at ~/Documents/Claude/Projects/Clinical RAG/qna.json"
+          "user-authored Q&A pairs (local fixture, not committed)"
         ],
         "size_chunks_estimate": 60000,
         "refresh_cadence": "monthly (NICE) · quarterly (BNF)",
@@ -72,7 +72,7 @@
           "OMOP CDM patient summaries (synthetic CPRD Gold cohort)",
           "QOF condition codes",
           "NHS Core20PLUS5 inequalities framework docs",
-          "user-authored Q&A pairs at ~/Documents/Claude/Projects/Patient Disengagement/qna.json"
+          "user-authored Q&A pairs (local fixture, not committed)"
         ],
         "size_chunks_estimate": 12000,
         "refresh_cadence": "weekly (OMOP) · annual (QOF/Core20PLUS5)",

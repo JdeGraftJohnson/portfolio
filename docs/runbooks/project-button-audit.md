@@ -267,7 +267,7 @@ portfolio embed sees the full row-set.
 Publish via the existing toolchain in **healthcare-cost-ops**:
 
 ```bash
-cd /Users/john/Git/healthcare-cost-ops
+cd <healthcare-cost-ops-repo>
 # 1. Edit the role filterExpression in examples/medicaid_sdud_2026/out/model.bim
 # 2. Auth to Fabric (the script reads `az account get-access-token \
 #    --resource https://api.fabric.microsoft.com`):
