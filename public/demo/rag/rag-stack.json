@@ -16,7 +16,7 @@
       "open weights → portable fallback"
     ],
     "risks": [
-      "lighter safety alignment than Claude/GPT-4 — needs constitutional prompts in clinical/legal/financial",
+      "lighter safety alignment than frontier closed-weights models — needs constitutional prompts in clinical/legal/financial",
       "weaker multi-tool chains than GPT-4o",
       "no native vision",
       "training cutoff ~2024-Q3 — needs RAG for current events"
@@ -58,7 +58,7 @@
         "score_scale": "1-5 where 5 is best fit",
         "verdict": "Use only behind a constitutional + mandatory-review gate. Cost win is real ($/M ≈ 1/10 of GPT-4o) but the safety alignment gap matters in clinical. Acceptable if every output carries the mandatory_human_review flag and a confidence band.",
         "strengths_for_project": ["long-context allows full guideline-section retrieval", "JSON mode produces clean SNOMED-code citations"],
-        "risks_for_project": ["lighter clinical-safety alignment than Claude", "less aggressive refusal on borderline queries"],
+        "risks_for_project": ["lighter clinical-safety alignment than frontier closed-weights models", "less aggressive refusal on borderline queries"],
         "mitigations": ["wrap with MHRA-aligned system prompt", "non-bypassable review flag", "log every response to immutable audit trail"]
       },
       "system_prompt_pattern": "You are a clinical-evidence retrieval assistant for qualified NHS clinicians. Every answer MUST cite NICE guideline reference + SNOMED CT code. If evidence is insufficient, respond 'INSUFFICIENT_EVIDENCE'. Output JSON: {answer, citations[{nice_ref, snomed_code, confidence}], requires_human_review: true}."
@@ -103,7 +103,7 @@
     {
       "id": "proposal-intelligence",
       "rag_applicability": "primary",
-      "current_stack": "Claude SDK + multi-judge eval pipeline",
+      "current_stack": "Frontier LLM SDK + multi-judge eval pipeline",
       "corpus": {
         "sources": [
           "RFP PDFs (1000+ government solicitations)",
@@ -121,7 +121,7 @@
         "vector_store": "Cosmos DB vector index (asi.kb_chunks pattern)",
         "retriever": "hybrid + section-aware filter (technical vs pricing vs Q&A)",
         "reranker": "bge-reranker-v2-m3",
-        "generator": "deepseek-v3 for first-pass drafting · claude-opus for judge/rewrite",
+        "generator": "deepseek-v3 for first-pass drafting · frontier LLM for judge/rewrite",
         "guardrails": [
           "no real client data echoed in public-facing logs",
           "compliance-matrix coverage check before any output",
@@ -131,17 +131,17 @@
       },
       "deepseek_v3_fit": {
         "score": 5,
-        "verdict": "Strong primary generator for cost-sensitive draft passes. The 16+ judge pipeline already catches outputs that drift; DeepSeek V3 at $0.27/1M in saves ~$50/proposal vs running Opus end-to-end. Keep Claude for the final-pass technical/pricing judge calls where safety + nuance matter.",
+        "verdict": "Strong primary generator for cost-sensitive draft passes. The 16+ judge pipeline already catches outputs that drift; DeepSeek V3 at $0.27/1M in saves ~$50/proposal vs running a frontier LLM end-to-end. Keep the frontier LLM for the final-pass technical/pricing judge calls where safety + nuance matter.",
         "strengths_for_project": ["draft length (DeepSeek can output a 10-page technical section in one call)", "JSON-mode compliance matrix structuring", "cost-per-RFP drops 8-10x"],
-        "risks_for_project": ["less polished prose than Claude — judges must catch awkward phrasing", "weaker at preserving exact RFP-section numbering on long docs"],
-        "mitigations": ["section-rewrite-evaluator pass after every DeepSeek draft", "Claude does the final pricing-math + compliance-matrix validation"]
+        "risks_for_project": ["less polished prose than the frontier LLM — judges must catch awkward phrasing", "weaker at preserving exact RFP-section numbering on long docs"],
+        "mitigations": ["section-rewrite-evaluator pass after every DeepSeek draft", "the frontier LLM does the final pricing-math + compliance-matrix validation"]
       },
       "system_prompt_pattern": "You are a government-proposal draft generator. Use ONLY the retrieved past-performance and template context. Every claim must trace to a citation_id from the corpus. Output the section in the cookbook XML schema: <thoughts/><draft/><citations/>."
     },
     {
       "id": "healthcare-dashboard-ops",
       "rag_applicability": "tertiary",
-      "current_stack": "Claude SDK judges + DAX templates + Power BI Fabric REST",
+      "current_stack": "Frontier LLM SDK judges + DAX templates + Power BI Fabric REST",
       "corpus": {
         "sources": [
           "dashboard_spec.yml (per-domain)",
@@ -167,9 +167,9 @@
       },
       "deepseek_v3_fit": {
         "score": 4,
-        "verdict": "Good fit for the human-readable AUDIT.md narrative generation. Existing Claude judges stay as-is; DeepSeek V3 powers the optional 'explain this finding in plain English' RAG layer that translates judge XML into operator briefings.",
+        "verdict": "Good fit for the human-readable AUDIT.md narrative generation. Existing LLM judges stay as-is; DeepSeek V3 powers the optional 'explain this finding in plain English' RAG layer that translates judge XML into operator briefings.",
         "strengths_for_project": ["cheap enough to run on every PR", "long context fits full AUDIT.md + dashboard_spec"],
-        "risks_for_project": ["could miss subtle DAX-syntax nuance compared to Claude — keep DAX-judge calls on Claude"],
+        "risks_for_project": ["could miss subtle DAX-syntax nuance compared to the frontier LLM — keep DAX-judge calls on the frontier LLM"],
         "mitigations": ["DeepSeek does narration only, never the structured judging"]
       },
       "system_prompt_pattern": "You are an audit-narrative explainer. Given an AUDIT.md and dashboard_spec.yml, write a 3-paragraph operator brief: what passed, what to tighten, what to re-work. Cite the specific judge_id and finding_id for every claim."
@@ -289,7 +289,7 @@
     "reranker_default": "bge-reranker-v2-m3 (free, self-hosted)",
     "generator_routing": {
       "deepseek-v3": "draft, narrative, explanation, high-volume Q&A",
-      "claude-opus": "judge, final-pass review, clinical/legal/financial high-stakes",
+      "frontier-llm": "judge, final-pass review, clinical/legal/financial high-stakes",
       "gpt-4o": "tool-heavy agentic flows, vision, earnings interpretation"
     },
     "auth_path": "Azure Foundry serverless API (single endpoint, model-routed via deployment name) OR GitHub Models for dev/zero-cost prototyping",
@@ -299,7 +299,7 @@
     {
       "step": 1,
       "project": "proposal-intelligence",
-      "rationale": "Highest cost-savings ratio (DeepSeek draft → Claude judge); existing eval harness catches quality regressions; immediate ROI"
+      "rationale": "Highest cost-savings ratio (DeepSeek draft → frontier-LLM judge); existing eval harness catches quality regressions; immediate ROI"
     },
     {
       "step": 2,

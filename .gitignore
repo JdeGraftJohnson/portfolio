@@ -1,9 +1,6 @@
 node_modules/
-src/frontend/node_modules/
-src/frontend/.next/
-src/frontend/out/
-src/frontend/.env*.local
 *.env
+__pycache__/
 .DS_Store
 
 # Next.js build artefacts

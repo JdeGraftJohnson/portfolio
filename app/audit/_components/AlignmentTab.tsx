@@ -13,8 +13,6 @@ const API = process.env.NEXT_PUBLIC_AUDIT_API ?? "http://localhost:8001";
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const JUDGE_MODELS = [
-  { label: "Claude Haiku 4.5",   id: "anthropic/claude-haiku-4-5-20251001" },
-  { label: "Claude Sonnet 4.5",  id: "anthropic/claude-sonnet-4-5-20251001" },
   { label: "GPT-4o Mini",        id: "openai/gpt-4o-mini" },
   { label: "GPT-4o",             id: "openai/gpt-4o" },
   { label: "Gemini 1.5 Flash",   id: "google/gemini-1.5-flash" },

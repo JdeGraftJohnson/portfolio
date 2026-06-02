@@ -1,4 +1,4 @@
-"""Mirror johndegraft-app Claude memory files into a dedicated Cosmos KB.
+"""Mirror johndegraft-app operator memory files into a dedicated Cosmos KB.
 
 Separate from the ASI platform KB (asi.kb_chunks) by design: johndegraft-app
 runbooks and memories live in `johndegraft.kb_chunks` so the portfolio site
@@ -32,7 +32,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s :: %(message)s")
 log = logging.getLogger(__name__)
 
-DEFAULT_MEMORY_DIR = Path.home() / ".claude/projects/-Users-john/memory"
+DEFAULT_MEMORY_DIR = Path(os.environ.get("MEMORY_DIR", Path.home() / ".memory"))
 
 # Inclusion keywords — a memory must match at least one.
 INCLUDE_KEYWORDS = [

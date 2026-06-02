@@ -147,9 +147,9 @@ export function HealthcareDashboardMap() {
       {/* Tier 5: Generate */}
       <Cluster x={cx - 380} y={Y.generate} w={760} h={100}
         title="Generate" border={BORDER_PANEL}
-        subtitle="Claude → DAX measures · TOM model.bim · page layout · narrative">
+        subtitle="LLM → DAX measures · TOM model.bim · page layout · narrative">
         <Chip x={cx - 360} y={Y.generate + 46} w={170} label="services/dax/templates.py" />
-        <Chip x={cx - 180} y={Y.generate + 46} w={170} label="dax/generate.py (Claude)" />
+        <Chip x={cx - 180} y={Y.generate + 46} w={170} label="dax/generate.py (LLM)" />
         <Chip x={cx}       y={Y.generate + 46} w={170} label="powerbi/model_build.py" />
         <Chip x={cx + 180} y={Y.generate + 46} w={170} label="powerbi/layout_build.py" />
 
@@ -178,7 +178,7 @@ export function HealthcareDashboardMap() {
 
       <Cluster x={lane2X} y={Y.lanes} w={laneW} h={Y.laneH}
         title="LLM Judges · 5" border={BORDER_LLM}
-        subtitle="Claude · qualitative rubrics">
+        subtitle="Frontier LLM · qualitative rubrics">
         {[
           "business_narrative",
           "visualization_choice",
@@ -210,7 +210,7 @@ export function HealthcareDashboardMap() {
       {/* Tier 7: Orchestrator */}
       <Cluster x={cx - 280} y={Y.orchestrator} w={560} h={70}
         title="judge-orchestrator" border={BORDER_PANEL}
-        subtitle="Claude subagent · merges 16 results → severity-banded AUDIT.md">
+        subtitle="LLM subagent · merges 16 results → severity-banded AUDIT.md">
         <Chip x={cx - 260} y={Y.orchestrator + 38} w={520} label="audit_runner.py --merge → audit.md · composite_scorecard.md" />
       </Cluster>
       <Arrow x1={cx} y1={Y.orchestrator + 70} x2={cx} y2={Y.composite} />

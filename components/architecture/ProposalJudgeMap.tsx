@@ -293,7 +293,7 @@ export function ProposalJudgeMap() {
           x={(VBW - 400) / 2}
           y={Y.lanes}
           w={400}
-          title="LLM Judges · Claude"
+          title="LLM Judges"
           meta="5 judges"
           accent={VIOLET}
           chips={[

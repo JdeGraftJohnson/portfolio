@@ -10,7 +10,7 @@ const TRUST_PILLS = [
   { label: "Power BI Pro / FTL", classes: "border-violet-300/40 bg-violet-300/10 text-violet-300 shadow-[0_0_20px_rgba(196,181,253,0.18)]",   dot: "bg-violet-300" },
   { label: "WCAG 2.1 AA target", classes: "border-emerald-300/40 bg-emerald-300/10 text-emerald-300 shadow-[0_0_20px_rgba(110,231,183,0.18)]", dot: "bg-emerald-300" },
   { label: "Azure Blob · DuckDB",classes: "border-cyan-300/40 bg-cyan-300/10 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.18)]",        dot: "bg-cyan-300" },
-  { label: "Anthropic Claude",   classes: "border-amber-200/50 bg-amber-200/10 text-amber-200 shadow-[0_0_20px_rgba(254,215,170,0.20)]",      dot: "bg-amber-200" },
+  { label: "Frontier LLM",       classes: "border-amber-200/50 bg-amber-200/10 text-amber-200 shadow-[0_0_20px_rgba(254,215,170,0.20)]",      dot: "bg-amber-200" },
 ];
 
 const DATASETS = [
@@ -74,7 +74,7 @@ const USE_CASES = [
     persona: "AI evaluation engineers",
     title: "Reference implementation of scalable oversight",
     body: "Three-tier judge hierarchy (deterministic → LLM → paired auditor) applied to a non-trivial production artifact (a 5-page BI dashboard + GIS layer + forecast). Drop-in pattern for any team building automated quality gates around generated content.",
-    chip: "Anthropic-style oversight",
+    chip: "Scalable-oversight pattern",
   },
   {
     glyph: "⟡",
@@ -91,7 +91,7 @@ const STEPS = [
   { n: "03", title: "Silver model",     body: "DuckDB star schema: fact_sdud + dim_state + dim_drug + dim_date. Drug-class taxonomy applied (brand-name aware so HUMIRA → Autoimmune, OZEMPIC → GLP-1)." },
   { n: "04", title: "Forecast",         body: "12-month SARIMA + Prophet ensemble per state × class. Equal-weight blend; 6-month holdout for backtest." },
   { n: "05", title: "Generate",         body: "DAX measures + Tabular Object Model + page-layout JSON + narrative. Published to Power BI via Fabric REST." },
-  { n: "06", title: "Audit",            body: "16 evaluators run in parallel: 8 deterministic Python + 5 Claude judges + 3 paired auditors re-inspecting deterministic findings." },
+  { n: "06", title: "Audit",            body: "16 evaluators run in parallel: 8 deterministic Python + 5 LLM judges + 3 paired auditors re-inspecting deterministic findings." },
   { n: "07", title: "Verdict",          body: "Severity-banded AUDIT.md + weighted composite scorecard. ≥ 0.85 = Ship · 0.70–0.85 = Tighten · < 0.70 or any MISS = Re-work." },
 ];
 
@@ -106,7 +106,7 @@ const ARCH_NODES = [
 ];
 
 const SUBNOTES = [
-  { label: "Eval framework", value: "8 deterministic Python · 5 Claude LLM · 3 paired auditors · severity-banded AUDIT.md" },
+  { label: "Eval framework", value: "8 deterministic Python · 5 frontier LLM · 3 paired auditors · severity-banded AUDIT.md" },
   { label: "Compute",        value: "Azure Container Apps Jobs (quarterly cron) · DuckDB in-process · Power BI Fabric REST" },
   { label: "Reproducibility",value: "Every artifact regenerable from one dashboard_spec.yml · domain-neutral by design" },
 ];
@@ -428,7 +428,7 @@ export default function HealthcareLandingPage() {
               Project 05 · Healthcare Dashboard Ops · CMS Medicaid SDUD 2024
             </p>
             <div className="flex flex-wrap gap-2">
-              {["Power BI", "Leaflet", "Azure", "Claude SDK", "DuckDB"].map((tag) => (
+              {["Power BI", "Leaflet", "Azure", "Frontier LLM", "DuckDB"].map((tag) => (
                 <span key={tag} className="inline-flex items-center rounded-full border border-violet-300/30 bg-violet-300/10 px-2.5 py-0.5 font-mono text-[10px] font-medium text-violet-300">
                   {tag}
                 </span>

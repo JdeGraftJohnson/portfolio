@@ -71,8 +71,8 @@ content as a TODO that the operator supplies. Without it, clinical-rag and
 patient-disengagement demos cannot be produced authentically (the constraint
 forbids fabricating synthetic answers). Two acceptable resolutions:
 
-1. Operator points to the real path (likely a different Claude desktop
-   workspace, a Cosmos `kb_chunks` row set, or an unindexed iCloud folder).
+1. Operator points to the real path (likely a different local workspace,
+   a Cosmos `kb_chunks` row set, or an unindexed iCloud folder).
 2. Operator authors the Q&A pairs directly into the fixture schema below
    (4–6 questions × ~300-word answer × 2–4 DOI citations each).
 

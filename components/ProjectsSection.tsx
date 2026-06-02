@@ -52,7 +52,7 @@ const PROJECTS: Project[] = [
     subtitle: "Production LLM Evaluation Harness · Scalable-Oversight Pattern",
     summary: `LLM-as-judge evaluation harness with paired auditors and a weighted composite scorecard — gates AI outputs before release.`,
     tech: ["Python", "FastAPI", "pydantic", "pytest", "CI/CD"],
-    dataAndAI: ["Claude", "LLM evaluation", "LLM-as-judge", "paired auditors", "scalable oversight"],
+    dataAndAI: ["Frontier LLM", "LLM evaluation", "LLM-as-judge", "paired auditors", "scalable oversight"],
     useCases: [
       "Government / FSI proposal QA",
       "AI eval pipelines",
@@ -74,7 +74,7 @@ const PROJECTS: Project[] = [
     subtitle: "LLM-as-Judge platform · Power BI · GIS · Forecast models",
     summary: `One spec produces a Power BI dashboard, GIS choropleth, and 12-month forecast — gated by 16 deterministic + LLM evaluators on 31M CMS Medicaid rows.`,
     tech: ["Python", "Leaflet", "Azure Container Apps"],
-    dataAndAI: ["DuckDB", "dbt", "Power BI", "Claude", "LLM evaluation", "SARIMA", "Prophet"],
+    dataAndAI: ["DuckDB", "dbt", "Power BI", "Frontier LLM", "LLM evaluation", "SARIMA", "Prophet"],
     standards: ["CMS Medicaid (T-MSIS)"],
     useCases: [
       "Healthcare AI platforms",
