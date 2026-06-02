@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FloatingUkHealthChat } from "@/components/demo/uk-health-map/FloatingUkHealthChat";
 
-const EMBED_URL = "https://blue-smoke-00f20d403.7.azurestaticapps.net/map/explore";
+const EMBED_URL = "https://white-sea-0fb63720f.7.azurestaticapps.net/map/explore";
 
 export const metadata = {
   title: "UK Health Map · John DeGraft-Johnson",
