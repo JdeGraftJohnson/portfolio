@@ -9,8 +9,8 @@ const ROLES = [
 export function Hero() {
   return (
     <header
-      className="relative overflow-hidden flex items-center justify-center text-white px-4 md:px-8 lg:px-16 py-16 md:py-20"
-      style={{ background: "linear-gradient(to bottom right, #6b46c1, #312e81)", minHeight: "70vh" }}
+      className="relative overflow-hidden flex items-center justify-center text-white px-4 md:px-8 lg:px-16 py-8 md:py-10"
+      style={{ background: "linear-gradient(to bottom right, #6b46c1, #312e81)", minHeight: "59.5vh" }}
     >
       {/* Nav */}
       <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-10 py-5">
