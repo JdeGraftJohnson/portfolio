@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 
 interface Props {
   id: string;
@@ -13,26 +13,29 @@ const wrapperStyle: CSSProperties = {
   borderRadius: 12,
   overflow: "hidden",
   border: "1px solid rgba(255,255,255,0.12)",
-  background: "rgba(0,0,0,0.25)",
+  background: "#0b0b14",
   boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
 };
 
-const mediaStyle: CSSProperties = {
-  display: "block",
+const layerStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
   width: "100%",
   height: "100%",
   objectFit: "cover",
   transformOrigin: "center center",
-  transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: "transform 320ms cubic-bezier(0.4, 0, 0.2, 1), opacity 220ms ease",
+  backgroundColor: "#0b0b14",
 };
 
 export function ProjectThumbnail({ id, href, title, external }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   const onEnter = () => {
     const v = videoRef.current;
     if (!v) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     v.play().catch(() => {});
   };
 
@@ -41,11 +44,10 @@ export function ProjectThumbnail({ id, href, title, external }: Props) {
     if (!v) return;
     v.pause();
     v.currentTime = 0;
+    setVideoReady(false);
   };
 
-  const externalProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
+  const externalProps = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   return (
     <a
@@ -59,22 +61,32 @@ export function ProjectThumbnail({ id, href, title, external }: Props) {
       onBlur={onLeave}
       {...externalProps}
     >
+      {/* Poster underlay — always present so the video element can't flash white */}
+      <img
+        src={`/thumbs/${id}.jpg`}
+        alt=""
+        aria-hidden
+        className="group-hover/thumb:scale-110 motion-reduce:!scale-100"
+        style={{ ...layerStyle, opacity: videoReady ? 0 : 1 }}
+        decoding="async"
+        loading="lazy"
+      />
       <video
         ref={videoRef}
         muted
         loop
         playsInline
         preload="none"
-        poster={`/thumbs/${id}.jpg`}
         aria-label={`Live preview of ${title}`}
         className="group-hover/thumb:scale-110 motion-reduce:!scale-100"
-        style={mediaStyle}
+        style={{ ...layerStyle, opacity: videoReady ? 1 : 0 }}
+        onPlaying={() => setVideoReady(true)}
       >
         <source src={`/thumbs/${id}.mp4`} type="video/mp4" />
       </video>
       <span
         aria-hidden
-        className="absolute inset-x-0 bottom-0 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/90 opacity-0 group-hover/thumb:opacity-100 transition-opacity"
+        className="absolute inset-x-0 bottom-0 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/90 opacity-0 group-hover/thumb:opacity-100 transition-opacity z-10"
         style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55), transparent)" }}
       >
         Open live ↗
