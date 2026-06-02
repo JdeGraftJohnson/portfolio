@@ -36,25 +36,37 @@ const PROJECTS = [
   {
     id: "healthcare-dashboard-ops",
     recipe: async (page) => {
-      // Power BI dashboard for ~3sec, then navigate to the map view
+      // 1) Power BI dashboard — wait for the PBI iframe to actually render frames
       await page.goto("https://johndegraft.app/projects/healthcare-dashboard/dashboard", { waitUntil: "domcontentloaded" });
-      await page.waitForTimeout(3200);
+      await page.waitForSelector('iframe[src*="powerbi"], iframe[title*="powerbi" i]', { timeout: 20000 }).catch(() => {});
+      // PBI report frames take several seconds to paint after the iframe attaches
+      await page.waitForTimeout(7000);
+      // 2) Map view — wait for Leaflet paths, then click a state to open the detail card
       await page.goto("https://johndegraft.app/projects/healthcare-dashboard/map", { waitUntil: "domcontentloaded" });
-      await page.waitForTimeout(3000);
+      await page.waitForSelector("path.leaflet-interactive", { timeout: 15000 }).catch(() => {});
+      await page.waitForTimeout(1500);
+      const paths = page.locator("path.leaflet-interactive");
+      const n = await paths.count();
+      if (n > 0) {
+        // pick a state near the centre of the array so we don't accidentally hit AK/HI off-canvas
+        await paths.nth(Math.min(15, Math.floor(n / 2))).click({ force: true }).catch(() => {});
+        await page.waitForTimeout(3500);
+      } else {
+        await page.waitForTimeout(3000);
+      }
     },
   },
   {
     id: "clinical-rag",
     recipe: async (page) => {
-      await page.goto("https://johndegraft.app/rag", { waitUntil: "domcontentloaded" });
-      await page.waitForTimeout(1500);
-      const input = page.locator('input[placeholder*="clinical protocol"], textarea').first();
-      if (await input.count()) {
-        await input.click();
-        await input.pressSequentially("What does NICE recommend for type 2 diabetes second-line therapy?", { delay: 28 });
-        await page.waitForTimeout(400);
-        await input.press("Enter");
-        await page.waitForTimeout(4500);
+      // /nhs-rag is the production NhsRagChat surface (not /rag)
+      await page.goto("https://johndegraft.app/nhs-rag", { waitUntil: "domcontentloaded" });
+      await page.waitForTimeout(2000);
+      // click the first suggested query — submits via onClick={() => submit(q)}
+      const suggested = page.getByRole("button", { name: /NICE guidance on managing type 2 diabetes/i }).first();
+      if (await suggested.count()) {
+        await suggested.click();
+        await page.waitForTimeout(5500);
       } else {
         await page.waitForTimeout(5000);
       }
@@ -191,7 +203,7 @@ for (const { id, recipe } of targets) {
         `-vf "scale=720:-2,fps=24" ` +
         `-c:v libx264 -profile:v baseline -pix_fmt yuv420p ` +
         `-crf 28 -movflags +faststart ` +
-        `-t 7 "${mp4Path}"`,
+        `-t 14 "${mp4Path}"`,
       { stdio: "pipe" }
     );
   } catch (e) {

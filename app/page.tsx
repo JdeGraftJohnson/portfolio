@@ -13,7 +13,7 @@ export default function Home() {
       <ExperienceSection />
       <ProjectsSection />
 
-      <footer id="contact" className="py-16 md:py-20 bg-white text-gray-800">
+      <footer id="contact" className="py-8 md:py-10 bg-white text-gray-800">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
             Connect with John <span className="text-indigo-600">▲</span>
