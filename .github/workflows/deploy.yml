@@ -108,7 +108,7 @@ jobs:
         id: cf
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.GLOBAL_CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # On main → production. Other branches → preview deploy at <branch>.<project>.pages.dev
           command: pages deploy out --project-name=${{ env.CF_PROJECT }} --branch=${{ github.head_ref || github.ref_name }}
