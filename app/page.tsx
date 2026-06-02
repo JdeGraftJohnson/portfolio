@@ -25,7 +25,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <a
-              href="https://github.com/JdeGraftJohnson"
+              href="https://github.com/JdeGraftJohnson/portfolio"
               target="_blank"
               rel="noopener noreferrer"
               className="group block p-6 bg-indigo-50 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition"
