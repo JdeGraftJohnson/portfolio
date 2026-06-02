@@ -9,34 +9,9 @@ const ROLES = [
 export function Hero() {
   return (
     <header
-      className="relative overflow-hidden flex items-center justify-center text-white px-4 md:px-8 lg:px-16 py-8 md:py-10"
-      style={{ background: "linear-gradient(to bottom right, #6b46c1, #312e81)", minHeight: "59.5vh" }}
+      className="relative overflow-hidden flex items-center justify-center text-white px-4 md:px-8 lg:px-16 py-4 md:py-5"
+      style={{ background: "linear-gradient(to bottom right, #6b46c1, #312e81)" }}
     >
-      {/* Nav */}
-      <nav className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-10 py-5">
-        <span className="font-semibold tracking-tight text-sm">johndegraft.app</span>
-        <div className="flex items-center gap-2">
-          <a
-            href="/rag"
-            className="text-xs px-3 py-1 rounded-full border border-white/30 text-white/80 hover:bg-white/10 hover:border-white/60 transition-colors"
-          >
-            RAG Assistant
-          </a>
-          <a
-            href="/audit"
-            className="text-xs px-3 py-1 rounded-full border border-white/30 text-white/80 hover:bg-white/10 hover:border-white/60 transition-colors"
-          >
-            Equity Audit
-          </a>
-          <a
-            href="#projects"
-            className="text-xs px-3 py-1 rounded-full border border-white/30 text-white/80 hover:bg-white/10 hover:border-white/60 transition-colors"
-          >
-            Projects ↓
-          </a>
-        </div>
-      </nav>
-
       {/* Decorative pulse rings (right side) */}
       <div className="hidden lg:block absolute right-[8%] top-1/2 -translate-y-1/2 pointer-events-none">
         <div className="relative w-96 h-96">
@@ -71,17 +46,17 @@ export function Hero() {
         <div className="space-y-4 text-center lg:text-left">
           <h1
             className="font-extrabold tracking-tight leading-[1.05]"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+            style={{ fontSize: "clamp(1.34rem, 3.35vw, 2.51rem)" }}
           >
             John de Graft-Johnson
           </h1>
           <p
             className="font-light tracking-wide opacity-90"
-            style={{ fontSize: "clamp(1.125rem, 2vw, 1.5rem)" }}
+            style={{ fontSize: "clamp(0.754rem, 1.34vw, 1.005rem)" }}
           >
             AI/ML Engineer SME
           </p>
-          <p className="text-base md:text-lg opacity-80 max-w-xl mx-auto lg:mx-0">
+          <p className="text-[0.67rem] md:text-[0.754rem] opacity-80 max-w-xl mx-auto lg:mx-0">
             Production AI for NHS clinical decision support, AI governance, and agentic
             document pipelines — six shipped projects.
           </p>

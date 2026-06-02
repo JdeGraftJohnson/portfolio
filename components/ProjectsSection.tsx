@@ -324,7 +324,8 @@ export function ProjectsSection() {
             return (
               <div
                 key={p.id}
-                className={`relative flex flex-col p-6 rounded-2xl backdrop-blur-md transition transform hover:-translate-y-1 ${
+                id={p.id}
+                className={`relative flex flex-col p-6 rounded-2xl backdrop-blur-md transition transform hover:-translate-y-1 scroll-mt-24 ${
                   isExpanded ? "md:col-span-2 lg:col-span-3" : ""
                 }`}
                 style={{
