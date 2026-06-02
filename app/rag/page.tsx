@@ -148,14 +148,12 @@ export default function RagPage() {
               >
                 Try the Clinical Assistant →
               </Link>
-              <a
-                href="https://chat.johndegraft.app"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/projects/patient-disengagement"
                 className="rounded-lg border border-violet-300/30 bg-white/[0.02] px-4 py-3 text-xs font-medium text-violet-300/80 backdrop-blur-lg transition hover:-translate-y-0.5 hover:bg-white/[0.05]"
               >
-                Related: Patient Disengagement chat ↗
-              </a>
+                Related: Patient Disengagement chat →
+              </Link>
             </div>
           </div>
 

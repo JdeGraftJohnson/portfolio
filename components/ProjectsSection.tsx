@@ -130,7 +130,7 @@ const PROJECTS: Project[] = [
     ],
     status: "live",
     actions: {
-      tryItOut: { kind: "live", href: "https://chat.johndegraft.app" },
+      tryItOut: { kind: "live", href: "/projects/patient-disengagement" },
     },
   },
   {
