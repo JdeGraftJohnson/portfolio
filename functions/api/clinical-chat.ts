@@ -3,12 +3,23 @@ interface ChatRequest {
   history?: { role: "user" | "assistant"; content: string }[];
 }
 
-interface BackendResponse {
-  reply?: string;
+interface OllamaChatResponse {
+  message?: { role: string; content: string };
   error?: string;
 }
 
-const BACKEND = "https://p01-llm-api.greenmeadow-f26c79a5.uksouth.azurecontainerapps.io/chat";
+const BACKEND =
+  "https://aca-portfolio-llm-prod1.proudbeach-01a5e1df.eastus2.azurecontainerapps.io/api/chat";
+const MODEL = "gemma3:4b";
+
+const CLINICAL_SYSTEM =
+  "You are an NHS clinical decision-support assistant grounded in NICE guidelines and the British National Formulary (BNF). " +
+  "Answer concisely with: (1) a direct reference to the relevant NICE guideline (e.g., NG28 for type 2 diabetes), " +
+  "(2) a SNOMED CT code where applicable, " +
+  "(3) a brief evidence-grounded summary, " +
+  "(4) a mandatory closing note that every response REQUIRES human clinical review before any clinical action — " +
+  "the system never makes autonomous clinical decisions (UK GDPR Article 22). " +
+  "Never identify individual patients or practices. Stick to publicly published guidance.";
 
 const ALLOWED_ORIGINS = new Set<string>([
   "https://johndegraft.app",
@@ -18,10 +29,8 @@ const ALLOWED_ORIGINS = new Set<string>([
 ]);
 
 function corsHeaders(origin: string | null): Record<string, string> {
-  // Echo origin back when allowed; else default to apex.
   const allow = origin && (
       ALLOWED_ORIGINS.has(origin) ||
-      // also allow any *.johndegraft-app.pages.dev preview deploy
       /^https:\/\/[a-z0-9-]+\.johndegraft-app\.pages\.dev$/.test(origin)
     )
     ? origin
@@ -53,21 +62,30 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
         { status: 400, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
+    const history = Array.isArray(body.history) ? body.history : [];
+    const messages = [
+      { role: "system", content: CLINICAL_SYSTEM },
+      ...history,
+      { role: "user", content: body.message.trim() },
+    ];
+
     const upstream = await fetch(BACKEND, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        message: body.message.trim(),
-        history: Array.isArray(body.history) ? body.history : [],
+        model: MODEL,
+        messages,
+        stream: false,
+        options: { num_ctx: 4096, num_predict: 512, temperature: 0.3 },
       }),
     });
-    const upstreamText = await upstream.text();
-    let json: BackendResponse;
+    const text = await upstream.text();
+    let json: OllamaChatResponse;
     try {
-      json = JSON.parse(upstreamText) as BackendResponse;
+      json = JSON.parse(text) as OllamaChatResponse;
     } catch {
       return new Response(
-        JSON.stringify({ error: `upstream non-JSON: ${upstreamText.slice(0, 200)}` }),
+        JSON.stringify({ error: `upstream non-JSON: ${text.slice(0, 200)}` }),
         { status: 502, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
@@ -77,7 +95,8 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
         { status: upstream.status, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
-    return new Response(JSON.stringify({ reply: json.reply ?? "" }), {
+    const reply = json.message?.content ?? "";
+    return new Response(JSON.stringify({ reply }), {
       status: 200,
       headers: { ...cors, "Content-Type": "application/json", "Cache-Control": "no-store" },
     });

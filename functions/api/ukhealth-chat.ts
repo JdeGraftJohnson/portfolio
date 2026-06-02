@@ -3,20 +3,20 @@ interface ChatRequest {
   history?: { role: "user" | "assistant"; content: string }[];
 }
 
-interface BackendResponse {
-  reply?: string;
+interface OllamaChatResponse {
+  message?: { role: string; content: string };
   error?: string;
 }
 
-const BACKEND = "https://p01-llm-api.greenmeadow-f26c79a5.uksouth.azurecontainerapps.io/chat";
+const BACKEND =
+  "https://aca-portfolio-llm-prod1.proudbeach-01a5e1df.eastus2.azurecontainerapps.io/api/chat";
+const MODEL = "gemma3:4b";
 
-const ICB_SYSTEM_PRIMER =
-  "You are answering a question about the NHS Integrated Care Board (ICB) " +
-  "regional risk map, which layers patient-disengagement risk, IMD quintile " +
-  "distributions, CQC practice ratings, and urbanity across England. Provide " +
-  "concise, evidence-grounded answers grounded in NHS publicly-reported data. " +
-  "Never identify individual practices or patients; speak only in aggregates. " +
-  "QUESTION: ";
+const ICB_SYSTEM =
+  "You are answering questions about the NHS Integrated Care Board (ICB) regional risk map, which layers " +
+  "patient-disengagement risk, IMD quintile distributions, CQC practice ratings, and urbanity across England. " +
+  "Provide concise, evidence-grounded answers using NHS publicly-reported aggregates. " +
+  "Never identify individual practices or patients; speak only in aggregates and ICB-level statistics.";
 
 const ALLOWED_ORIGINS = new Set<string>([
   "https://johndegraft.app",
@@ -59,19 +59,27 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
         { status: 400, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
-    const wrapped = ICB_SYSTEM_PRIMER + body.message.trim();
+    const history = Array.isArray(body.history) ? body.history : [];
+    const messages = [
+      { role: "system", content: ICB_SYSTEM },
+      ...history,
+      { role: "user", content: body.message.trim() },
+    ];
+
     const upstream = await fetch(BACKEND, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        message: wrapped,
-        history: Array.isArray(body.history) ? body.history : [],
+        model: MODEL,
+        messages,
+        stream: false,
+        options: { num_ctx: 4096, num_predict: 512, temperature: 0.3 },
       }),
     });
     const text = await upstream.text();
-    let json: BackendResponse;
+    let json: OllamaChatResponse;
     try {
-      json = JSON.parse(text) as BackendResponse;
+      json = JSON.parse(text) as OllamaChatResponse;
     } catch {
       return new Response(
         JSON.stringify({ error: `upstream non-JSON: ${text.slice(0, 200)}` }),
@@ -84,7 +92,8 @@ export const onRequestPost: PagesFunction = async ({ request }) => {
         { status: upstream.status, headers: { ...cors, "Content-Type": "application/json" } }
       );
     }
-    return new Response(JSON.stringify({ reply: json.reply ?? "" }), {
+    const reply = json.message?.content ?? "";
+    return new Response(JSON.stringify({ reply }), {
       status: 200,
       headers: { ...cors, "Content-Type": "application/json", "Cache-Control": "no-store" },
     });
