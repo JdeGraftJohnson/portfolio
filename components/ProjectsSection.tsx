@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { ProposalJudgeMap } from "./architecture/ProposalJudgeMap";
 import { PropfirmbotMap } from "./architecture/PropfirmbotMap";
 import { HealthcareDashboardMap } from "./architecture/HealthcareDashboardMap";
+import { ProjectThumbnail } from "./ProjectThumbnail";
 
 type ProjectCategory =
   | "LLM Evaluation & Oversight"
@@ -325,7 +326,7 @@ export function ProjectsSection() {
               <div
                 key={p.id}
                 id={p.id}
-                className={`relative flex flex-col p-6 rounded-2xl backdrop-blur-md transition transform hover:-translate-y-1 scroll-mt-24 ${
+                className={`group/card relative flex flex-col p-6 rounded-2xl backdrop-blur-md transition transform hover:-translate-y-1 scroll-mt-24 ${
                   isExpanded ? "md:col-span-2 lg:col-span-3" : ""
                 }`}
                 style={{
@@ -334,6 +335,14 @@ export function ProjectsSection() {
                   boxShadow: "0 4px 6px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.08)",
                 }}
               >
+                {p.actions.tryItOut && (
+                  <ProjectThumbnail
+                    id={p.id}
+                    href={p.actions.tryItOut.href}
+                    title={p.title}
+                    external={isExternal(p.actions.tryItOut.href)}
+                  />
+                )}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <span
                     className="text-xs font-semibold tracking-wider uppercase px-2 py-1 rounded-full shrink-0"
