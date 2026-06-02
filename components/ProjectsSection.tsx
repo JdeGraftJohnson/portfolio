@@ -110,6 +110,7 @@ const PROJECTS: Project[] = [
     ],
     status: "live",
     actions: {
+      repo: "https://github.com/JdeGraftJohnson/clinical-rag-eval",
       tryItOut: { kind: "live", href: "/rag" },
     },
   },
@@ -412,13 +413,14 @@ export function ProjectsSection() {
                     disabled={!p.actions.repo}
                     title={p.actions.repo ? "Open repo" : "Repo private"}
                   />
-                  <ActionButton
-                    label={isExpanded ? "Hide map ↑" : "Architecture"}
-                    accent={p.badgeColor}
-                    disabled={!hasMap}
-                    title={hasMap ? "Toggle architecture map" : "Architecture map coming soon"}
-                    onClick={hasMap ? () => setExpandedId(isExpanded ? null : p.id) : undefined}
-                  />
+                  {hasMap && (
+                    <ActionButton
+                      label={isExpanded ? "Hide map ↑" : "Architecture"}
+                      accent={p.badgeColor}
+                      title="Toggle architecture map"
+                      onClick={() => setExpandedId(isExpanded ? null : p.id)}
+                    />
+                  )}
                   <ActionButton
                     href={p.actions.tryItOut?.href}
                     label={p.actions.tryItOut?.kind === "demo" ? "Try It Out →" : "Try It Out →"}

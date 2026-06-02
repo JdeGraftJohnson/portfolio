@@ -21,7 +21,7 @@ function Chip({ x, y, label, accent, w }: { x: number; y: number; label: string;
   const width = w ?? Math.max(70, Math.ceil(label.length * CHAR_W) + CHIP_PAD_X * 2);
   return (
     <g>
-      <rect x={x} y={y} width={width} height={CHIP_H} rx={6} fill={`${accent}1A`} stroke={accent} strokeOpacity={0.5} />
+      <rect x={x} y={y} width={width} height={CHIP_H} rx={6} fill={`${accent}66`} stroke={accent} strokeOpacity={0.85} />
       <text
         x={x + width / 2}
         y={y + 17}
@@ -65,7 +65,7 @@ function Cluster({
 
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} rx={14} fill="rgba(255,255,255,0.03)" stroke={accent} strokeOpacity={0.5} />
+      <rect x={x} y={y} width={w} height={h} rx={14} fill={`${accent}1F`} stroke={accent} strokeOpacity={0.65} />
       <text x={x + innerPadX} y={y + 22} fontSize={13} fontWeight={700} fill={accent} letterSpacing="0.06em">
         {title.toUpperCase()}
       </text>
@@ -112,18 +112,18 @@ export function PropfirmbotMap() {
 
   const Y = {
     feeds: 16,
-    indicators: 120,
-    strategies: 280,
-    confluence: 460,
-    risk: 600,
-    router: 740,
-    audit: 880,
+    indicators: 140,
+    strategies: 310,
+    confluence: 500,
+    risk: 650,
+    router: 800,
+    audit: 950,
   };
 
   return (
     <div className="w-full overflow-x-auto">
       <svg
-        viewBox={`0 0 ${VBW} 1010`}
+        viewBox={`0 0 ${VBW} 1100`}
         className="w-full h-auto"
         style={{ maxWidth: "100%", minWidth: 760 }}
         role="img"

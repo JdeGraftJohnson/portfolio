@@ -33,9 +33,9 @@ function Chip({ x, y, label, accent, w }: ChipProps) {
         width={width}
         height={CHIP_H}
         rx={6}
-        fill={`${accent}1A`}
+        fill={`${accent}66`}
         stroke={accent}
-        strokeOpacity={0.5}
+        strokeOpacity={0.85}
       />
       <text
         x={x + width / 2}
@@ -96,9 +96,9 @@ function Cluster({ x, y, w, title, meta, accent, chips, output }: ClusterProps) 
         width={w}
         height={h}
         rx={14}
-        fill="rgba(255,255,255,0.03)"
+        fill={`${accent}1F`}
         stroke={accent}
-        strokeOpacity={0.5}
+        strokeOpacity={0.65}
       />
       <text x={x + innerPadX} y={y + 22} fontSize={13} fontWeight={700} fill={accent} letterSpacing="0.06em">
         {title.toUpperCase()}
@@ -170,15 +170,16 @@ export function ProposalJudgeMap() {
 
   // We'll just place absolute y values for arrows and rely on cluster intrinsic height (clusters are ~98–124px).
 
-  // Realistic spacing — pick generous gaps:
+  // Generous gaps — every cluster auto-sizes to its chip rows, so the
+  // origins below leave ≥48 px of breathing room around the tallest variant.
   const Y = {
     rfp: 16,
-    intake: 90,
-    render: 230,
-    audit: 380,
-    lanes: 520,
-    orchestrator: 800,
-    composite: 940,
+    intake: 100,
+    render: 260,
+    audit: 410,
+    lanes: 560,
+    orchestrator: 860,
+    composite: 1020,
   };
 
   // RFP chip width
@@ -187,7 +188,7 @@ export function ProposalJudgeMap() {
   return (
     <div className="w-full overflow-x-auto">
       <svg
-        viewBox={`0 0 ${VBW} 1080`}
+        viewBox={`0 0 ${VBW} 1180`}
         className="w-full h-auto"
         style={{ maxWidth: "100%", minWidth: 760 }}
         role="img"
