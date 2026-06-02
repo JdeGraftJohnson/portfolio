@@ -35,12 +35,14 @@ const PROJECTS = [
   },
   {
     id: "healthcare-dashboard-ops",
+    // skip past the landing-page header + PBI loading skeleton so the clip
+    // begins with the rendered dashboard
+    trim: { start: 10, length: 12 },
     recipe: async (page) => {
-      // 1) Power BI dashboard — wait for the PBI iframe to actually render frames
+      // 1) Power BI dashboard — wait long enough for the report to actually paint frames
       await page.goto("https://johndegraft.app/projects/healthcare-dashboard/dashboard", { waitUntil: "domcontentloaded" });
       await page.waitForSelector('iframe[src*="powerbi"], iframe[title*="powerbi" i]', { timeout: 20000 }).catch(() => {});
-      // PBI report frames take several seconds to paint after the iframe attaches
-      await page.waitForTimeout(7000);
+      await page.waitForTimeout(13000); // PBI cold render budget
       // 2) Map view — wait for Leaflet paths, then click a state to open the detail card
       await page.goto("https://johndegraft.app/projects/healthcare-dashboard/map", { waitUntil: "domcontentloaded" });
       await page.waitForSelector("path.leaflet-interactive", { timeout: 15000 }).catch(() => {});
@@ -48,9 +50,8 @@ const PROJECTS = [
       const paths = page.locator("path.leaflet-interactive");
       const n = await paths.count();
       if (n > 0) {
-        // pick a state near the centre of the array so we don't accidentally hit AK/HI off-canvas
         await paths.nth(Math.min(15, Math.floor(n / 2))).click({ force: true }).catch(() => {});
-        await page.waitForTimeout(3500);
+        await page.waitForTimeout(4000);
       } else {
         await page.waitForTimeout(3000);
       }
@@ -165,7 +166,9 @@ mkdirSync(OUT_DIR, { recursive: true });
 
 const browser = await chromium.launch();
 
-for (const { id, recipe } of targets) {
+const DEFAULT_TRIM = { start: 1.2, length: 6 };
+
+for (const { id, recipe, trim } of targets) {
   console.log(`\n▶ ${id}`);
   const ctxDir = join(TMP_DIR, id);
   rmSync(ctxDir, { recursive: true, force: true });
@@ -196,14 +199,18 @@ for (const { id, recipe } of targets) {
   const webmPath = join(ctxDir, webm);
   const mp4Path = join(OUT_DIR, `${id}.mp4`);
 
-  console.log(`  encoding → ${mp4Path}`);
+  const t = { ...DEFAULT_TRIM, ...(trim ?? {}) };
+  console.log(`  encoding → ${mp4Path} (start=${t.start}s, length=${t.length}s)`);
   try {
+    // -ss before -i is fast input seek but can miss keyframes on webm; use -ss after -i for
+    // accurate seek so we land exactly on the first useful frame.
     execSync(
       `ffmpeg -y -i "${webmPath}" -an ` +
+        `-ss ${t.start} -t ${t.length} ` +
         `-vf "scale=720:-2,fps=24" ` +
         `-c:v libx264 -profile:v baseline -pix_fmt yuv420p ` +
         `-crf 28 -movflags +faststart ` +
-        `-t 14 "${mp4Path}"`,
+        `"${mp4Path}"`,
       { stdio: "pipe" }
     );
   } catch (e) {
