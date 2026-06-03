@@ -1,5 +1,5 @@
 /map  https://blue-smoke-00f20d403.7.azurestaticapps.net/map  302
 /map/*  https://blue-smoke-00f20d403.7.azurestaticapps.net/map/:splat  302
 /chat  https://chat.johndegraft.app/  302
-/projects/agentic-inspector  https://agentic-chat-inspector.vercel.app/  200
-/projects/agentic-inspector/*  https://agentic-chat-inspector.vercel.app/:splat  200
+/projects/agentic-inspector  https://agentic-chat-inspector.vercel.app/  302
+/projects/agentic-inspector/*  https://agentic-chat-inspector.vercel.app/:splat  302
