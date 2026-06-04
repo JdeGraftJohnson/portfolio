@@ -36,19 +36,18 @@ async function rpc<T>(url: string, method: string, params: unknown[]): Promise<T
   return json.result as T;
 }
 
-function decodeMemoFromTx(tx: any): Record<string, unknown> | null {
+// `getSignaturesForAddress` returns each record with a `memo` field formatted
+// as "<len> <text>" (length-prefixed UTF-8). We parse the JSON memo directly
+// from there -- no per-tx getTransaction calls needed (saves 30 RPC requests
+// per page load and stays well under Workers CPU / subrequest budgets).
+function parseInlineMemo(raw: string | null): Record<string, unknown> | null {
+  if (!raw) return null;
+  // Strip optional "[length] " prefix; some RPCs return just the text.
+  const text = raw.replace(/^\[\d+\]\s*/, "").trim();
   try {
-    const instrs: any[] = tx?.transaction?.message?.instructions ?? [];
-    for (const ix of instrs) {
-      if (ix?.program === "spl-memo" || ix?.programId === MEMO_PROGRAM_ID) {
-        const text = typeof ix.parsed === "string" ? ix.parsed : null;
-        if (text) {
-          const m = JSON.parse(text);
-          if (m && typeof m.v === "string" && m.v.startsWith("tsb.")) return m;
-        }
-      }
-    }
-  } catch {/* swallow per-tx decode errors */}
+    const m = JSON.parse(text);
+    if (m && typeof m.v === "string" && m.v.startsWith("tsb.")) return m;
+  } catch {/* not our memo */}
   return null;
 }
 
@@ -78,30 +77,16 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   const rpcUrl = context.env.PROPFIRMBOT_SOLANA_RPC_URL || DEFAULT_DEVNET_RPC;
   try {
-    const sigs = await rpc<Array<{ signature: string; blockTime: number | null }>>(
+    const sigs = await rpc<Array<{ signature: string; blockTime: number | null; memo: string | null }>>(
       rpcUrl,
       "getSignaturesForAddress",
       [pubkey, { limit: 30 }],
     );
-    if (!sigs.length) {
-      return new Response(
-        JSON.stringify({ rows: [] }),
-        { headers: { "Content-Type": "application/json", ...corsHeaders(origin) } },
-      );
-    }
-    const txs = await Promise.all(
-      sigs.map(s =>
-        rpc<any>(rpcUrl, "getTransaction", [
-          s.signature,
-          { encoding: "jsonParsed", maxSupportedTransactionVersion: 0 },
-        ]).catch(() => null),
-      ),
-    );
     const rows: Array<{ sig: string; blockTime: number | null; memo: Record<string, unknown> }> = [];
-    sigs.forEach((s, i) => {
-      const memo = decodeMemoFromTx(txs[i]);
+    for (const s of sigs) {
+      const memo = parseInlineMemo(s.memo);
       if (memo) rows.push({ sig: s.signature, blockTime: s.blockTime, memo });
-    });
+    }
     return new Response(
       JSON.stringify({ rows }),
       { headers: { "Content-Type": "application/json", ...corsHeaders(origin) } },
