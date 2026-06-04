@@ -32,10 +32,9 @@ type Row = { sig: string; blockTime: number | null; memo: Memo };
 
 function statusPill(latest: Row | null): { label: string; bg: string; fg: string } {
   if (!latest) return { label: "No data", bg: "rgba(120,120,120,0.18)", fg: "#9ca3af" };
-  const ageMin = latest.blockTime ? (Date.now() / 1000 - latest.blockTime) / 60 : Infinity;
-  const botUp = latest.memo.status === "up";
-  if (botUp && ageMin <= 30) return { label: "Live", bg: "rgba(96,165,250,0.18)", fg: "#60a5fa" };
-  if (botUp && ageMin <= 120) return { label: "Stale", bg: "rgba(251,191,36,0.18)", fg: "#fbbf24" };
+  if (latest.memo.status === "up") {
+    return { label: "Live", bg: "rgba(34,197,94,0.18)", fg: "#22c55e" };
+  }
   return { label: "Offline", bg: "rgba(239,68,68,0.18)", fg: "#ef4444" };
 }
 
@@ -182,7 +181,7 @@ export function SolanaLiveTracker() {
                       <tr key={r.sig} style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                         <Td>{r.blockTime ? fmtTime(new Date(r.blockTime * 1000).toISOString()) : "—"}</Td>
                         <Td>
-                          <span style={{ color: r.memo.status === "up" ? "#60a5fa" : "#ef4444" }}>
+                          <span style={{ color: r.memo.status === "up" ? "#22c55e" : "#ef4444" }}>
                             {r.memo.status}
                           </span>
                         </Td>
