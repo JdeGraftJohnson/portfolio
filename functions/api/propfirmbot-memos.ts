@@ -12,7 +12,14 @@ interface Env {
   PROPFIRMBOT_SOLANA_RPC_URL?: string;
 }
 
-const DEFAULT_DEVNET_RPC = "https://api.devnet.solana.com";
+// Tried in order until one returns. The official endpoint frequently
+// blocks Cloudflare's edge IP range; community endpoints fill the gap.
+const DEFAULT_DEVNET_RPCS = [
+  "https://api.devnet.solana.com",
+  "https://solana-devnet.public.blastapi.io",
+  "https://devnet.helius-rpc.com",
+];
+const RPC_TIMEOUT_MS = 6_000;
 const MEMO_PROGRAM_ID = "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr";
 
 const ALLOWED_ORIGINS = new Set<string>([
@@ -26,14 +33,37 @@ const ALLOWED_ORIGINS = new Set<string>([
 interface RpcResp<T> { result?: T; error?: { code: number; message: string } }
 
 async function rpc<T>(url: string, method: string, params: unknown[]): Promise<T> {
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
-  });
-  const json = (await res.json()) as RpcResp<T>;
-  if (json.error) throw new Error(`${method}: ${JSON.stringify(json.error)}`);
-  return json.result as T;
+  const ac = new AbortController();
+  const timer = setTimeout(() => ac.abort(), RPC_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
+      signal: ac.signal,
+    });
+    if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
+    const json = (await res.json()) as RpcResp<T>;
+    if (json.error) throw new Error(`${method}: ${JSON.stringify(json.error)}`);
+    return json.result as T;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function rpcWithFallback<T>(
+  urls: string[], method: string, params: unknown[],
+): Promise<{ result: T; url: string }> {
+  let lastErr: unknown = null;
+  for (const url of urls) {
+    try {
+      const result = await rpc<T>(url, method, params);
+      return { result, url };
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw new Error(`all RPCs failed; last=${String(lastErr)}`);
 }
 
 // `getSignaturesForAddress` returns each record with a `memo` field formatted
@@ -75,13 +105,13 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     );
   }
 
-  const rpcUrl = context.env.PROPFIRMBOT_SOLANA_RPC_URL || DEFAULT_DEVNET_RPC;
+  const rpcUrls = context.env.PROPFIRMBOT_SOLANA_RPC_URL
+    ? [context.env.PROPFIRMBOT_SOLANA_RPC_URL, ...DEFAULT_DEVNET_RPCS]
+    : DEFAULT_DEVNET_RPCS;
   try {
-    const sigs = await rpc<Array<{ signature: string; blockTime: number | null; memo: string | null }>>(
-      rpcUrl,
-      "getSignaturesForAddress",
-      [pubkey, { limit: 30 }],
-    );
+    const { result: sigs } = await rpcWithFallback<
+      Array<{ signature: string; blockTime: number | null; memo: string | null }>
+    >(rpcUrls, "getSignaturesForAddress", [pubkey, { limit: 30 }]);
     const rows: Array<{ sig: string; blockTime: number | null; memo: Record<string, unknown> }> = [];
     for (const s of sigs) {
       const memo = parseInlineMemo(s.memo);
