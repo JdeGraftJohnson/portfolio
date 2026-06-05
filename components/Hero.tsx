@@ -7,7 +7,7 @@ export function Hero() {
       style={{ background: "linear-gradient(to bottom right, #6b46c1, #312e81)" }}
     >
       <div className="relative z-10 w-full max-w-7xl mx-auto">
-        <div className="space-y-2 text-center lg:text-left">
+        <div className="space-y-2 text-center">
           <h1
             className="font-extrabold tracking-tight leading-[1.05]"
             style={{ fontSize: "clamp(1.34rem, 3.35vw, 2.51rem)" }}
@@ -20,7 +20,7 @@ export function Hero() {
           >
             AI/ML Engineer SME
           </p>
-          <div className="flex gap-3 justify-center lg:justify-start pt-2">
+          <div className="flex gap-3 justify-center pt-2">
             <a
               href="#projects"
               className="inline-flex items-center px-5 py-2.5 bg-white text-indigo-800 font-bold text-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition"
