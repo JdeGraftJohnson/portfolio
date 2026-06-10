@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { Hero } from "@/components/Hero";
 import { StatsBar } from "@/components/StatsBar";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { ContactForm } from "@/components/ContactForm";
 
 export default function Home() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <main style={{ background: "#fafafa", minHeight: "100vh" }}>
       <Hero />
@@ -25,7 +29,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <a
-              href="https://github.com/JdeGraftJohnson/portfolio"
+              href="https://github.com/JdeGraftJohnson"
               target="_blank"
               rel="noopener noreferrer"
               className="group block p-6 bg-indigo-50 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition"
@@ -46,15 +50,16 @@ export default function Home() {
               </h3>
               <p className="text-sm text-gray-600">Connect professionally</p>
             </a>
-            <a
-              href="mailto:johndegraft2022@gmail.com"
-              className="group block p-6 bg-blue-50 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition"
+            <button
+              type="button"
+              onClick={() => setContactOpen(true)}
+              className="group block p-6 bg-blue-50 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition text-left w-full"
             >
               <h3 className="text-xl font-semibold mb-1 text-gray-900 group-hover:text-blue-700">
                 Email
               </h3>
               <p className="text-sm text-gray-600">Direct message</p>
-            </a>
+            </button>
           </div>
 
           <p className="mt-14 text-gray-500 text-xs">
@@ -62,6 +67,8 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      {contactOpen && <ContactForm onClose={() => setContactOpen(false)} />}
     </main>
   );
 }

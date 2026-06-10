@@ -27,7 +27,7 @@ const ROLES: Role[] = [
     title: "Product Analytics Manager",
     org: "W.R. Grace",
     location: "Columbia, MD",
-    period: "Jan 2024 – Oct 2025",
+    period: "Apr 2024 – Oct 2025",
     highlights: [
       "Spearheaded enterprise commercial and volume forecasting systems powering $700MM+ revenue planning, capital allocation, and scenario-based performance modeling; embedded with Finance, Operations, and executive stakeholders to translate ambiguous business questions into decision-ready forecasts.",
       "Shipped a forecast-accuracy measurement and reconciliation framework — instrumented as a production evaluation harness across business units — reducing forecast-to-actual variance by 18%.",
@@ -36,10 +36,10 @@ const ROLES: Role[] = [
     tags: ["Forecasting", "Scenario Modeling", "ML / Predictive", "AWS / Azure", "Governance"],
   },
   {
-    title: "Senior Data Analyst",
+    title: "Senior Business Management Analyst (Senior Data Analyst function)",
     org: "W.R. Grace",
     location: "Columbia, MD",
-    period: "Aug 2022 – Jan 2024",
+    period: "Aug 2022 – Apr 2024",
     highlights: [
       "Directed enterprise revenue-intelligence program across SAP and Salesforce ecosystems using SQL-driven analytics, delivering visibility into $600MM+ monthly performance and growth signals to executive stakeholders.",
       "Deployed statistical forecasting and performance models to production, reducing planning cycle time by 25% and stabilizing revenue predictability; engineered centralized pipelines integrating SAP, Salesforce, and operational datasets.",
@@ -48,7 +48,7 @@ const ROLES: Role[] = [
     tags: ["SAP / Salesforce", "SQL", "Statistical Forecasting", "Tableau / Power BI", "Segmentation"],
   },
   {
-    title: "Data Engineer",
+    title: "Manufacturing Leadership Program — Data & Process Engineering Rotations",
     org: "W.R. Grace",
     location: "Baltimore, MD",
     period: "Jul 2019 – Aug 2022",
